@@ -1,0 +1,33 @@
+
+[
+  {
+    "name": "ベンチマーク",
+    "src": "benchmark.jsonc",
+    "link": "benchmark",
+    "description": "頭脳ゲームや認知テストで自分の能力を測定"
+  },
+  {
+    "name": "色の知覚",
+    "src": "color-perception.jsonc",
+    "link": "color-perception",
+    "description": "あなたの色知覚能力をテストしてください。"
+  },
+  {
+    "name": "オーディション",
+    "src": "audition.jsonc",
+    "link": "audition",
+    "description": "あなたのオーディション能力をテストしてください。"
+  },
+  {
+    "name": "グラフィック",
+    "src": "graphic.jsonc",
+    "link": "graphic",
+    "description": "右脳テスト、あなたのグラフィックメモリ能力をテストします。"
+  },
+  {
+    "name": "注意",
+    "src": "attention.jsonc",
+    "link": "attention",
+    "description": "注意力をテストしてください。"
+  }
+]

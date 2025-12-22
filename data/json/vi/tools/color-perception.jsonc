@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "Nhận thức màu sắc",
+    "description": "Kiểm tra khả năng nhận biết màu sắc của bạn.",
+    "url": "/vi/tests/color-perception-test",
+    "icon": "FaPalette"
+  },
+  {
+    "name": "Sắc thái của màu xám",
+    "description": "Kiểm tra khả năng phân biệt sự khác biệt tinh tế trong sắc thái màu xám của bạn",
+    "url": "/vi/tests/gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "51 sắc thái của màu xám",
+    "description": "Kiểm tra khả năng phân biệt sự khác biệt tinh tế trong sắc thái màu xám của bạn",
+    "url": "/vi/tests/51-gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "Bệnh mù màu",
+    "description": "Kiểm tra khả năng nhận biết màu sắc của bạn bằng bài kiểm tra kiểu Ishihara này",
+    "url": "/vi/tests/color-blindness-test",
+    "icon": "FaTrafficLight"
+  }
+]

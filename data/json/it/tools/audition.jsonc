@@ -1,0 +1,21 @@
+
+[
+  {
+    "name": "Gamma di frequenze uditive",
+    "description": "Metti alla prova la tua gamma di frequenze uditive da 20 Hz a 20.000 Hz",
+    "url": "/it/tests/hearing-frequency-test",
+    "icon": "FaHeadphones"
+  },
+  {
+    "name": "Tempo di reazione audio",
+    "description": "Fare clic per avviare e fare clic quando si sente il segnale acustico",
+    "url": "/it/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "Prova dell'orecchio assoluto",
+    "description": "Fai clic per iniziare e fai clic quando senti la nota",
+    "url": "/it/tests/perfect-pitch",
+    "icon": "FaMusic"
+  }
+]

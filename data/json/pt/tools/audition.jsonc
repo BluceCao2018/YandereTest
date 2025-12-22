@@ -1,0 +1,21 @@
+
+[
+  {
+    "name": "Faixa de frequência auditiva",
+    "description": "Teste sua faixa de frequência auditiva de 20 Hz a 20.000 Hz",
+    "url": "/pt/tests/hearing-frequency-test",
+    "icon": "FaHeadphones"
+  },
+  {
+    "name": "Tempo de reação de áudio",
+    "description": "Clique para iniciar e clique quando ouvir o bipe",
+    "url": "/pt/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "Teste de pitch perfeito",
+    "description": "Clique para começar e clique quando ouvir a nota",
+    "url": "/pt/tests/perfect-pitch",
+    "icon": "FaMusic"
+  }
+]

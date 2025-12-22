@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "音频反应时间测试",
+    "description": "音频反应时间测试：测试您的音频反应时间。",
+    "url": "/zh/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "时间感知反应时间测试",
+    "description": "时间感知反应时间测试：测试您的时间感知反应时间。",
+    "url": "/zh/tests/time-perception-test",
+    "icon": "FaClock"
+  },
+  {
+    "name": "面部记忆反应时间测试",
+    "description": "面部记忆反应时间测试：测试您的面部记忆反应时间。",
+    "url": "/zh/tests/face-recognition-test",
+    "icon": "FaFaceSmile"
+  },
+  {
+    "name": "瞄准反应时间测试",
+    "description": "瞄准反应时间测试：测试您的瞄准反应时间。",
+    "url": "/zh/tests/aim",
+    "icon": "FaBullseye"
+  }
+]

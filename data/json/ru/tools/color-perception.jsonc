@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "Восприятие цвета",
+    "description": "Проверьте свою способность восприятия цвета.",
+    "url": "/ru/tests/color-perception-test",
+    "icon": "FaPalette"
+  },
+  {
+    "name": "Оттенки серого",
+    "description": "Проверьте свою способность различать тонкие различия в оттенках серого.",
+    "url": "/ru/tests/gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "51 оттенок серого",
+    "description": "Проверьте свою способность различать тонкие различия в оттенках серого.",
+    "url": "/ru/tests/51-gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "Цветовая слепота",
+    "description": "Проверьте свое цветовое зрение с помощью этого теста в стиле Исихара.",
+    "url": "/ru/tests/color-blindness-test",
+    "icon": "FaTrafficLight"
+  }
+]

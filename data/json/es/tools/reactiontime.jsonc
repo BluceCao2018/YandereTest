@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "Prueba de tiempo de reacción de audio",
+    "description": "Prueba de tiempo de reacción de audio: pruebe su tiempo de reacción de audio.",
+    "url": "/es/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "Prueba de tiempo de reacción de percepción del tiempo",
+    "description": "Prueba de tiempo de reacción de percepción del tiempo: prueba tu tiempo de reacción de percepción del tiempo.",
+    "url": "/es/tests/time-perception-test",
+    "icon": "FaClock"
+  },
+  {
+    "name": "Prueba de tiempo de reacción de memoria facial",
+    "description": "Prueba de tiempo de reacción de memoria facial: prueba el tiempo de reacción de tu memoria facial.",
+    "url": "/es/tests/face-recognition-test",
+    "icon": "FaFaceSmile"
+  },
+  {
+    "name": "Prueba de tiempo de reacción del objetivo",
+    "description": "Prueba de tiempo de reacción de puntería: prueba tu tiempo de reacción de puntería.",
+    "url": "/es/tests/aim",
+    "icon": "FaBullseye"
+  }
+]

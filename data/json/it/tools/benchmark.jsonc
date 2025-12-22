@@ -1,0 +1,51 @@
+
+[
+  {
+    "name": "Tempo di reazione",
+    "description": "Metti alla prova i tuoi riflessi visivi",
+    "url": "/it/tests/reactiontime",
+    "icon": "FaClock"
+  },
+  {
+    "name": "Memoria di sequenza",
+    "description": "Ricorda uno schema sempre più lungo di pressioni dei pulsanti.",
+    "url": "/it/tests/sequence",
+    "icon": "FaList"
+  },
+  {
+    "name": "Allenatore di mira",
+    "description": "Quanto velocemente riesci a colpire tutti i bersagli?",
+    "url": "/it/tests/aim",
+    "icon": "FaBullseye"
+  },
+  {
+    "name": "Memoria dei numeri",
+    "description": "Ricorda il numero più lungo che puoi.",
+    "url": "/it/tests/number-memory",
+    "icon": "FaHashtag"
+  },
+  {
+    "name": "Memoria verbale",
+    "description": "Conserva quante più parole possibile nella memoria a breve termine",
+    "url": "/it/tests/verbal-memory",
+    "icon": "FaComment"
+  },
+  {
+    "name": "Prova dello scimpanzé",
+    "description": "Sei più intelligente di uno scimpanzé?",
+    "url": "/it/tests/chimp",
+    "icon": "FaQuestion"
+  },
+  {
+    "name": "Digitando",
+    "description": "Quante parole al minuto riesci a digitare?",
+    "url": "/it/tests/typing",
+    "icon": "FaKeyboard"
+  },
+  {
+    "name": "Percezione del tempo",
+    "description": "Metti alla prova la tua capacità di percezione del tempo.",
+    "url": "/it/tests/time-perception-test",
+    "icon": "FaClock"
+  }
+]

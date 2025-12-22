@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "オーディオ反応時間テスト",
+    "description": "オーディオ反応時間テスト: オーディオ反応時間をテストします。",
+    "url": "/ja/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "時間知覚反応時間テスト",
+    "description": "時間認識反応時間テスト: 時間認識反応時間をテストします。",
+    "url": "/ja/tests/time-perception-test",
+    "icon": "FaClock"
+  },
+  {
+    "name": "顔記憶反応時間テスト",
+    "description": "顔記憶反応時間テスト: 顔記憶反応時間をテストします。",
+    "url": "/ja/tests/face-recognition-test",
+    "icon": "FaFaceSmile"
+  },
+  {
+    "name": "目標反応時間テスト",
+    "description": "目標反応時間テスト: 目標反応時間をテストします。",
+    "url": "/ja/tests/aim",
+    "icon": "FaBullseye"
+  }
+]

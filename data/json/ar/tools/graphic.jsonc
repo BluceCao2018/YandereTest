@@ -1,0 +1,9 @@
+
+[
+  {
+    "name": "اختبار ذاكرة الوجه",
+    "description": "اختبار قدرة ذاكرة وجهك.",
+    "url": "/ar/tests/face-recognition-test",
+    "icon": "FaFaceSmile"
+  }
+]

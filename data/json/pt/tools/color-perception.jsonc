@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "Percepção de cores",
+    "description": "Teste sua capacidade de percepção de cores.",
+    "url": "/pt/tests/color-perception-test",
+    "icon": "FaPalette"
+  },
+  {
+    "name": "Tons de cinza",
+    "description": "Teste sua capacidade de distinguir diferenças sutis em tons de cinza",
+    "url": "/pt/tests/gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "51 tons de cinza",
+    "description": "Teste sua capacidade de distinguir diferenças sutis em tons de cinza",
+    "url": "/pt/tests/51-gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "Daltonismo",
+    "description": "Teste sua visão de cores com este teste estilo Ishihara",
+    "url": "/pt/tests/color-blindness-test",
+    "icon": "FaTrafficLight"
+  }
+]

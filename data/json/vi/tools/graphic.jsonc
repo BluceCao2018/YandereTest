@@ -1,0 +1,9 @@
+
+[
+  {
+    "name": "Kiểm tra trí nhớ khuôn mặt",
+    "description": "Kiểm tra khả năng ghi nhớ khuôn mặt của bạn.",
+    "url": "/vi/tests/face-recognition-test",
+    "icon": "FaFaceSmile"
+  }
+]

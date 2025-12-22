@@ -1,0 +1,21 @@
+
+[
+  {
+    "name": "Dải tần số nghe",
+    "description": "Kiểm tra dải tần nghe của bạn từ 20Hz đến 20.000Hz",
+    "url": "/vi/tests/hearing-frequency-test",
+    "icon": "FaHeadphones"
+  },
+  {
+    "name": "Thời gian phản ứng âm thanh",
+    "description": "Bấm để bắt đầu và bấm khi bạn nghe thấy tiếng bíp",
+    "url": "/vi/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "Thử nghiệm quảng cáo chiêu hàng hoàn hảo",
+    "description": "Bấm để bắt đầu và bấm khi bạn nghe thấy ghi chú",
+    "url": "/vi/tests/perfect-pitch",
+    "icon": "FaMusic"
+  }
+]

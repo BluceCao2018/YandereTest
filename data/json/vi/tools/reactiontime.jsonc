@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "Kiểm tra thời gian phản ứng âm thanh",
+    "description": "Kiểm tra thời gian phản ứng âm thanh: Kiểm tra thời gian phản ứng âm thanh của bạn.",
+    "url": "/vi/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "Kiểm tra thời gian phản ứng nhận thức thời gian",
+    "description": "Kiểm tra thời gian phản ứng nhận thức thời gian: Kiểm tra thời gian phản ứng nhận thức thời gian của bạn.",
+    "url": "/vi/tests/time-perception-test",
+    "icon": "FaClock"
+  },
+  {
+    "name": "Kiểm tra thời gian phản ứng bộ nhớ khuôn mặt",
+    "description": "Kiểm tra thời gian phản ứng của bộ nhớ khuôn mặt: Kiểm tra thời gian phản ứng của bộ nhớ khuôn mặt của bạn.",
+    "url": "/vi/tests/face-recognition-test",
+    "icon": "FaFaceSmile"
+  },
+  {
+    "name": "Kiểm tra thời gian phản ứng nhằm mục đích",
+    "description": "Kiểm tra thời gian phản ứng nhắm: Kiểm tra thời gian phản ứng nhắm của bạn.",
+    "url": "/vi/tests/aim",
+    "icon": "FaBullseye"
+  }
+]

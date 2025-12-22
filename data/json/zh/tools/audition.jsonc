@@ -1,0 +1,21 @@
+
+[
+  {
+    "name": "听觉频率范围",
+    "description": "测试您的听力频率范围从 20Hz 到 20,000Hz",
+    "url": "/zh/tests/hearing-frequency-test",
+    "icon": "FaHeadphones"
+  },
+  {
+    "name": "音频反应时间",
+    "description": "单击开始，听到蜂鸣声后单击",
+    "url": "/zh/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "完美音调测试",
+    "description": "单击开始并在听到提示音时单击",
+    "url": "/zh/tests/perfect-pitch",
+    "icon": "FaMusic"
+  }
+]

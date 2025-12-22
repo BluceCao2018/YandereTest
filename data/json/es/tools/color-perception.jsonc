@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "Percepción del color",
+    "description": "Pon a prueba tu capacidad de percepción del color.",
+    "url": "/es/tests/color-perception-test",
+    "icon": "FaPalette"
+  },
+  {
+    "name": "Tonos de gris",
+    "description": "Pon a prueba tu capacidad para distinguir diferencias sutiles en tonos de grises",
+    "url": "/es/tests/gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "51 sombras de gris",
+    "description": "Pon a prueba tu capacidad para distinguir diferencias sutiles en tonos de grises",
+    "url": "/es/tests/51-gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "Daltonismo",
+    "description": "Pon a prueba tu visión de los colores con este test al estilo Ishihara",
+    "url": "/es/tests/color-blindness-test",
+    "icon": "FaTrafficLight"
+  }
+]

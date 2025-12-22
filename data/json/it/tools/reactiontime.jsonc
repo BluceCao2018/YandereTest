@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "Test del tempo di reazione audio",
+    "description": "Test del tempo di reazione audio: prova il tuo tempo di reazione audio.",
+    "url": "/it/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "Test del tempo di reazione della percezione del tempo",
+    "description": "Test del tempo di reazione della percezione del tempo: prova il tempo di reazione della percezione del tempo.",
+    "url": "/it/tests/time-perception-test",
+    "icon": "FaClock"
+  },
+  {
+    "name": "Test del tempo di reazione della memoria facciale",
+    "description": "Test del tempo di reazione della memoria del volto: prova il tempo di reazione della memoria del volto.",
+    "url": "/it/tests/face-recognition-test",
+    "icon": "FaFaceSmile"
+  },
+  {
+    "name": "Obiettivo Test del tempo di reazione",
+    "description": "Test del tempo di reazione allo scopo: prova il tempo di reazione allo scopo.",
+    "url": "/it/tests/aim",
+    "icon": "FaBullseye"
+  }
+]

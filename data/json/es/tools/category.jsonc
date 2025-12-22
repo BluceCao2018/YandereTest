@@ -1,0 +1,33 @@
+
+[
+  {
+    "name": "Punto de referencia",
+    "src": "benchmark.jsonc",
+    "link": "benchmark",
+    "description": "Mide tu habilidad con juegos mentales y tests cognitivos"
+  },
+  {
+    "name": "Percepción del color",
+    "src": "color-perception.jsonc",
+    "link": "color-perception",
+    "description": "Pon a prueba tu capacidad de percepción del color."
+  },
+  {
+    "name": "Audición",
+    "src": "audition.jsonc",
+    "link": "audition",
+    "description": "Pon a prueba tu capacidad de audición."
+  },
+  {
+    "name": "Gráfico",
+    "src": "graphic.jsonc",
+    "link": "graphic",
+    "description": "La prueba del cerebro derecho, prueba tu capacidad de memoria gráfica."
+  },
+  {
+    "name": "Atención",
+    "src": "attention.jsonc",
+    "link": "attention",
+    "description": "Pon a prueba tu capacidad de atención."
+  }
+]

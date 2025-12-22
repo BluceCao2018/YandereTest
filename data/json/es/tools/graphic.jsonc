@@ -1,0 +1,9 @@
+
+[
+  {
+    "name": "Prueba de memoria facial",
+    "description": "Pon a prueba tu capacidad de memoria facial.",
+    "url": "/es/tests/face-recognition-test",
+    "icon": "FaFaceSmile"
+  }
+]

@@ -1,0 +1,9 @@
+
+[
+  {
+    "name": "Gesichtsgedächtnistest",
+    "description": "Testen Sie Ihr Gesichtsgedächtnis.",
+    "url": "/de/tests/face-recognition-test",
+    "icon": "FaFaceSmile"
+  }
+]

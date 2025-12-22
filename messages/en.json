@@ -1,0 +1,847 @@
+{
+  "website":{
+    "domain": "https://funbenchmark.com"
+  },
+  "embed": {
+    "button": "Embed",
+    "title": "Embed Test",
+    "description": "Embed this test on your website",
+    "instructions1": "Copy and paste the following code into your website HTML:",
+    "instructions2": "Important notes:",
+    "instruction1": "The iframe height can be adjusted as needed",
+    "instruction2": "Ensure your website allows iframe content loading",
+    "instruction3": "Recommended for use in responsive layouts",
+    "copyCode": "Copy Code",
+    "codeCopied": "Code copied to clipboard",
+    "copyError": "Copy failed, please copy manually"
+  },
+  "home": {
+    "meta_title": "Free Human Benchmark|Human Benchmark Test Latest",
+    "meta_description": "Human Benchmark is a professional tool that provides brain games and cognitive tests to help you measure your abilities such as reaction time and sequence memory.",
+    "h2": "Human Benchmark Test",
+    "description": "Measure your ability with brain games and cognitive tests on Human Benchmark"
+  },
+  "category": {
+    "meta_title": "Category｜All the Test tools you want are on ",
+    "meta_description": "You can look for the Test tools you need according to categories",
+    "homeBtn": "Home",
+    "categoryBtn": "Category",
+    "h1": "Test Tools Category",
+    "h2": "Find Every Test Tools You Need Here",
+    "h2description": "All Test tools are sorted alphabetically"
+  },
+  "article": {
+    "meta_title": "Article｜All the AI tools you want are on ",
+    "meta_description": "By reading these articles on AI Kratom, you can quickly acquire knowledge about AI tools and at the same time, it will help you choose the appropriate AI tools.",
+    "h1": "Articles",
+    "h2": "Read More Articles About AI Tools And Choose The Appropriate AI Tools For You",
+    "homeBtn": "Home",
+    "articleBtn": "Article",
+    "backToArticles": "Back to articles"
+  },
+  "changelog": {
+    "meta_title": "Changelog",
+    "meta_description": "Stay up to date with the latest updates in DevToolset.net",
+    "h1": "Changelog",
+    "h2": "Stay up to date with the latest updates in DevToolset.net",
+    "homeBtn": "Home",
+    "changelogBtn": "Changelog"
+  },
+  "tools": {
+    "meta_description": "Find Every Essential Developer Tools You Need For Your Development Journey",
+    "h2_1": "All AI tools related to",
+    "h2_2": "",
+    "homeBtn": "Home"
+  },
+  "search": {
+    "input_placeholder": "Search tools by name / tags...",
+    "heading": "Suggestions",
+    "more": "More",
+    "button": "Search"
+  },
+  "navigation": {
+    "homeBtn": "Home",
+    "categoryBtn": "Category",
+    "moreCategoryBtn": "More",
+    "moreCategoryDescription": "More Categories",
+    "articleBtn": "Article",
+    "articleDescription": "Discover The Best & Most Popular AI Tools With The AI Kratom ",
+    "article1Title": "One AI Directory Navigator That Understand You!",
+    "article2Title": "Deploy your own DevToolset",
+    "moreArticleBtn": "More",
+    "moreArticleDescription": "More articles",
+    "changelogBtn": "Changelog",
+    "submitToolBtn": "Submit Tool",
+    "aboutBtn": "About"
+  },
+  "footer": {
+    "description": "Measure your ability with brain games and cognitive tests on Human Benchmark",
+    "builtWith": "Built with",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "category": "Category",
+    "article": "Article",
+    "changelog": "Changelog",
+    "privacy": "Privacy",
+    "termsOfService": "Terms of Service",
+    "legal": "Legal",
+    "connect": "Connect",
+    "support": "Support",
+    "copyright": "All rights reserved."
+  },
+  "toolsList": {
+    "more": "More",
+    "tools": "tools"
+  },
+  "articleList": {
+    "h2": "Articles",
+    "moreArticles": "More articles"
+  },
+  "about": {
+    "meta_title": "AI Kratom AI Tools Directory - Explore the Boundless World of AI",
+    "meta_description": "In today's era of rapid digital development, Artificial Intelligence (AI) has become an integral part of all fields and a powerful force driving innovation and change. To help you explore, discover and use the many excellent AI tools more conveniently, AI Kratom has carefully created this AI tools directory site.",
+    "h1": "About AI Kratom",
+    "h2": "About AI Kratom",
+    "homeBtn": "Home",
+    "aboutBtn": "About"
+  },
+  "reactionTime": {
+    "meta_title": "Free Reaction Time Test | Human Benchmark | Reaction time",
+    "meta_description": "The Human Benchmark Reaction Time Test is a free online tool that accurately measures your response speed to visual,When the red box turns greeen,click as quickly as you can.",
+    "h1":"Reaction Time Test",
+    "h2":"",
+    "description":"When the red box turns greeen,click as quickly as you can.<br/>Click anywhere to start.",
+    "clickToStart": "Click to Start",
+    "waitForGreen": "Wait for Green",
+    "tooSoon":"Too Soon",
+    "clickToTryAgain": "Click to try again.",
+    "click": "Click!",
+    "reactionTime": "Reaction Time",
+    "tryAgain":"Try again",
+    "rankingTitle": "Reaction Time Test Ranking",
+    "noData": "No data yet",
+    "share": "Share",
+    "otherTests": "Other Reaction Time Test",
+    "statisticsTitle": "Reaction Time Test Statistics",
+    "aboutTitle": "About The Reaction Time Test",
+    "about": "Reaction Time Test is a simple tool specifically designed to measure your Reaction Time. The average Reaction Time is 273 ms, according to the data collected in Reaction Time Test so far. In addition to precisely measuring your Reaction Time. This is discussed in further detail on the the statistics page about Reaction Time. While an average Reaction Time may fall between 200 - 250ms, your computer could be adding 10 - 50ms on top. If you want, you can keep track of your scores, and see your full history of Reaction Time Test. Just perform at least 5 clicks and then save to record your Reaction Time Test data.",
+    "poster": {
+      "title": "Reaction Time Test",
+      "milliseconds": "ms",
+      "beatPercentage": "Beat {percentage}% of opponents",
+      "surpassedUsers": "Surpassed {count} testers",
+      "currentRank": "Current Rank",
+      "scanQRCode": "Scan QR code to test your reaction time"
+    },
+    "sharePop": {
+      "modalTitle": "Share Your Result",
+      "portraitMode": "Portrait",
+      "landscapeMode": "Landscape",
+      "cancel": "Cancel",
+      "download": "Download",
+      "share": "Share",
+      "title": "Reaction Time Test Result",
+      "text": "My reaction time is {time}ms, ranked #{rank}! Come and try it!"
+    },
+    "introduce": {
+      "averageReactionTitle": "Average Reaction Time",
+      "averageReactionDesc": "The average reaction time for humans varies by age group:",
+      "definitionTitle": "Definition of Reaction Time",
+      "definitionDesc": "Reaction time is the interval between the presentation of a stimulus and the initiation of a response.",
+      "meaningTitle": "Reaction Time Meaning",
+      "meaningDesc": "Reaction time is a crucial measure of cognitive and motor function, reflecting how quickly an individual can process and respond to stimuli.",
+      "professionalTitle": "Professional Requirements",
+      "professionalDesc": "Different professions require varying levels of reaction time performance:",
+      "animalTitle": "Animal Reaction Times",
+      "animalDesc": "Different animals have evolved various reaction times based on their survival needs:",
+      "AverageReactionTime": "Average Reaction Time",
+      "reactionTimeAverage": "The typical time it takes for a human to respond to a stimulus, usually ranging between 150-300 milliseconds."
+    },
+    "professionals": {
+      "athlete": "Athletes",
+      "raceDriver": "Race Car Drivers",
+      "pilot": "Fighter Pilots",
+      "surgeon": "Surgeons",
+      "esportsPlayer": "E-Sports Players",
+      "airTrafficController": "Air Traffic Controllers",
+      "military": "Military Personnel",
+      "boxer": "Professional Boxers",
+      "tableTennisPlayer": "Table Tennis Players"
+    },
+    "animals": {
+      "fly": "House Fly",
+      "dog": "Dogs",
+      "cat": "Cats",
+      "cheetah": "Cheetah",
+      "snake": "Snakes",
+      "eagle": "Eagles",
+      "dragonfly": "Dragonfly",
+      "squirrel": "Squirrels",
+      "rabbit": "Rabbits"
+    }
+  },
+  "sequence": {
+    "meta_title": "Sequence Memory Test",
+    "meta_description": "The Sequence Memory Test assesses your ability to recall sequences of numbers, colors, or shapes, and it's a valuable tool for measuring short-term memory.",
+    "h1":"",
+    "h2":"Sequence Memory Test",
+    "description":"Memorize the pattern.",
+    "clickToStart": "Start",
+    "restart":"Restart",
+    "review":"Review",
+    "sequenceMemory":"Sequence Memory",
+    "statisticsTitle": "Sequence Memory Test Statistics",
+    "aboutTitle": "About Sequence Memory Test",
+    "about": "Sequence Memory Test is a valuable tool for measuring short-term memory.<br/>Memorize the sequence of buttons that light up, then press them in order.<br/>Every time you finish the pattern, it gets longer.<br/>Make a mistake, and the test is over."
+  },
+  "aim": {
+    "meta_title": "Aim Trainer-test your aiming reaction time",
+    "meta_description": "Aim Trainer can test your aiming reaction time. With the help of it, you can improve your aiming skills so as to achieve rapid and precise aiming.",
+    "h1":"",
+    "h2":"Aim Trainer",
+    "description":"Hit 30 targets as quickly as you can.<br/>Click the target above to begin",
+    "clickToStart": "Click to Start",
+    "tryAgain":"Try again",
+    "statisticsTitle": "Aim Trainer Statistics",
+    "aboutTitle": "About Aim Trainer",
+    "about":"Click the targets as quickly and accurately as you can.<br/>This tests reflexes and hand-eye coordination.<br/>Once you've clicked 30 targets, your score and average time per target will be displayed.<br/>This test is best taken with a mouse or tablet screen. Trackpads are difficult to score well with."
+  },
+  "numberMemory": {
+    "meta_title": "Number Memory Test",
+    "meta_description": "The average person can remember 7 numbers at onece.Can you do more?",
+    "h1":"",
+    "h2":"Number Memory Test",
+    "description":"The average person can remember 7 numbers at onece.Can you do more?",
+    "clickToStart": "Start",
+    "remaindTitle": "What was the number?",
+    "remaindDescription": "Press enter to submit",
+    "submit":"Submit",
+    "number":"Number",
+    "youAnswer":"Your answer",
+    "level":"Level",
+    "tryAgain":"Try again",
+    "statisticsTitle": "Number Memory Test Statistics",
+    "aboutTitle":"About Number Memory Test",
+    "about":"The average person can only remember 7 digit numbers reliably, but it's possible to do much better using mnemonic techniques. "
+  },
+  "memory": {
+    "meta_title": "Visual Memory Test",
+    "meta_description": "Memorize the squares",
+    "h1":"",
+    "h2":"Visual Memory Test",
+    "description":"Memorize the squares.",
+    "clickToStart": "Start",
+    "level":"Level",
+    "tryAgain":"Try again",
+    "statisticsTitle": "Visual Memory Test Statistics",
+    "aboutTitle":"About Visual Memory Test",
+    "about":"Every level, a number of tiles will flash white. Memorize them, and pick them again after the tiles are reset!<br/>Levels get progressively more difficult, to challenge your skills.<br/>If you miss 3 tiles on a level, you lose one life.<br/>You have three lives.<br/>Make it as far as you can!"
+  },
+  "verbalMemory": {
+    "meta_title": "Verbal Memory Test",
+    "meta_description": "You will be shown words, one at a time.",
+    "h1":"",
+    "h2":"Verbal Memory Test",
+    "description":"You will be shown words, one at a time.If you've seen a word during the test, click SEEN. If it's a new word, click NEW.",
+    "clickToStart": "Start",
+    "new":"NEW",
+    "seen":"SEEN",
+    "level":"Level",
+    "tryAgain":"Try again",
+    "statisticsTitle": "Verbal Memory Test Statistics",
+    "aboutTitle":"About Verbal Memory Test",
+    "about":"This test measures how many words you can keep in short term memory at once.<br/>The number of words you need to remember grows continually, until you can't keep them in your head anymore.<br/>Go as long as you can. You have 3 strikes until game over.<br/>Your score is how many turns you lasted."
+  },
+  "climp": {
+    "meta_title": "Chimp Test-Are You Smarter Than a Climp?",
+    "meta_description": "Climp Test，Click the squares in order according to their numbers.The test will get progressively harder.",
+    "h1":"Chimpanzee Test",
+    "h2":"Chimpanzee Test<br/>Are You Smarter Than a Chimpanzee?",
+    "description":"Click the squares in order according to their numbers.<br/>The Chimpanzee Test will get progressively harder.",
+    "start": "Start",
+    "score":"Score",
+    "tryAgain":"Try again",
+    "statisticsTitle": "Chimpanzee Test Statistics",
+    "aboutTitle": "About Chimpanzee Test",
+    "about":"Chimpanzee Test is a test of working memory, made famous by a study that found that chimpanzees consistently outperform humans on this task.<br/>In the study, the chimps consistently outperformed humans, and some chimps were able to remember 9 digits over 90% of the time.<br/>This Chimpanzee Test is a variant of that concept, that gets increasingly difficult every turn, starting at 4 digits, and adding one every turn. If you pass a level, the number increases. If you fail, you get a strike. Three strikes and the test is over."
+  },
+  "typing": {
+    "meta_title": "Typing Test",
+    "meta_description": "This test measures your typing speed in words per minute. It's a simple and effective way to gauge your typing efficiency. The test will display your typing speed, and you can try multiple times to see your average performance.",
+    "h1":"",
+    "h2":"Typing Test",
+    "description":"How many words per minute can you type?",
+    "clickToStart": "Start",
+    "tryAgain":"Try again",
+    "errors":"Errors",
+    "time":"Time",
+    "statisticsTitle": "Typing Test Statistics",
+    "aboutTitle": "About Typing Test",
+    "about": "Typing Test measures your typing speed in words per minute. It's a simple and effective way to gauge your typing efficiency. The test will display your typing speed, and you can try multiple times to see your average performance.",
+    "sentences":[
+      "The quick brown fox jumps over the lazy dog, while nearby birds chirp melodiously in the morning sun. The gentle breeze rustles through the autumn leaves, creating a symphony of natural sounds. A curious squirrel watches from a nearby oak tree, its tiny paws clutching an acorn. The peaceful scene unfolds in the quiet countryside, where time seems to slow down and nature's beauty takes center stage.",
+  
+      "Programming is the art of telling another human what one wants the computer to do, but it's also about solving complex problems through logical thinking and creative solutions. Writing clean, maintainable code requires careful consideration of future developers who will read and modify it. The best programmers understand that clarity and simplicity are just as important as functionality, and that documentation is an essential part of the development process.",
+  
+      "Success is not final, failure is not fatal: it is the courage to continue that counts. Every setback provides an opportunity to learn and grow stronger, while every achievement serves as a stepping stone to greater challenges. The true measure of character lies not in how many times we succeed, but in how we respond to adversity and keep moving forward despite obstacles. Persistence and determination are more powerful than talent alone.",
+  
+      "In the middle of difficulty lies opportunity, and those who persevere through challenges often discover hidden strengths they never knew they possessed. Every obstacle presents a chance to learn, adapt, and improve, shaping us into more resilient and capable individuals. The greatest achievements in history have often emerged from periods of significant hardship, proving that adversity can be a powerful catalyst for innovation and personal growth.",
+  
+      "The only way to do great work is to love what you do and approach each task with passion and dedication. When we find purpose in our work, even the most challenging projects become opportunities for growth and creativity. True excellence comes from combining skill with genuine enthusiasm, pushing boundaries, and constantly striving to improve. Success follows naturally when we pursue our goals with both heart and mind fully engaged.",
+      "Technology continues to reshape our daily lives in ways we could never have imagined just a few decades ago. From artificial intelligence and machine learning to virtual reality and quantum computing, innovations are transforming how we work, communicate, and solve problems. As we embrace these advancements, it becomes increasingly important to consider their ethical implications and ensure that technological progress serves humanity's best interests while protecting individual privacy and promoting social equality.",
+  
+      "The human mind's capacity for learning and adaptation is truly remarkable, constantly forming new neural connections and pathways as we acquire knowledge and skills. Through dedicated practice and persistent effort, we can master complex abilities that once seemed impossible. The brain's plasticity allows us to reshape our capabilities throughout our lives, proving that growth and improvement are always possible with the right mindset and consistent effort.",
+    
+      "Environmental conservation has become one of the most critical challenges facing our global community today. As we witness the effects of climate change, deforestation, and pollution, it becomes increasingly clear that protecting our planet requires immediate and collective action. Every individual's choices and behaviors contribute to the larger picture, from reducing waste and conserving energy to supporting sustainable practices and environmental initiatives.",
+    
+      "The art of effective communication involves not just speaking clearly, but also listening actively and empathetically to others' perspectives. Building strong relationships, whether personal or professional, depends on our ability to understand and respond thoughtfully to different viewpoints. The most successful communicators know that genuine connection comes from creating an atmosphere of trust, respect, and open dialogue.",
+    
+      "Scientific discovery has always been driven by human curiosity and the desire to understand the world around us. From the smallest subatomic particles to the vast expanses of space, researchers continue to uncover new mysteries and challenge our existing knowledge. Each breakthrough brings us closer to understanding our place in the universe while raising new questions that inspire further exploration.",
+    
+      "Cultural diversity enriches our global society by bringing together different perspectives, traditions, and ways of thinking. When we embrace and celebrate these differences, we create opportunities for innovation, creativity, and mutual understanding. Learning from other cultures broadens our horizons, challenges our assumptions, and helps us develop a more inclusive and empathetic worldview.",
+    
+      "Leadership in the modern world requires a delicate balance of confidence and humility, vision and adaptability, decisiveness and collaboration. Effective leaders understand that their success depends not just on their own abilities, but on their capacity to inspire and empower others. They create environments where innovation flourishes, team members feel valued, and shared goals drive collective achievement.",
+    
+      "The digital revolution has transformed how we access and share information, creating unprecedented opportunities for learning and connection. With vast knowledge available at our fingertips, the challenge becomes not finding information, but developing the critical thinking skills to evaluate and apply it effectively. Digital literacy has become essential for navigating our increasingly connected world.",
+    
+      "Creative expression, whether through art, music, writing, or other forms, allows us to explore and communicate the full range of human experience. It serves as both a personal outlet and a universal language that transcends cultural boundaries. When we engage in creative activities, we develop new perspectives, process emotions, and contribute to the rich tapestry of human culture.",
+    
+      "Building resilience involves developing the mental and emotional strength to face challenges, adapt to change, and recover from setbacks. It's not about avoiding difficulties, but rather learning to navigate them with grace and determination. Through experience and self-reflection, we can cultivate the inner resources needed to maintain balance and optimism in the face of adversity."
+    ]
+
+  },
+  "timePerception": {
+    "meta_title": "Time Perception Test",
+    "meta_description": "Test your time perception ability.Measure the difference between the time you perceive and the actual time.",
+    "h1":"",
+    "h2":"Time Perception Test",
+    "description":"Test your time perception ability.",
+    "clickToStart": "Start",
+    "tryAgain":"Try again",
+    "statisticsTitle": "Time Perception Test Statistics",
+    "aboutTitle": "About Time Perception Test",
+    "about": "Time Perception Test is a test of time perception ability. The Time Perception Test will display your time perception, and you can try multiple times to see your average performance."
+  },
+  "colorPerception": {
+    "meta_title": "Color Perception Test",
+    "meta_description": "Test your color perception ability.",
+    "h1":"",
+    "h2":"Color Perception Test",
+    "description":"Test your color perception ability.",
+    "clickToStart": "Start",
+    "tryAgain":"Try again",
+    "statisticsTitle": "Color Perception Test Statistics",
+    "aboutTitle": "About Color Perception Test",
+    "about": "Color Perception Test is a test of color perception ability. The Color Perception Test will display your color perception, and you can try multiple times to see your average performance."
+  },
+  "colorBlindness": {
+    "meta_title": "Color Blindness Test",
+    "meta_description": "Test your color vision with these Ishihara plates",
+    "h1":"",
+    "h2": "Color Blindness Test",
+    "description": "Test your color vision with these Ishihara plates",
+    "clickToStart": "Start",
+    "question": "Question",
+    "finalScore": "Your Score",
+    "tryAgain": "Try Again",
+    "statisticsTitle": "Color Blindness Test Statistics",
+    "aboutTitle": "About Color Blindness Test",
+    "about": "The Color Blindness Test uses Ishihara plates to test for color vision deficiencies. These tests work by hiding numbers or patterns within colored dots that are visible to people with normal color vision but may be difficult or impossible to see for those with color vision deficiencies.",
+    "result": {
+      "normal": "Your color vision appears to be normal.",
+      "slight": "You may have slight color vision deficiency.",
+      "moderate": "You may have moderate color vision deficiency.",
+      "severe": "You may have severe color vision deficiency."
+    },
+    "options": {
+      "dontKnow": "I don't know"
+    },
+    "answers": {
+      "peacock": "Peacock",
+      "goldfish": "Goldfish",
+      "duck": "Duck",
+      "bird": "Bird",
+      "fish": "Fish",
+      "sailboat": "Sailboat",
+      "car": "Car",
+      "plane": "Plane",
+      "dog": "Dog",
+      "cat": "Cat",
+      "rabbit": "Rabbit",
+      "butterfly": "Butterfly",
+      "bee": "Bee",
+      "star": "Star",
+      "moon": "Moon",
+      "sun": "Sun",
+      "redLine": "A red line",
+      "pinkLine": "A pink line",
+      "redAndPinkLine": "A red line and a pink line"
+    }
+  },
+  "grayShades": {
+    "meta_title": "Shades of Gray Test",
+    "meta_description": "Test your ability to distinguish subtle differences in gray shades.How many levels can you pass?",
+    "h2": "Shades of Gray Test",
+    "description": "How many levels can you pass?",
+    "clickToStart": "Start",
+    "level": "Level",
+    "score": "Score",
+    "findDifferent": "Find the square with a slightly different shade",
+    "finalScore": "Final Score",
+    "excellent": "Excellent! You have exceptional gray shade perception!",
+    "good": "Good job! Your gray shade perception is above average.",
+    "average": "Not bad! You have average gray shade perception.",
+    "needPractice": "Keep practicing to improve your gray shade perception.",
+    "tryAgain": "Try Again",
+    "statisticsTitle": "Shades of Gray Test Statistics",
+    "aboutTitle": "About Shades of Gray Test",
+    "about": "The Shades of Gray Test measures your ability to distinguish subtle differences in gray shades. As you progress through levels, the differences become increasingly subtle, challenging your eye's ability to detect minor variations in brightness. The 51 Shades of Gray Test is particularly relevant for photographers, designers, and anyone working with grayscale images."
+  },
+  "fiftyOneGrayShades": {
+    "meta_title": "51 Shades of Gray Test",
+    "meta_description": "Test your ability to distinguish subtle differences in gray shades. One wrong move ends the game!",
+    "h2": "51 Shades of Gray Test",
+    "description": "Test your ability to distinguish subtle differences in gray shades. One wrong move ends the game!",
+    "clickToStart": "Start test",
+    "level": "Level",
+    "score": "Score",
+    "clickInstruction": "Click the squares in order from lightest to darkest shade. Choose carefully!",
+    "finalScore": "Final Score",
+    "reachedLevel": "Reached Level",
+    "tryAgain": "Try Again",
+    "result": {
+      "legendary": "Legendary! Your gray shade perception is truly extraordinary. You can distinguish differences that most people cannot see!",
+      "exceptional": "Exceptional! Your ability to perceive subtle gray variations is remarkable.",
+      "excellent": "Excellent! You have superior gray shade perception.",
+      "good": "Good job! You have above-average gray shade perception.",
+      "average": "Not bad! You have average gray shade perception.",
+      "needPractice": "Keep practicing! Gray shade perception can be improved with practice."
+    },
+    "beginnerLevel": "Beginner Level: Basic gray shade discrimination",
+    "intermediateLevel": "Intermediate Level: Enhanced perception training",
+    "expertLevel": "Expert Level: Professional grade discrimination",
+    "masterLevel": "Master Level: Ultimate perception challenge",
+    "statisticsTitle": "51 Shades of Gray Test Statistics",
+    "aboutTitle": "About 51 Shades of Gray Test",
+    "about": "This extremely challenging test measures your ability to distinguish incredibly subtle differences in gray shades. The difficulty increases dramatically with each level, with the final levels testing the absolute limits of human perception. One wrong move ends the game, demanding both exceptional visual acuity and unwavering confidence in your choices."
+  },
+  "hearingTest": {
+    "meta_title": "Hearing Frequency Range Test",
+    "meta_description": "Test your hearing age,Test your hearing frequency range from 20Hz to 20,000Hz",
+    "h2": "Hearing Frequency Range Test",
+    "description": "Test your hearing age,Test your hearing frequency range from 20Hz to 20,000Hz",
+    "clickToStart": "Start",
+    "currentFreq": "Current Frequency",
+    "playSound": "Play Sound",
+    "stopSound": "Stop Sound",
+    "canHear": "I Can Hear It",
+    "cannotHear": "Cannot Hear",
+    "testInstruction": "Click 'Play Sound' and indicate whether you can hear it",
+    "maxFreq": "Maximum Frequency",
+    "minFreq": "Minimum Frequency",
+    "estimatedAge": "Estimated Hearing Age",
+    "tryAgain": "Try Again",
+    "frequencyRangeTitle": "Normal Hearing Frequency Range by Age",
+    "age": "Age",
+    "frequency": "Frequency Range",
+    "share": "Share",
+    "aboutTitle": "About Hearing Frequency Range Test",
+    "about": "The human ear can typically hear frequencies between 20Hz and 20,000Hz. As we age, the upper limit of our hearing range gradually decreases. This test helps you understand your hearing frequency range.\n\nPlease use this test in a quiet environment and ensure your device's volume is at a comfortable level.",
+    "result": {
+      "excellent": "Excellent! Your hearing range is above average for your age.",
+      "good": "Good! Your hearing range is normal for your age.",
+      "normal": "Your hearing range is within normal limits.",
+      "needCheck": "You might want to consult a hearing specialist for a professional check."
+    },
+    "poster": {
+      "hearingAge": "Hearing Age: {age} years",
+      "scanQRCode": "Scan QR code to test your hearing"
+    },
+    "sharePop": {
+      "portraitMode": "Portrait Mode",
+      "landscapeMode": "Landscape Mode",
+      "cancel": "Cancel",
+      "download": "Download",
+      "share": "Share",
+      "processing": "Processing...",
+      "title": "Hearing Frequency Range Test",
+      "text": "My hearing frequency range is {minFreq} - {maxFreq}, My hearing age is {age} years! Come and try it!"
+    }
+  },
+  "audioReaction": {
+    "meta_title": "Audiao Reaction time | Audio Reaction Time Test | Human Benchmark Test",
+    "meta_description": "Test your audio reaction speed and improve your reflexes with Audio Reaction Time Test! track your stats and  your world ranking.",
+    "h1": "Audio Reaction Time Test",
+    "description": "Click to start and click when you hear the beep",
+    "waitForBeep": "Wait for the beep",
+    "tooSoon": "Too Soon!",
+    "clickToTryAgain": "Click to try again",
+    "click": "click when you hear the beep",
+    "reactionTime": "Reaction Time",
+    "tryAgain": "Try again",
+    "share": "Share",
+    "rankingTitle": "Audio Reaction Time Test Ranking",
+    "noData": "No data yet",
+    "otherTests": "More Reaction Time Test",
+    "otherAudition": "More Audio/Sound Test",
+    "statisticsTitle": "Audio Reaction Time Test Statistics",
+    "aboutTitle": "About Audio Reaction Time Test",
+    "about": "The Audio Reaction Time Test measures how quickly you can respond to an auditory stimulus. This test is particularly relevant for musicians, sound engineers, and anyone who needs to react quickly to audio cues. The average audio reaction time is typically between 150-300 milliseconds.",
+    "poster": {
+      "title": "Audio Reaction Time",
+      "milliseconds": "ms",
+      "beatPercentage": "Beat {percentage}% of opponents",
+      "surpassedUsers": "Surpassed {count} testers",
+      "currentRank": "Current Rank",
+      "scanQRCode": "Scan QR code to test your reaction time"
+    },
+    "sharePop": {
+      "modalTitle": "Share Your Result",
+      "portraitMode": "Portrait",
+      "landscapeMode": "Landscape",
+      "cancel": "Cancel",
+      "download": "Download",
+      "share": "Share",
+      "title": "Audio Reaction Time Test Result",
+      "text": "My reaction time is {time}ms, ranked #{rank}! Come and try it!"
+    }
+  },
+  "perfectPitch": {
+    "meta_title": "Perfect Pitch Test",
+    "meta_description": "Test your ability to identify musical notes by ear",
+    "h1": "Perfect Pitch Test",
+    "description": "Test your ability to identify musical notes by ear",
+    "identifyNote": "Identify the Note",
+    "selectNote": "Select the note you hear",
+    "nextNote": "Next Note",
+    "tryAgain": "Click for next note",
+    "statisticsTitle": "Perfect Pitch Test Statistics",
+    "aboutTitle": "About Perfect Pitch Test",
+    "about": "Perfect pitch, or absolute pitch, is the ability to identify or recreate a musical note without any reference point. This test helps you assess and train your ability to recognize musical notes by ear. The test plays a single note, and you need to identify which note it is from the 12 notes in an octave.",
+    "correctAnswer": "Correct Answer",
+    "notesCount": "Number of Notes",
+    "correctNotes": "Correct Notes",
+    "selectedNotes": "Selected Notes",
+    "submit": "Submit Answer",
+    "yourAnswer": "Your Answer",
+    "remainingNotes": "Remaining notes to select"
+  },
+  "faceRecognition": {
+    "meta_title": "Face Recognition Test",
+    "meta_description": "Test your face recognition ability，The higher the accuracy and the faster the speed, the stronger your right-brain ability is proven to be.",
+    "h1": "Face Recognition Test",
+    "description": "Test your face recognition ability，The higher the accuracy and the faster the speed, the stronger your right-brain ability is proven to be.",
+    "startTest": "Start Test",
+    "memorizefaces": "Memorize these faces",
+    "selectFamiliarFaces": "Select the faces you remember",
+    "submit": "Submit",
+    "level": "Level",
+    "results": "Results",
+    "correctSelections": "Correct Selections",
+    "falsePositives": "False Positives",
+    "accuracy": "Accuracy",
+    "reactionTime": "Reaction Time",
+    "levelComplete": "Level Complete!",
+    "nextLevel": "Next Level",
+    "tryAgain": "Try Again",
+    "restart": "Restart",
+    "statisticsTitle":"Face Recognition Test Statistics",
+    "aboutTitle":"About Face Recognition Test",
+    "about": "The Face Recognition Test is designed to measure your ability to recognize and remember human faces. Starting from Level 1 with a single face, the challenge progressively increases up to Level 9. In each level, you'll be shown faces to memorize, followed by a selection phase where you need to identify the faces you've seen before among new ones. This Face Recognition Test helps evaluate your facial recognition abilities, which is a crucial skill in social interactions and various professional fields. A score above 70% is required to advance to the next level. The Face Recognition Test measures both accuracy and reaction time, providing a comprehensive assessment of your face recognition capabilities."
+  },
+  "cpt": {
+    "meta_title": "Continuous Performance Test（CPT-II）",
+    "meta_description": "Test your continuous performance ability",
+    "h1": "Continuous Performance Test（CPT-II）",
+    "description": "Click anywhere on the screen when you see the letter \"X\"",
+    "duration": "Continuous Performance Test will last for 5 minutes",
+    "startButton": "Start Test",
+    "results": "Continuous Performance Test Results",
+    "correctResponses": "Correct Responses",
+    "omissionErrors": "Omission Errors",
+    "commissionErrors": "Commission Errors",
+    "averageReactionTime": "Average Reaction Time",
+    "accuracyRate": "Accuracy Rate",
+    "tryAgain": "Try Again",
+    "statisticsTitle": "Continuous Performance Test Statistics",
+    "aboutTitle": "About Continuous Performance Test",
+    "aboutDescription": "Continuous Performance Test (CPT) is a neuropsychological test that measures sustained attention, selective attention, and impulsivity. During Continuous Performance Test, participants are presented with a series of letters and must respond only to specific target stimuli while inhibiting responses to non-target stimuli.",
+    "evaluatesTitle": "Continuous Performance Test evaluates",
+    "evaluatesPoint1": "Sustained attention",
+    "evaluatesPoint2": "Response speed",
+    "evaluatesPoint3": "Inhibitory control",
+    "resultsDescription": "Continuous Performance Test Results provide insights into attention-related abilities and potential attention deficits.",
+    "thirtySecondIntervals": "30 Second Interval Statistics",
+    "timePeriod": "Time Period",
+    "correct": "Correct",
+    "errors": "Errors",
+    "omissions": "Omissions",
+    "averageResponse": "Average Response (ms)",
+    "accuracy": "Accuracy"
+  },
+  "timeLimitedVisibility": {
+    "hero": {
+      "title": "Time Limited Visibility for Your Content",
+      "description": "Create content that automatically disappears after a set time or number of views. Perfect for time-sensitive information and exclusive content sharing.",
+      "cta": "Create Time Limited Content"
+    },
+    "features": {
+      "timing": {
+        "title": "Time Limited Visibility Control",
+        "description": "Set precise duration for content visibility, ensuring your information is available only when needed."
+      },
+      "attempts": {
+        "title": "View Attempt Limits",
+        "description": "Control how many times your content can be viewed, adding an extra layer of Time Limited visibility protection."
+      },
+      "sharing": {
+        "title": "Secure Time Limited Sharing",
+        "description": "Share content with confidence, knowing it will become inaccessible after the Time Limited visibility period."
+      }
+    },
+    "useCases": {
+      "title": "Time Limited Visibility Applications",
+      "personal": {
+        "title": "Personal Time Limited Content",
+        "case1": "Time Limited visibility for temporary announcements",
+        "case2": "Self-destructing personal messages with Time Limited access",
+        "case3": "Time Limited visibility for event-specific information"
+      },
+      "business": {
+        "title": "Business Time Limited Content",
+        "case1": "Time Limited visibility for promotional offers",
+        "case2": "Temporary access to time-sensitive documents",
+        "case3": "Time Limited visibility for internal communications"
+      }
+    },
+    "howItWorks": {
+      "title": "How Time Limited Visibility Works",
+      "step1": {
+        "title": "Create Your Content",
+        "description": "Set up your content with Time Limited visibility settings"
+      },
+      "step2": {
+        "title": "Share Securely",
+        "description": "Share your Time Limited content with specific viewers"
+      },
+      "step3": {
+        "title": "Automatic Expiration",
+        "description": "Content becomes inaccessible after Time Limited period"
+      }
+    },
+    "cta": {
+      "title": "Start Using Time Limited Visibility Today",
+      "description": "Experience the power of controlled, Time Limited content sharing",
+      "button": "Create Time-Limited Content"
+    }
+  },
+  "timedMessage": {
+    "create": {
+      "meta_title": "Create Time Limited Visibility Message",
+      "meta_description": "Create a time-limited visibility message with text, image, or video content.Test his/her reaction time.",
+      "title": "Create Time Limited Visibility Message",
+      "description": "Create a time-limited visibility message with text, image, or video content.<br/>Test his/her reaction time.",
+      "typeText": "Text",
+      "typeImage": "Image",
+      "typeVideo": "Video",
+      "contentTitle": "Edit Message",
+      "settingsTitle": "Message Settings",
+      "shareTitle": "Share Message",
+      "titlePlaceholder": "Enter message title",
+      "contentPlaceholder": "Enter message content",
+      "duration": "Visibility Duration (ms)",
+      "maxAttempts": "Maximum Views",
+      "maxViewers": "Maximum Viewers",
+      "maxViewersHint": "The maximum number of viewers who can successfully view the message",
+      "maxVisitors": "Maximum Visitors",
+      "maxVisitorsHint": "The maximum number of visitors who can visit the link",
+      "next": "Next",
+      "submit": "Create",
+      "creating": "Creating...",
+      "copyLink": "Copy Link",
+      "backToList": "Back to Create",
+      "linkCopied": "Link copied",
+      "error": "Failed to create message",
+      "shareVia": "Share via",
+      "shareViaTitle": "Time Limited Visibility Message",
+      "shareViaText": "\"{title}\" is waiting for you to view it.",
+      "howItWorks": "How Time Limited Visibility Works",
+      "createStepsTitle": "Create Your Time Limited Message",
+      "step1Title": "Create Your Message",
+      "step1Description": "Choose your message type (text, image, or video) and enter your content. Create a time-limited message that will challenge your recipients.",
+      "step2Title": "Set Visibility Rules",
+      "step2Description": "Define how long your message will be visible and how many attempts viewers get. Time Limited Visibility lets you control the viewing experience.",
+      "step3Title": "Share Your Message",
+      "step3Description": "Get a unique link to your time-limited message and share it with anyone. Time Limited Visibility makes sharing exciting content easy.",
+      
+      "viewStepsTitle": "How to View a Time Limited Message",
+      "viewStep1Title": "Get Ready",
+      "viewStep1Description": "Click 'Ready' when you're prepared to view the time-limited content. Time Limited Visibility requires quick reactions.",
+      "viewStep2Title": "React Quickly",
+      "viewStep2Description": "Click when you see the envelope icon appear. Time Limited Visibility tests your reaction speed.",
+      "viewStep3Title": "View the Message",
+      "viewStep3Description": "If you're fast enough, you'll get to see the time-limited message. Time Limited Visibility rewards quick reactions.",
+      
+      "featuresTitle": "Time Limited Visibility Features",
+      "feature1Title": "Timed Access",
+      "feature1Description": "Set precise visibility durations for your content with Time Limited Visibility controls.",
+      "feature2Title": "Limited Attempts",
+      "feature2Description": "Control how many times viewers can attempt to access your Time Limited Message.",
+      "feature3Title": "Easy Sharing",
+      "feature3Description": "Share your Time Limited Visibility content across any platform with a simple link.",
+      "limitsTitle": "Access Limits",
+      "back": "Back",
+      "previous": "Previous"
+    },
+    "list": {
+      "title": "Timed Messages",
+      "create": "Create",
+      "loading": "Loading...",
+      "empty": "No messages yet",
+      "createFirst": "Create First Message",
+      "attempts": "{current}/{max} views",
+      "linkCopied": "Link copied",
+      "fetchError": "Failed to fetch messages"
+    },
+    "view": {
+      "meta_title": "You've got a Time Limited Visibility Message",
+      "meta_description": "Click the screen before the icon disappears to view the content of the Time Limited Visibility message.",
+      "loading": "Loading...",
+      "notFound": "Message Not Found",
+      "notFoundDescription": "This message may have been deleted or the link is invalid",
+      "expired": "Message Expired",
+      "expiredDescription": "The viewing time for this message has ended",
+      "timeLeft": "Time Left: {seconds}s",
+      "attempts": "Views: {current}/{max}",
+      "reload": "Reload",
+      "share": "Share",
+      "pageTitle": "New time limited visibility message",
+      "pageDescription": "Tap the screen before the icon disappears to view the content of the message.",
+      "ready": "Ready",
+      "waitForIcon": "Tap the screen as quickly as you can when the icon appears",
+      "tooSoon": "Too Soon!",
+      "tooSoonDescription": "The click is valid only after the icon appears.",
+      "iconShownTitle": "Tap the screen!",
+      "iconShownDescription": "The icon will disappear in {visibleDuration} ms.",
+      "tooSlowTitle": "You were almost successful!",
+      "tooSlowDescription": "The reaction time set for the message is {requiredTime}ms, your reaction time is {reactionTime}ms<br/>you still have {attempts} chances.",
+      "successTitle": "Congratulations!",
+      "successDescription": "The reaction time set for the message is {requiredTime}ms, your reactiontime is {reactionTime}ms.",
+      "viewMessage": "View Message",
+      "timeoutTitle": "Time Out!",
+      "timeoutDescription": "The reaction time set for the message is {requiredTime}ms,<br/>You should have clicked the screen before the icon disappears.<br/>You still have {attempts} chances.",
+      "maxAttemptsTitle": "The message is now inaccessible",
+      "maxAttemptsDescription": "You've reached the maximum number of attempts.",
+      "reactionTime": "Reaction Time: {time}s",
+      "tryAgain": "Try Again",
+      "waitTitle": "Waiting for the icon to appear",
+      "clickTitle": "Tap the screen to view the message",
+      "clickDescription": "The sender has set the time for the appearance of the open icon.<br/> You need to tap the screen before the icon disappears to view the content of the message.",
+      "createOwn": "Create Your Own Message",
+      "maxVisitorsTitle": "Maximum Visitors Reached",
+      "maxVisitorsDescription": "Sorry, this message has reached its maximum number of visitors",
+      "maxViewersTitle": "Maximum Viewers Reached",
+      "maxViewersDescription": "Sorry, this message has reached its maximum number of viewers",
+      "accessDeniedTitle": "Access Denied",
+      "accessDeniedDescription": "Sorry, you cannot access this message"
+    }
+  },
+  "love-possession-calculator": {
+    "meta_title": "Love Possession Calculator - RPI Test",
+    "meta_description": "Professional romantic possessiveness index test with 37 scientific questions to assess your control desire, jealousy intensity, emotional dependency, and relationship insecurity.",
+    "h2": "Love Possession Calculator",
+    "description": "Assess your romantic possessiveness index through 37 carefully designed questions to understand your attitudes and behavior patterns in relationships.",
+    "startTest": "Start Test",
+    "selectMode": "Please select test mode",
+    "mode": {
+      "self": {
+        "title": "Test Yourself",
+        "description": "Evaluate your own possessiveness in relationships"
+      },
+      "partner": {
+        "title": "Test Partner",
+        "description": "Assess your partner's possessiveness from your perspective"
+      }
+    },
+    "selfPrefix": "I",
+    "partnerPrefix": "My partner",
+    "questionNumber": "Question {current} of {total}",
+    "options": {
+      "never": "Never",
+      "rarely": "Rarely",
+      "sometimes": "Sometimes",
+      "often": "Often",
+      "always": "Always"
+    },
+    "questions": [
+      "want to know all of my partner's whereabouts",
+      "check my partner's phone or social media",
+      "require my partner to report their location at all times",
+      "hope my partner only interacts with friends of the same sex",
+      "restrict my partner's social activities",
+      "require my partner to do things my way",
+      "hope my partner's life revolves around me",
+      "make demands about my partner's clothing and appearance",
+      "hope my partner gives up their own hobbies and interests",
+      "feel my partner should prioritize my feelings",
+      "feel uneasy when my partner talks to someone of the opposite sex",
+      "am jealous of my partner's friends",
+      "feel jealous about my partner's past",
+      "suspect my partner's feelings for others",
+      "fear losing my partner",
+      "often wonder if my partner still loves me",
+      "get jealous over small things",
+      "compare my partner's relationships with other people of the opposite sex",
+      "want all of my partner's attention",
+      "get jealous when my partner compliments others",
+      "can't imagine life without my partner",
+      "want to be with my partner all the time",
+      "would give up my own goals for my partner",
+      "feel I can't be happy without my partner",
+      "need constant affirmation from my partner",
+      "panic when my partner becomes distant",
+      "put my partner above myself",
+      "overly depend on my partner for emotional support",
+      "fear my partner leaving me",
+      "change myself to please my partner",
+      "fear being abandoned by my partner",
+      "often worry that my partner will cheat",
+      "feel I'm not good enough for my partner",
+      "fear my partner meeting someone better",
+      "constantly seek reassurance from my partner",
+      "feel anxious when my partner is cold",
+      "fear being replaced in the relationship"
+    ],
+    "results": {
+      "title": "Test Results",
+      "levels": {
+        "normal": "Healthy Level",
+        "mild": "Mild Possessiveness",
+        "moderate": "Moderate Possessiveness",
+        "severe": "Severe Possessiveness"
+      },
+      "descriptions": {
+        "normal": "Your romantic possessiveness is at a healthy level, maintaining good emotional balance without over-dependence or controlling behavior.",
+        "mild": "You have mild possessiveness tendencies, which is normal in relationships, but remember to maintain appropriate personal space.",
+        "moderate": "Your possessiveness is quite noticeable. It's recommended to adjust your mindset and give your partner more trust and freedom.",
+        "severe": "Your possessiveness is strong and may affect relationship health. It's recommended to reflect deeply and seek professional help."
+      }
+    },
+    "restart": "Retake Test",
+    "about": {
+      "title": "About the Test",
+      "content": "The Romantic Possession Index Calculator (RPI) is a professional psychological assessment tool that evaluates individuals' possessiveness levels in romantic relationships from four dimensions through scientifically designed questions. This test is based on psychological research to help you better understand your behavior patterns and emotional needs in relationships. All data is processed locally to protect your privacy."
+    },
+    "dimensions": {
+      "title": "Four Assessment Dimensions",
+      "control": "Control Desire",
+      "controlDesc": "Assess your tendency to control your partner's behavior",
+      "jealousy": "Jealousy Intensity",
+      "jealousyDesc": "Assess the intensity of your jealousy reactions",
+      "dependency": "Emotional Dependency",
+      "dependencyDesc": "Assess your level of emotional dependence on your partner",
+      "insecurity": "Relationship Insecurity",
+      "insecurityDesc": "Assess your level of insecurity in the relationship"
+    }
+  }
+}

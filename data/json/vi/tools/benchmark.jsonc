@@ -1,0 +1,51 @@
+
+[
+  {
+    "name": "Thời gian phản ứng",
+    "description": "Kiểm tra phản xạ thị giác của bạn",
+    "url": "/vi/tests/reactiontime",
+    "icon": "FaClock"
+  },
+  {
+    "name": "Bộ nhớ trình tự",
+    "description": "Hãy nhớ kiểu nhấn nút ngày càng dài.",
+    "url": "/vi/tests/sequence",
+    "icon": "FaList"
+  },
+  {
+    "name": "Huấn luyện viên mục tiêu",
+    "description": "Làm thế nào nhanh chóng bạn có thể đạt được tất cả các mục tiêu?",
+    "url": "/vi/tests/aim",
+    "icon": "FaBullseye"
+  },
+  {
+    "name": "Bộ nhớ số",
+    "description": "Hãy nhớ số dài nhất bạn có thể.",
+    "url": "/vi/tests/number-memory",
+    "icon": "FaHashtag"
+  },
+  {
+    "name": "Trí nhớ bằng lời nói",
+    "description": "Giữ càng nhiều từ trong bộ nhớ ngắn hạn càng tốt",
+    "url": "/vi/tests/verbal-memory",
+    "icon": "FaComment"
+  },
+  {
+    "name": "Kiểm tra tinh tinh",
+    "description": "Bạn có thông minh hơn một con tinh tinh?",
+    "url": "/vi/tests/chimp",
+    "icon": "FaQuestion"
+  },
+  {
+    "name": "đánh máy",
+    "description": "Bạn có thể gõ bao nhiêu từ mỗi phút?",
+    "url": "/vi/tests/typing",
+    "icon": "FaKeyboard"
+  },
+  {
+    "name": "Nhận thức về thời gian",
+    "description": "Kiểm tra khả năng nhận thức thời gian của bạn.",
+    "url": "/vi/tests/time-perception-test",
+    "icon": "FaClock"
+  }
+]

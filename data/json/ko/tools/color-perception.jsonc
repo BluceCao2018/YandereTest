@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "색상 인식",
+    "description": "색상 인식 능력을 테스트해 보세요.",
+    "url": "/ko/tests/color-perception-test",
+    "icon": "FaPalette"
+  },
+  {
+    "name": "회색의 그늘",
+    "description": "회색 음영의 미묘한 차이를 구별하는 능력을 테스트해 보세요.",
+    "url": "/ko/tests/gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "그레이의 51가지 그림자",
+    "description": "회색 음영의 미묘한 차이를 구별하는 능력을 테스트해 보세요.",
+    "url": "/ko/tests/51-gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "색맹",
+    "description": "이시하라 스타일 테스트로 색각을 테스트해보세요",
+    "url": "/ko/tests/color-blindness-test",
+    "icon": "FaTrafficLight"
+  }
+]

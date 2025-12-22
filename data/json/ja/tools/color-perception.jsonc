@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "色の知覚",
+    "description": "あなたの色知覚能力をテストしてください。",
+    "url": "/ja/tests/color-perception-test",
+    "icon": "FaPalette"
+  },
+  {
+    "name": "グレーの色合い",
+    "description": "グレーの色合いの微妙な違いを区別する能力をテストします",
+    "url": "/ja/tests/gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "51 のグレーの色合い",
+    "description": "グレーの色合いの微妙な違いを区別する能力をテストします",
+    "url": "/ja/tests/51-gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "色覚異常",
+    "description": "石原式テストで色覚をテストしてください",
+    "url": "/ja/tests/color-blindness-test",
+    "icon": "FaTrafficLight"
+  }
+]

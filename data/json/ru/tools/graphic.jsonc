@@ -1,0 +1,9 @@
+
+[
+  {
+    "name": "Тест на память лица",
+    "description": "Проверьте свою способность памяти лица.",
+    "url": "/ru/tests/face-recognition-test",
+    "icon": "FaFaceSmile"
+  }
+]

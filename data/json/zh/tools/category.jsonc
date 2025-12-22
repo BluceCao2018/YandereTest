@@ -1,0 +1,33 @@
+
+[
+  {
+    "name": "基准",
+    "src": "benchmark.jsonc",
+    "link": "benchmark",
+    "description": "通过脑力游戏和认知测试来衡量您的能力"
+  },
+  {
+    "name": "色彩感知",
+    "src": "color-perception.jsonc",
+    "link": "color-perception",
+    "description": "测试你的色彩感知能力。"
+  },
+  {
+    "name": "试镜",
+    "src": "audition.jsonc",
+    "link": "audition",
+    "description": "测试你的听力能力。"
+  },
+  {
+    "name": "形象的",
+    "src": "graphic.jsonc",
+    "link": "graphic",
+    "description": "右脑测试，测试你的图形记忆能力。"
+  },
+  {
+    "name": "注意力",
+    "src": "attention.jsonc",
+    "link": "attention",
+    "description": "测试你的注意力能力。"
+  }
+]

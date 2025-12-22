@@ -1,0 +1,21 @@
+
+[
+  {
+    "name": "Rango de frecuencia auditiva",
+    "description": "Pruebe su rango de frecuencia auditiva de 20 Hz a 20 000 Hz",
+    "url": "/es/tests/hearing-frequency-test",
+    "icon": "FaHeadphones"
+  },
+  {
+    "name": "Tiempo de reacción de audio",
+    "description": "Haga clic para iniciar y haga clic cuando escuche el pitido.",
+    "url": "/es/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "Prueba de tono perfecto",
+    "description": "Haz clic para comenzar y haz clic cuando escuches la nota.",
+    "url": "/es/tests/perfect-pitch",
+    "icon": "FaMusic"
+  }
+]

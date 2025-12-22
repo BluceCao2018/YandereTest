@@ -1,0 +1,42 @@
+{
+  "reactionTime": [
+    {
+      "timestamp": 1735284790129,
+      "reactionTime": 900,
+      "userId": "anonymous"
+    },
+    {
+      "timestamp": 1735292807572,
+      "reactionTime": 564,
+      "userId": "anonymous"
+    },
+    {
+      "timestamp": 1735305913153,
+      "reactionTime": 510,
+      "userId": "anonymous",
+      "countryCode": "UN",
+      "region": "Unknown"
+    },
+    {
+      "timestamp": 1735306737126,
+      "reactionTime": 501,
+      "userId": "anonymous",
+      "countryCode": "UN",
+      "region": "Unknown"
+    },
+    {
+      "timestamp": 1735306750361,
+      "reactionTime": 563,
+      "userId": "anonymous",
+      "countryCode": "UN",
+      "region": "Unknown"
+    },
+    {
+      "timestamp": 1735306774974,
+      "reactionTime": 391,
+      "userId": "anonymous",
+      "countryCode": "UN",
+      "region": "Unknown"
+    }
+  ]
+}

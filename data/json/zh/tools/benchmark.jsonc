@@ -1,0 +1,51 @@
+
+[
+  {
+    "name": "反应时间",
+    "description": "测试你的视觉反应",
+    "url": "/zh/tests/reactiontime",
+    "icon": "FaClock"
+  },
+  {
+    "name": "序列记忆",
+    "description": "请记住越来越长的按钮按下模式。",
+    "url": "/zh/tests/sequence",
+    "icon": "FaList"
+  },
+  {
+    "name": "瞄准训练器",
+    "description": "你能多快击中所有目标？",
+    "url": "/zh/tests/aim",
+    "icon": "FaBullseye"
+  },
+  {
+    "name": "号码记忆",
+    "description": "尽可能记住最长的数字。",
+    "url": "/zh/tests/number-memory",
+    "icon": "FaHashtag"
+  },
+  {
+    "name": "言语记忆",
+    "description": "短期记忆中保留尽可能多的单词",
+    "url": "/zh/tests/verbal-memory",
+    "icon": "FaComment"
+  },
+  {
+    "name": "黑猩猩测试",
+    "description": "你比黑猩猩聪明吗？",
+    "url": "/zh/tests/chimp",
+    "icon": "FaQuestion"
+  },
+  {
+    "name": "打字",
+    "description": "你每分钟可以打多少字？",
+    "url": "/zh/tests/typing",
+    "icon": "FaKeyboard"
+  },
+  {
+    "name": "时间感知",
+    "description": "测试你的时间感知能力。",
+    "url": "/zh/tests/time-perception-test",
+    "icon": "FaClock"
+  }
+]

@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "오디오 반응 시간 테스트",
+    "description": "오디오 반응 시간 테스트: 오디오 반응 시간을 테스트합니다.",
+    "url": "/ko/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "시간 인지 반응 시간 테스트",
+    "description": "시간 인식 반응 시간 테스트: 시간 인식 반응 시간을 테스트합니다.",
+    "url": "/ko/tests/time-perception-test",
+    "icon": "FaClock"
+  },
+  {
+    "name": "얼굴 기억 반응 시간 테스트",
+    "description": "얼굴 기억 반응 시간 테스트: 얼굴 기억 반응 시간을 테스트해 보세요.",
+    "url": "/ko/tests/face-recognition-test",
+    "icon": "FaFaceSmile"
+  },
+  {
+    "name": "조준 반응 시간 테스트",
+    "description": "조준 반응 시간 테스트: 조준 반응 시간을 테스트합니다.",
+    "url": "/ko/tests/aim",
+    "icon": "FaBullseye"
+  }
+]

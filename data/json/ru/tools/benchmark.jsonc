@@ -1,0 +1,51 @@
+
+[
+  {
+    "name": "Время реакции",
+    "description": "Проверьте свои зрительные рефлексы",
+    "url": "/ru/tests/reactiontime",
+    "icon": "FaClock"
+  },
+  {
+    "name": "Память последовательности",
+    "description": "Помните, что нажатие кнопок становится все более продолжительным.",
+    "url": "/ru/tests/sequence",
+    "icon": "FaList"
+  },
+  {
+    "name": "Тренер по прицеливанию",
+    "description": "Как быстро вы сможете поразить все цели?",
+    "url": "/ru/tests/aim",
+    "icon": "FaBullseye"
+  },
+  {
+    "name": "Числовая память",
+    "description": "Запомните самое длинное число, которое сможете.",
+    "url": "/ru/tests/number-memory",
+    "icon": "FaHashtag"
+  },
+  {
+    "name": "Вербальная память",
+    "description": "Сохраняйте как можно больше слов в кратковременной памяти.",
+    "url": "/ru/tests/verbal-memory",
+    "icon": "FaComment"
+  },
+  {
+    "name": "Тест на шимпанзе",
+    "description": "Вы умнее шимпанзе?",
+    "url": "/ru/tests/chimp",
+    "icon": "FaQuestion"
+  },
+  {
+    "name": "Ввод текста",
+    "description": "Сколько слов в минуту вы можете напечатать?",
+    "url": "/ru/tests/typing",
+    "icon": "FaKeyboard"
+  },
+  {
+    "name": "Восприятие времени",
+    "description": "Проверьте свою способность восприятия времени.",
+    "url": "/ru/tests/time-perception-test",
+    "icon": "FaClock"
+  }
+]

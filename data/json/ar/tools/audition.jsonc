@@ -1,0 +1,21 @@
+
+[
+  {
+    "name": "نطاق تردد السمع",
+    "description": "اختبر نطاق تردد السمع لديك من 20 هرتز إلى 20000 هرتز",
+    "url": "/ar/tests/hearing-frequency-test",
+    "icon": "FaHeadphones"
+  },
+  {
+    "name": "وقت رد الفعل الصوتي",
+    "description": "انقر للبدء وانقر عندما تسمع صوت التنبيه",
+    "url": "/ar/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "اختبار الملعب المثالي",
+    "description": "انقر للبدء ثم انقر عندما تسمع الملاحظة",
+    "url": "/ar/tests/perfect-pitch",
+    "icon": "FaMusic"
+  }
+]

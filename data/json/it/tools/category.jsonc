@@ -1,0 +1,33 @@
+
+[
+  {
+    "name": "Segno di riferimento",
+    "src": "benchmark.jsonc",
+    "link": "benchmark",
+    "description": "Misura la tua abilità con giochi cerebrali e test cognitivi"
+  },
+  {
+    "name": "Percezione del colore",
+    "src": "color-perception.jsonc",
+    "link": "color-perception",
+    "description": "Metti alla prova la tua capacità di percezione del colore."
+  },
+  {
+    "name": "Audizione",
+    "src": "audition.jsonc",
+    "link": "audition",
+    "description": "Metti alla prova la tua capacità di audizione."
+  },
+  {
+    "name": "Grafico",
+    "src": "graphic.jsonc",
+    "link": "graphic",
+    "description": "Il Right Brain Test, prova la tua capacità di memoria grafica."
+  },
+  {
+    "name": "Attenzione",
+    "src": "attention.jsonc",
+    "link": "attention",
+    "description": "Metti alla prova la tua capacità di attenzione."
+  }
+]

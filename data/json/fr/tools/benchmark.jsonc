@@ -1,0 +1,51 @@
+
+[
+  {
+    "name": "Temps de réaction",
+    "description": "Testez vos réflexes visuels",
+    "url": "/fr/tests/reactiontime",
+    "icon": "FaClock"
+  },
+  {
+    "name": "Mémoire de séquence",
+    "description": "Rappelez-vous un schéma de pressions de boutons de plus en plus long.",
+    "url": "/fr/tests/sequence",
+    "icon": "FaList"
+  },
+  {
+    "name": "Entraîneur de visée",
+    "description": "À quelle vitesse pouvez-vous atteindre toutes les cibles ?",
+    "url": "/fr/tests/aim",
+    "icon": "FaBullseye"
+  },
+  {
+    "name": "Mémoire de numéros",
+    "description": "Rappelez-vous le nombre le plus long possible.",
+    "url": "/fr/tests/number-memory",
+    "icon": "FaHashtag"
+  },
+  {
+    "name": "Mémoire verbale",
+    "description": "Gardez autant de mots que possible dans la mémoire à court terme",
+    "url": "/fr/tests/verbal-memory",
+    "icon": "FaComment"
+  },
+  {
+    "name": "Test de chimpanzé",
+    "description": "Êtes-vous plus intelligent qu'un chimpanzé ?",
+    "url": "/fr/tests/chimp",
+    "icon": "FaQuestion"
+  },
+  {
+    "name": "Dactylographie",
+    "description": "Combien de mots par minute pouvez-vous taper ?",
+    "url": "/fr/tests/typing",
+    "icon": "FaKeyboard"
+  },
+  {
+    "name": "Perception du temps",
+    "description": "Testez votre capacité de perception du temps.",
+    "url": "/fr/tests/time-perception-test",
+    "icon": "FaClock"
+  }
+]

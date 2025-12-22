@@ -1,0 +1,33 @@
+
+[
+  {
+    "name": "Контрольный показатель",
+    "src": "benchmark.jsonc",
+    "link": "benchmark",
+    "description": "Измерьте свои способности с помощью интеллектуальных игр и когнитивных тестов."
+  },
+  {
+    "name": "Восприятие цвета",
+    "src": "color-perception.jsonc",
+    "link": "color-perception",
+    "description": "Проверьте свою способность восприятия цвета."
+  },
+  {
+    "name": "Прослушивание",
+    "src": "audition.jsonc",
+    "link": "audition",
+    "description": "Проверьте свои способности на прослушивании."
+  },
+  {
+    "name": "Графика",
+    "src": "graphic.jsonc",
+    "link": "graphic",
+    "description": "Тест правого мозга. Проверьте свою графическую память."
+  },
+  {
+    "name": "Внимание",
+    "src": "attention.jsonc",
+    "link": "attention",
+    "description": "Проверьте свою способность внимания."
+  }
+]

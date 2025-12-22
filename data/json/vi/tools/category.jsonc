@@ -1,0 +1,33 @@
+
+[
+  {
+    "name": "Điểm chuẩn",
+    "src": "benchmark.jsonc",
+    "link": "benchmark",
+    "description": "Đo lường khả năng của bạn bằng các trò chơi trí tuệ và bài kiểm tra nhận thức"
+  },
+  {
+    "name": "Nhận thức màu sắc",
+    "src": "color-perception.jsonc",
+    "link": "color-perception",
+    "description": "Kiểm tra khả năng nhận biết màu sắc của bạn."
+  },
+  {
+    "name": "Thử giọng",
+    "src": "audition.jsonc",
+    "link": "audition",
+    "description": "Kiểm tra khả năng thử giọng của bạn."
+  },
+  {
+    "name": "đồ họa",
+    "src": "graphic.jsonc",
+    "link": "graphic",
+    "description": "Bài kiểm tra não phải, Kiểm tra khả năng ghi nhớ đồ họa của bạn."
+  },
+  {
+    "name": "Chú ý",
+    "src": "attention.jsonc",
+    "link": "attention",
+    "description": "Kiểm tra khả năng chú ý của bạn."
+  }
+]

@@ -1,0 +1,21 @@
+
+[
+  {
+    "name": "Hörfrequenzbereich",
+    "description": "Testen Sie Ihren Hörfrequenzbereich von 20 Hz bis 20.000 Hz",
+    "url": "/de/tests/hearing-frequency-test",
+    "icon": "FaHeadphones"
+  },
+  {
+    "name": "Audio-Reaktionszeit",
+    "description": "Klicken Sie zum Starten und klicken Sie, wenn Sie den Piepton hören",
+    "url": "/de/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "Perfekter Pitch-Test",
+    "description": "Klicken Sie zum Starten und klicken Sie, wenn Sie die Notiz hören",
+    "url": "/de/tests/perfect-pitch",
+    "icon": "FaMusic"
+  }
+]

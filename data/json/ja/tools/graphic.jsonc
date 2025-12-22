@@ -1,0 +1,9 @@
+
+[
+  {
+    "name": "顔記憶テスト",
+    "description": "あなたの顔の記憶能力をテストしてください。",
+    "url": "/ja/tests/face-recognition-test",
+    "icon": "FaFaceSmile"
+  }
+]

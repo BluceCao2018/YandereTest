@@ -1,0 +1,21 @@
+
+[
+  {
+    "name": "可聴周波数範囲",
+    "description": "20Hz ～ 20,000Hz の聴力周波数範囲をテストします。",
+    "url": "/ja/tests/hearing-frequency-test",
+    "icon": "FaHeadphones"
+  },
+  {
+    "name": "オーディオの反応時間",
+    "description": "クリックして開始し、ビープ音が聞こえたらクリックします",
+    "url": "/ja/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "絶対音感テスト",
+    "description": "クリックして開始し、音が聞こえたらクリックします",
+    "url": "/ja/tests/perfect-pitch",
+    "icon": "FaMusic"
+  }
+]

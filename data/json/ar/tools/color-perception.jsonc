@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "إدراك اللون",
+    "description": "اختبر قدرتك على إدراك الألوان.",
+    "url": "/ar/tests/color-perception-test",
+    "icon": "FaPalette"
+  },
+  {
+    "name": "ظلال رمادية",
+    "description": "اختبر قدرتك على التمييز بين الاختلافات الدقيقة في الظلال الرمادية",
+    "url": "/ar/tests/gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "51 ظلال من الرمادي",
+    "description": "اختبر قدرتك على التمييز بين الاختلافات الدقيقة في الظلال الرمادية",
+    "url": "/ar/tests/51-gray-shades-test",
+    "icon": "FaAdjust"
+  },
+  {
+    "name": "عمى الألوان",
+    "description": "اختبر رؤيتك للألوان من خلال هذا الاختبار بأسلوب إيشيهارا",
+    "url": "/ar/tests/color-blindness-test",
+    "icon": "FaTrafficLight"
+  }
+]

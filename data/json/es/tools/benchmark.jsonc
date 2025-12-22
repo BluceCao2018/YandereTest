@@ -1,0 +1,51 @@
+
+[
+  {
+    "name": "Tiempo de reacción",
+    "description": "Pon a prueba tus reflejos visuales",
+    "url": "/es/tests/reactiontime",
+    "icon": "FaClock"
+  },
+  {
+    "name": "Memoria de secuencia",
+    "description": "Recuerde un patrón cada vez más largo de pulsaciones de botones.",
+    "url": "/es/tests/sequence",
+    "icon": "FaList"
+  },
+  {
+    "name": "Entrenador de puntería",
+    "description": "¿Qué tan rápido puedes alcanzar todos los objetivos?",
+    "url": "/es/tests/aim",
+    "icon": "FaBullseye"
+  },
+  {
+    "name": "Memoria numérica",
+    "description": "Recuerda el número más largo que puedas.",
+    "url": "/es/tests/number-memory",
+    "icon": "FaHashtag"
+  },
+  {
+    "name": "Memoria verbal",
+    "description": "Mantenga tantas palabras como sea posible en la memoria a corto plazo.",
+    "url": "/es/tests/verbal-memory",
+    "icon": "FaComment"
+  },
+  {
+    "name": "Prueba de chimpancé",
+    "description": "¿Eres más inteligente que un chimpancé?",
+    "url": "/es/tests/chimp",
+    "icon": "FaQuestion"
+  },
+  {
+    "name": "Mecanografía",
+    "description": "¿Cuántas palabras por minuto puedes escribir?",
+    "url": "/es/tests/typing",
+    "icon": "FaKeyboard"
+  },
+  {
+    "name": "Percepción del tiempo",
+    "description": "Pon a prueba tu capacidad de percepción del tiempo.",
+    "url": "/es/tests/time-perception-test",
+    "icon": "FaClock"
+  }
+]

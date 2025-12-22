@@ -1,0 +1,27 @@
+
+[
+  {
+    "name": "Audio-Reaktionszeittest",
+    "description": "Audio-Reaktionszeittest: Testen Sie Ihre Audio-Reaktionszeit.",
+    "url": "/de/tests/audio-reaction-time",
+    "icon": "FaVolumeUp"
+  },
+  {
+    "name": "Zeitwahrnehmungs-Reaktionszeittest",
+    "description": "Zeitwahrnehmungs-Reaktionszeittest: Testen Sie Ihre Zeitwahrnehmungs-Reaktionszeit.",
+    "url": "/de/tests/time-perception-test",
+    "icon": "FaClock"
+  },
+  {
+    "name": "Gesichtsgedächtnis-Reaktionszeittest",
+    "description": "Gesichtsgedächtnis-Reaktionszeittest: Testen Sie die Reaktionszeit Ihres Gesichtsgedächtnisses.",
+    "url": "/de/tests/face-recognition-test",
+    "icon": "FaFaceSmile"
+  },
+  {
+    "name": "Zielreaktionszeittest",
+    "description": "Zielreaktionszeittest: Testen Sie Ihre Zielreaktionszeit.",
+    "url": "/de/tests/aim",
+    "icon": "FaBullseye"
+  }
+]

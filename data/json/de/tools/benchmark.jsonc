@@ -1,0 +1,51 @@
+
+[
+  {
+    "name": "Reaktionszeit",
+    "description": "Testen Sie Ihre Sehreflexe",
+    "url": "/de/tests/reactiontime",
+    "icon": "FaClock"
+  },
+  {
+    "name": "Sequenzspeicher",
+    "description": "Erinnern Sie sich an ein immer längeres Muster von Tastendrücken.",
+    "url": "/de/tests/sequence",
+    "icon": "FaList"
+  },
+  {
+    "name": "Aim Trainer",
+    "description": "Wie schnell können Sie alle Ziele treffen?",
+    "url": "/de/tests/aim",
+    "icon": "FaBullseye"
+  },
+  {
+    "name": "Nummernspeicher",
+    "description": "Merken Sie sich die längste Zahl, die Sie können.",
+    "url": "/de/tests/number-memory",
+    "icon": "FaHashtag"
+  },
+  {
+    "name": "Verbale Erinnerung",
+    "description": "Behalten Sie so viele Wörter wie möglich im Kurzzeitgedächtnis",
+    "url": "/de/tests/verbal-memory",
+    "icon": "FaComment"
+  },
+  {
+    "name": "Schimpansentest",
+    "description": "Bist du schlauer als ein Schimpanse?",
+    "url": "/de/tests/chimp",
+    "icon": "FaQuestion"
+  },
+  {
+    "name": "Tippen",
+    "description": "Wie viele Wörter können Sie pro Minute tippen?",
+    "url": "/de/tests/typing",
+    "icon": "FaKeyboard"
+  },
+  {
+    "name": "Zeitwahrnehmung",
+    "description": "Testen Sie Ihre Zeitwahrnehmungsfähigkeit.",
+    "url": "/de/tests/time-perception-test",
+    "icon": "FaClock"
+  }
+]

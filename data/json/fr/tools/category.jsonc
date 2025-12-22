@@ -1,0 +1,33 @@
+
+[
+  {
+    "name": "Référence",
+    "src": "benchmark.jsonc",
+    "link": "benchmark",
+    "description": "Mesurez vos capacités avec des jeux cérébraux et des tests cognitifs"
+  },
+  {
+    "name": "Perception des couleurs",
+    "src": "color-perception.jsonc",
+    "link": "color-perception",
+    "description": "Testez votre capacité de perception des couleurs."
+  },
+  {
+    "name": "Audition",
+    "src": "audition.jsonc",
+    "link": "audition",
+    "description": "Testez votre capacité auditive."
+  },
+  {
+    "name": "Graphique",
+    "src": "graphic.jsonc",
+    "link": "graphic",
+    "description": "Le test cérébral droit, testez votre capacité de mémoire graphique."
+  },
+  {
+    "name": "Attention",
+    "src": "attention.jsonc",
+    "link": "attention",
+    "description": "Testez votre capacité d'attention."
+  }
+]
