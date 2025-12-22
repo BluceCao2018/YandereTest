@@ -84,7 +84,7 @@ function CustomNav() {
       </div>
 
       {/* 移动端菜单 */}
-      <div className="md:hidden border-t border-gray-200">
+      {/* <div className="md:hidden border-t border-gray-200">
         <div className="px-2 pt-2 pb-3 space-y-1">
           <Link href="/" className="block px-3 py-2 text-gray-700 hover:text-pink-500">
             首页
@@ -96,7 +96,7 @@ function CustomNav() {
             联系我们
           </a>
         </div>
-      </div>
+      </div> */}
     </nav>
   );
 }
