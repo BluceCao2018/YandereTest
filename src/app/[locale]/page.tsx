@@ -345,6 +345,69 @@ export default function LovePossessionCalculator() {
     <div className="w-full">
       <div className="w-full mx-auto py-0 space-y-16">
         <div className="banner w-full flex flex-col justify-center items-center bg-gradient-to-br from-pink-500 to-purple-600 text-white relative overflow-hidden">
+          {/* 移动端分享按钮 - 右上角 */}
+          <button
+            onClick={async () => {
+              const url = window.location.href;
+              const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+              console.log('=== Share Debug Info ===');
+              console.log('isMobile:', isMobile);
+              console.log('navigator.share:', navigator.share);
+              console.log('navigator.canShare:', navigator.canShare);
+              console.log('url:', url);
+              //alert('isMobile:'+isMobile+",navigator.share:"+navigator.share+",navigator.canShare:"+navigator.canShare);
+
+              // 检查是否支持原生分享
+              const supportsShare = navigator.share && navigator.canShare && navigator.canShare({ url });
+              console.log('supportsShare:', supportsShare);
+              //alert("supportsShare:"+supportsShare);
+
+              if (supportsShare) {
+                try {
+                  await navigator.share({
+                    title: document.title,
+                    text: 'Check out this Yandere test!',
+                    url: url,
+                  });
+                  console.log('Share successful!');
+                } catch (error) {
+                  console.log('Share cancelled or failed:', error);
+                  // 用户取消分享，不用处理
+                }
+              } else {
+                // 不支持原生分享，复制到剪贴板
+                console.log('Falling back to clipboard copy');
+                try {
+                  await navigator.clipboard.writeText(url);
+                  alert('Link Copied!');
+                } catch (error) {
+                  console.error('Failed to copy:', error);
+                  // 尝试使用传统方法复制
+                  const textArea = document.createElement('textarea');
+                  textArea.value = url;
+                  textArea.style.position = 'fixed';
+                  textArea.style.left = '-999999px';
+                  document.body.appendChild(textArea);
+                  textArea.select();
+                  try {
+                    document.execCommand('copy');
+                    alert('Link Copied!');
+                  } catch (err) {
+                    console.error('Copy failed:', err);
+                    alert('Failed to copy link');
+                  }
+                  document.body.removeChild(textArea);
+                }
+              }
+            }}
+            className="md:hidden absolute top-4 right-4 z-30 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+          >
+            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+            </svg>
+          </button>
+
           {/* 病娇人物 - 只在开始页面显示 */}
           {gameState === 'start' && (
             <>
