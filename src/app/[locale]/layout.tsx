@@ -51,11 +51,12 @@ const sansFont = DM_Sans({
 
 export async function generateMetadata() {
   const w = await getTranslations('love-possession-calculator');
+  const s=await getTranslations('domain');
   return {
     title: w("meta_title"),
     description: w("meta_description"),
     alternates: {
-      canonical: `${w("domain")}`
+      canonical: `${s("domain")}`
     },
     openGraph: {
        title: w("meta_title"),
