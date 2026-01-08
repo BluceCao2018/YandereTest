@@ -28,8 +28,8 @@ export function CreemPaymentButton({ testResults, onPaymentSuccess, className = 
       const result = await createCheckout({
         amount: 299, // $2.99 in cents
         currency: 'USD',
-        productName: 'Yandere Test Full Report',
-        productId: 'prod_2zI7EwSBcDxLK86eKiTGwG',
+        productName: 'Yandere Diagnosis: Full Report',
+        productId: 'prod_48qwAX5l69sDpTniVYARyM',
         successUrl: `${window.location.origin}${window.location.pathname}?payment=success`,
         cancelUrl: `${window.location.origin}${window.location.pathname}?payment=cancelled`,
         metadata: {
