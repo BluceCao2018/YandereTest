@@ -63,7 +63,7 @@ export async function generateMetadata() {
     description: w("meta_description"),
       type: 'website',
       images: [{
-        url: '/og-image.jpg',
+        url: '/og-image.jpeg',
         width: 1200,
         height: 630,
       }],
