@@ -359,7 +359,7 @@ export default function LovePossessionCalculator() {
               //alert('isMobile:'+isMobile+",navigator.share:"+navigator.share+",navigator.canShare:"+navigator.canShare);
 
               // 检查是否支持原生分享
-              const supportsShare = navigator.share && navigator.canShare && navigator.canShare({ url });
+              const supportsShare = navigator.canShare && navigator.canShare({ url });
               console.log('supportsShare:', supportsShare);
               //alert("supportsShare:"+supportsShare);
 
