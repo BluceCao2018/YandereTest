@@ -61,15 +61,15 @@ export const NavigationV2 = ( ) => {
               <FaHome className="text-sm" />
               {t("home")}
             </Link>
-            <a
+            {/* <a
               href="#about"
               className="text-gray-700 hover:text-pink-500 transition-colors flex items-center gap-2"
             >
               <FaInfoCircle className="text-sm" />
               {t("aboutTest")}
-            </a>
+            </a> */}
             <a
-              href="#contact"
+              href="mailto:support@yanderetest.com"
               className="text-gray-700 hover:text-pink-500 transition-colors flex items-center gap-2"
             >
               <FaEnvelope className="text-sm" />

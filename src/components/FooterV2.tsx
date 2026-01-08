@@ -81,15 +81,15 @@ export function FooterV2() {
               {t("copyright")}
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-500 hover:text-pink-500 text-sm transition-colors">
+              <a href="/article/policy" className="text-gray-500 hover:text-pink-500 text-sm transition-colors">
                 {t("privacyPolicy")}
               </a>
-              <a href="#" className="text-gray-500 hover:text-pink-500 text-sm transition-colors">
+              <a href="/article/service" className="text-gray-500 hover:text-pink-500 text-sm transition-colors">
                 {t("termsOfService")}
               </a>
-              <a href="#" className="text-gray-500 hover:text-pink-500 text-sm transition-colors">
+              {/* <a href="#" className="text-gray-500 hover:text-pink-500 text-sm transition-colors">
                 {t("disclaimer")}
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
