@@ -2,9 +2,42 @@
 import {useTranslations} from 'next-intl';
 import Link from 'next/link';
 import { FaHeart, FaChartLine, FaShieldAlt, FaUsers, FaHome, FaInfoCircle, FaEnvelope, FaShareAlt } from 'react-icons/fa';
+import { useState } from 'react';
 
-export const NavigationV2 = ( ) => {    
+export const NavigationV2 = ( ) => {
   const t = useTranslations('love-possession-calculator.nav');
+  const [showToast, setShowToast] = useState(false);
+
+  const handleShare = async () => {
+    const url = window.location.href;
+
+    // 检测是否为移动设备
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile && navigator.share && navigator.canShare && navigator.canShare({ url })) {
+      // 移动端：唤起原生分享菜单
+      try {
+        await navigator.share({
+          title: document.title,
+          url: url,
+        });
+      } catch (error) {
+        // 用户取消分享或其他错误
+        console.log('Share cancelled or failed:', error);
+      }
+    } else {
+      // 桌面端：复制到剪贴板
+      try {
+        await navigator.clipboard.writeText(url);
+        setShowToast(true);
+        setTimeout(() => {
+          setShowToast(false);
+        }, 2000);
+      } catch (error) {
+        console.error('Failed to copy:', error);
+      }
+    }
+  };
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +75,10 @@ export const NavigationV2 = ( ) => {
               <FaEnvelope className="text-sm" />
               {t("contactUs")}
             </a>
-            <button className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm hover:shadow-lg transition-shadow">
+            <button
+              onClick={handleShare}
+              className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm hover:shadow-lg transition-shadow"
+            >
               {t("shareTest")}
             </button>
           </div>
@@ -57,6 +93,13 @@ export const NavigationV2 = ( ) => {
           </div>
         </div>
       </div>
+
+      {/* 复制成功提示气泡 */}
+      {showToast && (
+        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in">
+          Link Copied!
+        </div>
+      )}
     </nav>
   );
 }
