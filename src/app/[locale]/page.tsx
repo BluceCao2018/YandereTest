@@ -9,6 +9,7 @@ import { Paywall, CreemPaymentButton } from '@/components/CreemPaymentButton'
 import { ShareCard } from '@/components/ShareCard'
 import { hasUnlockedReport, setReportUnlocked, saveTestResults, getSavedTestResults } from '@/lib/creem'
 import { getRandomDimensionAnalysis } from '@/lib/dimensionAnalysis'
+import { getFullDiagnosisReport } from '@/lib/diagnosisAnalysis'
 
 export default function LovePossessionCalculator() {
   const [gameState, setGameState] = useState<'start' | 'playing' | 'result'>('start')
@@ -155,12 +156,6 @@ export default function LovePossessionCalculator() {
     if (score <= 50) return { level: t('results.levels.mild'), color: 'text-yellow-600', description: t('results.descriptions.mild') }
     if (score <= 75) return { level: t('results.levels.moderate'), color: 'text-orange-600', description: t('results.descriptions.moderate') }
     return { level: t('results.levels.severe'), color: 'text-red-600', description: t('results.descriptions.severe') }
-  }
-
-  const getDetailedAnalysis = (dimension: string, score: number) => {
-    const index = Math.min(Math.floor(score / 20), 4)
-    const analysisKey = `resultsPage.detailedAnalysis.${dimension}.levels.${index}`
-    return t(analysisKey) as string
   }
 
   // 获取维度进度条下面的随机说明文案
@@ -513,6 +508,46 @@ export default function LovePossessionCalculator() {
             <div className="w-full">
               <div className="bg-white">
                 <div className="max-w-4xl mx-auto px-4 py-8">
+                  {/* 计算并缓存所有维度分数和称号 */}
+                  {(() => {
+                    const controlScore = Math.round((answers.slice(0, 10).reduce((a, b) => a + b, 0) / 50) * 100);
+                    const jealousyScore = Math.round((answers.slice(10, 20).reduce((a, b) => a + b, 0) / 50) * 100);
+                    const dependencyScore = Math.round((answers.slice(20, 30).reduce((a, b) => a + b, 0) / 50) * 100);
+                    const insecurityScore = Math.round((answers.slice(30, 37).reduce((a, b) => a + b, 0) / 35) * 100);
+
+                    // 获取完整描述并提取等级名称（"-"前面的部分）
+                    const getDimensionTitle = (fullDesc: string) => {
+                      const parts = fullDesc.split(' - ');
+                      return parts[0].trim();
+                    };
+
+                    const controlFullDesc = getDimensionDescription('control', controlScore);
+                    const jealousyFullDesc = getDimensionDescription('jealousy', jealousyScore);
+                    const dependencyFullDesc = getDimensionDescription('dependency', dependencyScore);
+                    const insecurityFullDesc = getDimensionDescription('insecurity', insecurityScore);
+
+                    const controlTitle = getDimensionTitle(controlFullDesc);
+                    const jealousyTitle = getDimensionTitle(jealousyFullDesc);
+                    const dependencyTitle = getDimensionTitle(dependencyFullDesc);
+                    const insecurityTitle = getDimensionTitle(insecurityFullDesc);
+
+                    // 将缓存值存储到 window 对象中，以便后续使用
+                    if (typeof window !== 'undefined') {
+                      (window as any).__dimensionTitles = {
+                        controlTitle,
+                        jealousyTitle,
+                        dependencyTitle,
+                        insecurityTitle,
+                        // 也缓存完整描述供上方卡片使用
+                        controlFullDesc,
+                        jealousyFullDesc,
+                        dependencyFullDesc,
+                        insecurityFullDesc
+                      };
+                    }
+                    return null;
+                  })()}
+
                   {/* 报告标题 */}
                   <div className="text-center mb-8">
                     <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-medium mb-4">
@@ -565,7 +600,7 @@ export default function LovePossessionCalculator() {
                           style={{ width: `${(answers.slice(0, 10).reduce((a, b) => a + b, 0) / 50) * 100}%` }}
                         ></div>
                       </div>
-                      <p className="text-sm text-gray-600">{getDimensionDescription('control', Math.round((answers.slice(0, 10).reduce((a, b) => a + b, 0) / 50) * 100))}</p>
+                      <p className="text-sm text-gray-600">{typeof window !== 'undefined' ? (window as any).__dimensionTitles?.controlFullDesc || getDimensionDescription('control', Math.round((answers.slice(0, 10).reduce((a, b) => a + b, 0) / 50) * 100)) : getDimensionDescription('control', Math.round((answers.slice(0, 10).reduce((a, b) => a + b, 0) / 50) * 100))}</p>
                     </div>
 
                     <div className="bg-red-50 border border-red-200 rounded-2xl p-6">
@@ -584,7 +619,7 @@ export default function LovePossessionCalculator() {
                           style={{ width: `${(answers.slice(10, 20).reduce((a, b) => a + b, 0) / 50) * 100}%` }}
                         ></div>
                       </div>
-                      <p className="text-sm text-gray-600">{getDimensionDescription('jealousy', Math.round((answers.slice(10, 20).reduce((a, b) => a + b, 0) / 50) * 100))}</p>
+                      <p className="text-sm text-gray-600">{typeof window !== 'undefined' ? (window as any).__dimensionTitles?.jealousyFullDesc || getDimensionDescription('jealousy', Math.round((answers.slice(10, 20).reduce((a, b) => a + b, 0) / 50) * 100)) : getDimensionDescription('jealousy', Math.round((answers.slice(10, 20).reduce((a, b) => a + b, 0) / 50) * 100))}</p>
                     </div>
 
                     <div className="bg-green-50 border border-green-200 rounded-2xl p-6">
@@ -603,7 +638,7 @@ export default function LovePossessionCalculator() {
                           style={{ width: `${(answers.slice(20, 30).reduce((a, b) => a + b, 0) / 50) * 100}%` }}
                         ></div>
                       </div>
-                      <p className="text-sm text-gray-600">{getDimensionDescription('dependency', Math.round((answers.slice(20, 30).reduce((a, b) => a + b, 0) / 50) * 100))}</p>
+                      <p className="text-sm text-gray-600">{typeof window !== 'undefined' ? (window as any).__dimensionTitles?.dependencyFullDesc || getDimensionDescription('dependency', Math.round((answers.slice(20, 30).reduce((a, b) => a + b, 0) / 50) * 100)) : getDimensionDescription('dependency', Math.round((answers.slice(20, 30).reduce((a, b) => a + b, 0) / 50) * 100))}</p>
                     </div>
 
                     <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6">
@@ -622,45 +657,339 @@ export default function LovePossessionCalculator() {
                           style={{ width: `${(answers.slice(30, 37).reduce((a, b) => a + b, 0) / 35) * 100}%` }}
                         ></div>
                       </div>
-                      <p className="text-sm text-gray-600">{getDimensionDescription('insecurity', Math.round((answers.slice(30, 37).reduce((a, b) => a + b, 0) / 35) * 100))}</p>
+                      <p className="text-sm text-gray-600">{typeof window !== 'undefined' ? (window as any).__dimensionTitles?.insecurityFullDesc || getDimensionDescription('insecurity', Math.round((answers.slice(30, 37).reduce((a, b) => a + b, 0) / 35) * 100)) : getDimensionDescription('insecurity', Math.round((answers.slice(30, 37).reduce((a, b) => a + b, 0) / 35) * 100))}</p>
                     </div>
                   </div>
 
                   {/* 详细分析 - 支付墙 */}
-                  {isUnlocked ? (
-                    <div className="bg-gray-50 rounded-2xl p-8 mb-8">
-                      <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                        <i className="fas fa-chart-line text-purple-600"></i>
-                        {t("resultsPage.detailedAnalysis.title")}
-                      </h3>
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 border border-gray-200">
-                          <h4 className="font-semibold text-gray-900 mb-2">{t("resultsPage.detailedAnalysis.control.title")}</h4>
-                          <p className="text-gray-600 text-sm leading-relaxed">
-                            {getDetailedAnalysis('control', Math.round((answers.slice(0, 10).reduce((a, b) => a + b, 0) / 50) * 100))}
-                          </p>
-                        </div>
-                        <div className="bg-white rounded-xl p-4 border border-gray-200">
-                          <h4 className="font-semibold text-gray-900 mb-2">{t("resultsPage.detailedAnalysis.jealousy.title")}</h4>
-                          <p className="text-gray-600 text-sm leading-relaxed">
-                            {getDetailedAnalysis('jealousy', Math.round((answers.slice(10, 20).reduce((a, b) => a + b, 0) / 50) * 100))}
-                          </p>
-                        </div>
-                        <div className="bg-white rounded-xl p-4 border border-gray-200">
-                          <h4 className="font-semibold text-gray-900 mb-2">{t("resultsPage.detailedAnalysis.dependency.title")}</h4>
-                          <p className="text-gray-600 text-sm leading-relaxed">
-                            {getDetailedAnalysis('dependency', Math.round((answers.slice(20, 30).reduce((a, b) => a + b, 0) / 50) * 100))}
-                          </p>
-                        </div>
-                        <div className="bg-white rounded-xl p-4 border border-gray-200">
-                          <h4 className="font-semibold text-gray-900 mb-2">{t("resultsPage.detailedAnalysis.insecurity.title")}</h4>
-                          <p className="text-gray-600 text-sm leading-relaxed">
-                            {getDetailedAnalysis('insecurity', Math.round((answers.slice(30, 37).reduce((a, b) => a + b, 0) / 35) * 100))}
-                          </p>
-                        </div>
+                  {isUnlocked ? (() => {
+                    const controlScore = Math.round((answers.slice(0, 10).reduce((a, b) => a + b, 0) / 50) * 100);
+                    const jealousyScore = Math.round((answers.slice(10, 20).reduce((a, b) => a + b, 0) / 50) * 100);
+                    const dependencyScore = Math.round((answers.slice(20, 30).reduce((a, b) => a + b, 0) / 50) * 100);
+                    const insecurityScore = Math.round((answers.slice(30, 37).reduce((a, b) => a + b, 0) / 35) * 100);
+
+                    const controlReport = getFullDiagnosisReport('control', controlScore);
+                    const jealousyReport = getFullDiagnosisReport('jealousy', jealousyScore);
+                    const dependencyReport = getFullDiagnosisReport('dependency', dependencyScore);
+                    const insecurityReport = getFullDiagnosisReport('insecurity', insecurityScore);
+
+                    // 使用缓存的称号，确保与上方维度卡片一致
+                    const cachedTitles = typeof window !== 'undefined' ? (window as any).__dimensionTitles : {};
+                    const controlTitle = cachedTitles?.controlTitle || getDimensionDescription('control', controlScore);
+                    const jealousyTitle = cachedTitles?.jealousyTitle || getDimensionDescription('jealousy', jealousyScore);
+                    const dependencyTitle = cachedTitles?.dependencyTitle || getDimensionDescription('dependency', dependencyScore);
+                    const insecurityTitle = cachedTitles?.insecurityTitle || getDimensionDescription('insecurity', insecurityScore);
+
+                    return (
+                      <div className="space-y-6 mb-8">
+                        <h3 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-3">
+                          <span className="text-3xl">🔍</span>
+                          <span>Diagnosis Report</span>
+                        </h3>
+                        <p className="text-gray-600 mb-6">Deep psychological analysis of your Yandere profile</p>
+
+                        {/* Control Dimension */}
+                        {controlReport && (
+                          <div className="bg-white rounded-2xl border-2 border-blue-200 overflow-hidden shadow-sm">
+                            <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white text-lg font-bold">
+                                    {t("resultsPage.dimensionScores.control.short")}
+                                  </div>
+                                  <div>
+                                    <h4 className="text-white font-bold text-lg">{controlTitle}</h4>
+                                    <p className="text-blue-100 text-sm">{t("resultsPage.dimensionScores.control.title")}</p>
+                                  </div>
+                                </div>
+                                <div className="text-white text-2xl font-bold">{controlScore}%</div>
+                              </div>
+                            </div>
+                            <div className="p-6 space-y-5">
+                              {/* The Diagnosis */}
+                              <div>
+                                <h5 className="text-sm font-bold text-purple-700 mb-2 flex items-center gap-2">
+                                  🔍 The Diagnosis
+                                </h5>
+                                <p className="text-gray-700 text-sm leading-relaxed">{controlReport.diagnosis}</p>
+                              </div>
+
+                              {/* Symptom Checklist */}
+                              <div>
+                                <h5 className="text-sm font-bold text-purple-700 mb-2 flex items-center gap-2">
+                                  📋 Symptom Checklist
+                                </h5>
+                                <ul className="space-y-1.5">
+                                  {controlReport.symptoms.map((symptom, idx) => (
+                                    <li key={idx} className="text-gray-600 text-sm flex items-start gap-2">
+                                      <span className="text-purple-600 mt-0.5">•</span>
+                                      <span>{symptom}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+
+                              {/* The Psychology */}
+                              <div>
+                                <h5 className="text-sm font-bold text-purple-700 mb-2 flex items-center gap-2">
+                                  🧠 The Psychology
+                                </h5>
+                                <p className="text-gray-700 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: controlReport.psychology }}></p>
+                              </div>
+
+                              {/* The "Bad Ending" */}
+                              <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                                <h5 className="text-sm font-bold text-red-700 mb-2 flex items-center gap-2">
+                                  ⚠️ The "Bad Ending"
+                                </h5>
+                                <p className="text-gray-700 text-sm leading-relaxed">{controlReport.warning}</p>
+                              </div>
+
+                              {/* Senpai's Protocol */}
+                              <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                                <h5 className="text-sm font-bold text-green-700 mb-2 flex items-center gap-2">
+                                  💊 Senpai's Protocol
+                                </h5>
+                                <ul className="space-y-1.5">
+                                  {controlReport.advice.map((advice, idx) => (
+                                    <li key={idx} className="text-gray-600 text-sm flex items-start gap-2">
+                                      <span className="text-green-600 font-bold">{idx + 1}.</span>
+                                      <span dangerouslySetInnerHTML={{ __html: advice }}></span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Jealousy Dimension */}
+                        {jealousyReport && (
+                          <div className="bg-white rounded-2xl border-2 border-red-200 overflow-hidden shadow-sm">
+                            <div className="bg-gradient-to-r from-red-500 to-red-600 px-6 py-4">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white text-lg font-bold">
+                                    {t("resultsPage.dimensionScores.jealousy.short")}
+                                  </div>
+                                  <div>
+                                    <h4 className="text-white font-bold text-lg">{jealousyTitle}</h4>
+                                    <p className="text-red-100 text-sm">{t("resultsPage.dimensionScores.jealousy.title")}</p>
+                                  </div>
+                                </div>
+                                <div className="text-white text-2xl font-bold">{jealousyScore}%</div>
+                              </div>
+                            </div>
+                            <div className="p-6 space-y-5">
+                              {/* The Diagnosis */}
+                              <div>
+                                <h5 className="text-sm font-bold text-purple-700 mb-2 flex items-center gap-2">
+                                  🔍 The Diagnosis
+                                </h5>
+                                <p className="text-gray-700 text-sm leading-relaxed">{jealousyReport.diagnosis}</p>
+                              </div>
+
+                              {/* Symptom Checklist */}
+                              <div>
+                                <h5 className="text-sm font-bold text-purple-700 mb-2 flex items-center gap-2">
+                                  📋 Symptom Checklist
+                                </h5>
+                                <ul className="space-y-1.5">
+                                  {jealousyReport.symptoms.map((symptom, idx) => (
+                                    <li key={idx} className="text-gray-600 text-sm flex items-start gap-2">
+                                      <span className="text-purple-600 mt-0.5">•</span>
+                                      <span>{symptom}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+
+                              {/* The Psychology */}
+                              <div>
+                                <h5 className="text-sm font-bold text-purple-700 mb-2 flex items-center gap-2">
+                                  🧠 The Psychology
+                                </h5>
+                                <p className="text-gray-700 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: jealousyReport.psychology }}></p>
+                              </div>
+
+                              {/* The "Bad Ending" */}
+                              <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                                <h5 className="text-sm font-bold text-red-700 mb-2 flex items-center gap-2">
+                                  ⚠️ The "Bad Ending"
+                                </h5>
+                                <p className="text-gray-700 text-sm leading-relaxed">{jealousyReport.warning}</p>
+                              </div>
+
+                              {/* Senpai's Protocol */}
+                              <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                                <h5 className="text-sm font-bold text-green-700 mb-2 flex items-center gap-2">
+                                  💊 Senpai's Protocol
+                                </h5>
+                                <ul className="space-y-1.5">
+                                  {jealousyReport.advice.map((advice, idx) => (
+                                    <li key={idx} className="text-gray-600 text-sm flex items-start gap-2">
+                                      <span className="text-green-600 font-bold">{idx + 1}.</span>
+                                      <span dangerouslySetInnerHTML={{ __html: advice }}></span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Dependency Dimension */}
+                        {dependencyReport && (
+                          <div className="bg-white rounded-2xl border-2 border-green-200 overflow-hidden shadow-sm">
+                            <div className="bg-gradient-to-r from-green-500 to-green-600 px-6 py-4">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white text-lg font-bold">
+                                    {t("resultsPage.dimensionScores.dependency.short")}
+                                  </div>
+                                  <div>
+                                    <h4 className="text-white font-bold text-lg">{dependencyTitle}</h4>
+                                    <p className="text-green-100 text-sm">{t("resultsPage.dimensionScores.dependency.title")}</p>
+                                  </div>
+                                </div>
+                                <div className="text-white text-2xl font-bold">{dependencyScore}%</div>
+                              </div>
+                            </div>
+                            <div className="p-6 space-y-5">
+                              {/* The Diagnosis */}
+                              <div>
+                                <h5 className="text-sm font-bold text-purple-700 mb-2 flex items-center gap-2">
+                                  🔍 The Diagnosis
+                                </h5>
+                                <p className="text-gray-700 text-sm leading-relaxed">{dependencyReport.diagnosis}</p>
+                              </div>
+
+                              {/* Symptom Checklist */}
+                              <div>
+                                <h5 className="text-sm font-bold text-purple-700 mb-2 flex items-center gap-2">
+                                  📋 Symptom Checklist
+                                </h5>
+                                <ul className="space-y-1.5">
+                                  {dependencyReport.symptoms.map((symptom, idx) => (
+                                    <li key={idx} className="text-gray-600 text-sm flex items-start gap-2">
+                                      <span className="text-purple-600 mt-0.5">•</span>
+                                      <span>{symptom}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+
+                              {/* The Psychology */}
+                              <div>
+                                <h5 className="text-sm font-bold text-purple-700 mb-2 flex items-center gap-2">
+                                  🧠 The Psychology
+                                </h5>
+                                <p className="text-gray-700 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: dependencyReport.psychology }}></p>
+                              </div>
+
+                              {/* The "Bad Ending" */}
+                              <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                                <h5 className="text-sm font-bold text-red-700 mb-2 flex items-center gap-2">
+                                  ⚠️ The "Bad Ending"
+                                </h5>
+                                <p className="text-gray-700 text-sm leading-relaxed">{dependencyReport.warning}</p>
+                              </div>
+
+                              {/* Senpai's Protocol */}
+                              <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                                <h5 className="text-sm font-bold text-green-700 mb-2 flex items-center gap-2">
+                                  💊 Senpai's Protocol
+                                </h5>
+                                <ul className="space-y-1.5">
+                                  {dependencyReport.advice.map((advice, idx) => (
+                                    <li key={idx} className="text-gray-600 text-sm flex items-start gap-2">
+                                      <span className="text-green-600 font-bold">{idx + 1}.</span>
+                                      <span dangerouslySetInnerHTML={{ __html: advice }}></span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Insecurity Dimension */}
+                        {insecurityReport && (
+                          <div className="bg-white rounded-2xl border-2 border-yellow-200 overflow-hidden shadow-sm">
+                            <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-6 py-4">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white text-lg font-bold">
+                                    {t("resultsPage.dimensionScores.insecurity.short")}
+                                  </div>
+                                  <div>
+                                    <h4 className="text-white font-bold text-lg">{insecurityTitle}</h4>
+                                    <p className="text-yellow-100 text-sm">{t("resultsPage.dimensionScores.insecurity.title")}</p>
+                                  </div>
+                                </div>
+                                <div className="text-white text-2xl font-bold">{insecurityScore}%</div>
+                              </div>
+                            </div>
+                            <div className="p-6 space-y-5">
+                              {/* The Diagnosis */}
+                              <div>
+                                <h5 className="text-sm font-bold text-purple-700 mb-2 flex items-center gap-2">
+                                  🔍 The Diagnosis
+                                </h5>
+                                <p className="text-gray-700 text-sm leading-relaxed">{insecurityReport.diagnosis}</p>
+                              </div>
+
+                              {/* Symptom Checklist */}
+                              <div>
+                                <h5 className="text-sm font-bold text-purple-700 mb-2 flex items-center gap-2">
+                                  📋 Symptom Checklist
+                                </h5>
+                                <ul className="space-y-1.5">
+                                  {insecurityReport.symptoms.map((symptom, idx) => (
+                                    <li key={idx} className="text-gray-600 text-sm flex items-start gap-2">
+                                      <span className="text-purple-600 mt-0.5">•</span>
+                                      <span>{symptom}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+
+                              {/* The Psychology */}
+                              <div>
+                                <h5 className="text-sm font-bold text-purple-700 mb-2 flex items-center gap-2">
+                                  🧠 The Psychology
+                                </h5>
+                                <p className="text-gray-700 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: insecurityReport.psychology }}></p>
+                              </div>
+
+                              {/* The "Bad Ending" */}
+                              <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                                <h5 className="text-sm font-bold text-red-700 mb-2 flex items-center gap-2">
+                                  ⚠️ The "Bad Ending"
+                                </h5>
+                                <p className="text-gray-700 text-sm leading-relaxed">{insecurityReport.warning}</p>
+                              </div>
+
+                              {/* Senpai's Protocol */}
+                              <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                                <h5 className="text-sm font-bold text-green-700 mb-2 flex items-center gap-2">
+                                  💊 Senpai's Protocol
+                                </h5>
+                                <ul className="space-y-1.5">
+                                  {insecurityReport.advice.map((advice, idx) => (
+                                    <li key={idx} className="text-gray-600 text-sm flex items-start gap-2">
+                                      <span className="text-green-600 font-bold">{idx + 1}.</span>
+                                      <span dangerouslySetInnerHTML={{ __html: advice }}></span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    </div>
-                  ) : (
+                    );
+                  })() : (
                     <div className="bg-gradient-to-br from-gray-50 to-purple-50 rounded-2xl p-6 mb-8 relative overflow-hidden">
                       {/* Header */}
                       <div className="text-center mb-6">
@@ -776,7 +1105,7 @@ export default function LovePossessionCalculator() {
                   )}
 
                   {/* 建议和总结 - 支付墙 */}
-                  {isUnlocked ? (
+                  {/* {isUnlocked ? (
                     <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8 mb-8">
                       <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                         <i className="fas fa-lightbulb text-purple-600"></i>
@@ -802,7 +1131,7 @@ export default function LovePossessionCalculator() {
                         <CreemPaymentButton testResults={{ answers }} />
                       </div>
                     </div>
-                  )}
+                  )} */}
 
                   {/* ========== YANDERE PERSONA CARD (FREE FOR ALL) ========== */}
                   {(() => {
@@ -1280,12 +1609,12 @@ export default function LovePossessionCalculator() {
                     </button>
 
                     {/* 重新测试按钮 */}
-                    <button
+                    {/* <button
                       onClick={restart}
                       className="bg-gray-100 text-gray-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors"
                     >
                       {t("resultsPage.restartTest")}
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>

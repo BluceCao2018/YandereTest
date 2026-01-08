@@ -1,0 +1,266 @@
+{
+  "control_analysis": {
+    "level_1": {
+      "title": "The Tourist",
+      "diagnosis": "You treat your relationship like an open-world game where your partner can roam freely. You respect privacy to a fault, sometimes to the point where it looks like indifference. You probably don't even know their phone password, and you don't want to.",
+      "symptoms": [
+        "You often forget to ask 'Where are you?' or 'How was your night?'.",
+        "You never look at their screen, even when they are sitting right next to you.",
+        "You assume they will tell you if something is important; otherwise, you don't ask."
+      ],
+      "psychology": "This indicates a **Secure** or possibly **Avoidant Attachment Style**. You value autonomy above all else. However, it might also stem from a fear of intimacy—you keep a distance to avoid being controlled yourself.",
+      "warning": "While healthy, total lack of control can make your partner feel **neglected**. They might interpret your 'trust' as 'not caring'. A relationship needs some level of mutual involvement to survive.",
+      "advice": [
+        "**Show Interest:** Ask specific questions about their day. It's not controlling; it's caring.",
+        "**The Check-In:** Send a text when you are apart just to say hi, not to track them.",
+        "**Vulnerability:** Let them know you missed them. It validates their importance in your life."
+      ]
+    },
+    "level_2": {
+      "title": "The Shepherd",
+      "diagnosis": "You are protective but not possessive. You like to know where your partner is, mainly for their safety rather than your own insecurity. You are the type who texts 'Text me when you get home' and actually means it.",
+      "symptoms": [
+        "You check their 'Last Seen' status occasionally, but don't panic if they are offline.",
+        "You know their close friends but don't need to approve their entire social circle.",
+        "You get slightly annoyed if they change plans without telling you."
+      ],
+      "psychology": "This represents a **Healthy Attachment**. You view the relationship as a team. You seek **Interdependence**—relying on each other without losing yourselves. Your mild control is an expression of care.",
+      "warning": "Be careful when you are stressed. Under pressure, your 'protective' nature can easily slide into 'controlling'. Keep an eye on the line between 'safety' and 'surveillance'.",
+      "advice": [
+        "**Trust > Verification:** If they say they are home, believe them. Don't check the map.",
+        "**Voice Your Needs:** If you feel anxious, say 'I'm feeling anxious' instead of 'Where were you?'.",
+        "**Respect Boundaries:** Even sheep need to wander. Encourage them to have solo adventures."
+      ]
+    },
+    "level_3": {
+      "title": "The Detective",
+      "diagnosis": "You treat your relationship like a crime scene that needs to be solved. You don't necessarily want to control them, but you possess a burning need to KNOW everything. Information is your safety blanket.",
+      "symptoms": [
+        "You check their 'Last Seen' status and cross-reference it with their texts.",
+        "You have memorized their followers list and notice immediately when a new person appears.",
+        "You verify their stories by checking their friends' social media posts."
+      ],
+      "psychology": "This behavior is rooted in **Anxious-Preoccupied Attachment**. You likely experienced inconsistency in past relationships or childhood. Your brain equates 'uncertainty' with 'danger', so you try to eliminate uncertainty by gathering excessive data.",
+      "warning": "Constant surveillance creates a 'Police State' in your relationship. Eventually, your partner will start hiding innocent things just to avoid interrogation, which will only make you more suspicious. It's a self-fulfilling prophecy.",
+      "advice": [
+        "**The 24-Hour Rule:** If you feel the urge to check their phone/socials, force yourself to wait 24 hours. Usually, the anxiety passes.",
+        "**Transparency vs. Privacy:** Understand that having a password doesn't mean you have trust. Trust is knowing the password but never using it.",
+        "**Vocalize the Fear:** Instead of investigating, say: 'I feel anxious about [X], can you reassure me?' It's vulnerable, but effective."
+      ]
+    },
+    "level_4": {
+      "title": "The Warden",
+      "diagnosis": "You have crossed the line from 'caring' to 'owning'. You view your partner's independence as a threat to your relationship. You believe that if you let go of the leash for even a second, they will run away.",
+      "symptoms": [
+        "You demand they share their live location 24/7.",
+        "You forbid them from wearing certain clothes or seeing certain friends.",
+        "You require instant replies and get furious if they miss a call."
+      ],
+      "psychology": "This is **Pathological Possessiveness**, often stemming from a deep-seated **Fear of Abandonment**. You are trying to control their environment because you cannot control your own internal chaos. You project your insecurities onto them.",
+      "warning": "You are suffocating the flame you are trying to protect. This dynamic is unsustainable and potentially abusive. Your partner will eventually leave to save their own mental health, or they will stay and resent you forever.",
+      "advice": [
+        "**Step Back Immediately:** Stop tracking their location today. Yes, it will be terrifying. Do it anyway.",
+        "**Get a Life:** You need hobbies, friends, and a career that have NOTHING to do with your partner. You need to remember who you are without them.",
+        "**Professional Help:** This level of control often requires therapy to unlearn. There is no shame in asking for help to manage your anxiety."
+      ]
+    }
+  },
+  "jealousy_analysis": {
+    "level_1": {
+      "title": "The Zen Master",
+      "diagnosis": "You are unshakeable. Your partner could be hit on by a celebrity, and you would probably high-five them. You operate with a level of confidence that is either extremely healthy or borderline detached.",
+      "symptoms": [
+        "You genuinely enjoy hearing about their fun times with others.",
+        "You encourage them to hang out with friends of the opposite sex.",
+        "You never snoop through their DMs. Ever."
+      ],
+      "psychology": "This suggests **High Self-Esteem** or **Emotional Detachment**. You know your worth, so you don't view others as threats. But be careful—you might be suppressing jealousy to appear 'cool' or 'chill'.",
+      "warning": "Your partner might secretly *want* you to be a little jealous. Total absence of jealousy can sometimes feel like a lack of passion. They might wonder, 'Do they even fear losing me?'",
+      "advice": [
+        "**Playful Possessiveness:** Occasionally grab their hand and say 'You're mine'. It's reassuring.",
+        "**Validate Them:** Remind them that they are special to you, even if you aren't jealous.",
+        "**Check In:** Make sure you aren't numbing your feelings just to avoid conflict."
+      ]
+    },
+    "level_2": {
+      "title": "The Pouting Kitten",
+      "diagnosis": "You get a little jelly, but it's mostly cute rather than toxic. You might go quiet when they talk about an ex, or give a polite side-eye to a waiter who is too friendly. It's a sign that you value the relationship.",
+      "symptoms": [
+        "You make sarcastic jokes when someone flirts with them.",
+        "You ask 'Who is that?' in a casual tone, but you are listening *very* carefully.",
+        "You need a little extra reassurance after they go to a party without you."
+      ],
+      "psychology": "This is **Normal Human Attachment**. Jealousy is a natural emotion that signals something is valuable to you. You handle it with **Passive Regulation**—you feel it, but you don't let it destroy your day.",
+      "warning": "Don't let the small things build up. If you keep pouting without explaining why, it turns into passive-aggressiveness, which is exhausting for your partner.",
+      "advice": [
+        "**Communication is Key:** Instead of sulking, say 'I felt a bit jealous when X happened'.",
+        "**Boost Confidence:** Remember, they chose to go home with YOU.",
+        "**Turn it into Passion:** Use that jealous energy to initiate a romantic date night."
+      ]
+    },
+    "level_3": {
+      "title": "The Sniper",
+      "diagnosis": "You view every member of the opposite sex as a potential rival. You are constantly scanning the horizon for threats. You don't just dislike their exes; you have a detailed mental dossier on why they are inferior to you.",
+      "symptoms": [
+        "You analyze the emojis used by others in your partner's comment section.",
+        "You get moody if your partner mentions a coworker's name more than twice.",
+        "You silently compete with everyone for your partner's attention."
+      ],
+      "psychology": "This is **Comparative Insecurity**. You base your self-worth on being the 'best' and 'only' option for your partner. When someone else enters the frame, you feel your value is being challenged.",
+      "warning": "Your jealousy is exhausting—for you and your partner. You are wasting precious mental energy fighting imaginary enemies. It makes you look insecure rather than powerful.",
+      "advice": [
+        "**Flip the Script:** Instead of thinking 'She is prettier than me', think 'My partner chose ME, not her'.",
+        "**The 'So What?' Technique:** If they find someone else attractive, ask yourself 'So what?'. Attraction is normal; loyalty is a choice.",
+        "**Build Your Confidence:** Do things that make you feel hot and valuable outside of the relationship."
+      ]
+    },
+    "level_4": {
+      "title": "The Yandere God",
+      "diagnosis": "Your jealousy has become your personality. You operate on a 'Scorched Earth' policy: If I can't have your total attention, I will burn everything down. You believe love means total isolation from the rest of the world.",
+      "symptoms": [
+        "You have forced them to block friends or delete social media.",
+        "You accuse them of cheating with zero evidence.",
+        "You threaten self-harm or violence when you get jealous."
+      ],
+      "psychology": "This is **Delusional Jealousy**. It is no longer about love; it is about **Ownership**. You are terrified of being replaced, so you try to remove all other humans from your partner's life.",
+      "warning": "This is a toxic spiral. You are isolating your partner, which is a form of emotional abuse. Real love expands your world; it doesn't shrink it into a cage.",
+      "advice": [
+        "**Reality Check:** Your partner is a human being, not an object. They are allowed to interact with the world.",
+        "**Stop the Interrogations:** Stop grilling them about who they were with. It pushes them to lie just to keep the peace.",
+        "**Heal the Trauma:** This intensity usually comes from a past trauma where you were replaced. You are punishing your current partner for your ex's mistakes."
+      ]
+    }
+  },
+  "devotion_analysis": {
+    "level_1": {
+      "title": "The Lone Wolf",
+      "diagnosis": "You are the main character of your own life, and your partner is a guest star. You prioritize your career, hobbies, and alone time. You love them, but you certainly don't 'need' them to survive.",
+      "symptoms": [
+        "You are relieved when plans get cancelled so you can stay home alone.",
+        "You make major life decisions without consulting them first.",
+        "You often forget to reply to texts for 6+ hours."
+      ],
+      "psychology": "This points to **Hyper-Independence**. You might have learned early on that you can only rely on yourself. While strong, this wall prevents deep intimacy and vulnerability.",
+      "warning": "Your partner likely feels lonely in this relationship. They might feel like an accessory rather than a priority. Independence is great, but isolation is not a relationship.",
+      "advice": [
+        "**Schedule 'Us' Time:** Treat dates with the same importance as work meetings.",
+        "**Let Them Help:** Ask for help with small things. It makes them feel needed.",
+        "**Open Up:** Share your fears, not just your successes. Vulnerability creates bonds."
+      ]
+    },
+    "level_2": {
+      "title": "The Velcro Sticker",
+      "diagnosis": "You love being close. You are the type who loves hand-holding, cuddling, and daily updates. You prioritize the relationship, but you haven't lost your individual identity. You are 'Attached', not 'Addicted'.",
+      "symptoms": [
+        "You miss them when you are apart for a few days.",
+        "You include them in your weekend plans by default.",
+        "You seek their opinion on clothes or food, but make the final choice yourself."
+      ],
+      "psychology": "This is a **Secure-Anxious Lean**. You enjoy intimacy and bonding. Your brain releases Oxytocin (the cuddle hormone) easily, making you a warm and affectionate partner.",
+      "warning": "Make sure you don't start cancelling your own friends just to hang out with your partner. Keep your own world spinning, or you risk slipping into dependency.",
+      "advice": [
+        "**Friend Dates:** Make a rule to see your friends without your partner once a week.",
+        "**Solo Hobbies:** Keep one hobby that is just for you.",
+        "**Initiate Space:** Sometimes, be the one to say 'I need some me-time'. It's healthy."
+      ]
+    },
+    "level_3": {
+      "title": "The Oxygen Mask",
+      "diagnosis": "You feel like you can't breathe without them. You have slowly edited your own life to fit perfectly into theirs. You cancel plans, change hobbies, and adjust your mood based entirely on them.",
+      "symptoms": [
+        "You feel empty or bored when they are not around.",
+        "You adopt their opinions as your own to avoid conflict.",
+        "Your happiness depends 100% on their current mood."
+      ],
+      "psychology": "This is **Enmeshment**. You are blurring the boundaries between 'You' and 'Me'. You seek safety in merging, but you are losing your individual spark—the very thing that attracted them to you.",
+      "warning": "If you make someone your entire world, you leave them with a heavy burden: the responsibility for your happiness. That is too much weight for one person to carry.",
+      "advice": [
+        "**Reclaim a Hobby:** Pick one thing you used to love before you met them, and start doing it again. Alone.",
+        "**The 'No' Challenge:** Practice saying 'No' to small things. It helps re-establish healthy boundaries.",
+        "**Socialize Solo:** Go see your friends without your partner at least once a week."
+      ]
+    },
+    "level_4": {
+      "title": "The Symbiote",
+      "diagnosis": "You don't want a partner; you want a host. You have completely dissolved your ego into theirs. You would sacrifice your dreams, your family, and your dignity just to keep them happy.",
+      "symptoms": [
+        "You have no boundaries. What is yours is theirs.",
+        "You panic physically if you can't contact them.",
+        "You tolerate bad behavior just to avoid being alone."
+      ],
+      "psychology": "This is **Severe Codependency**. You believe you are unworthy of love unless you are being 'useful' or 'submissive'. You are trying to buy their love with your soul.",
+      "warning": "You are at high risk of being manipulated or abused. When you have no boundaries, you attract people who have no respect. You are losing yourself completely.",
+      "advice": [
+        "**Establish Boundaries:** It is not selfish to have needs. It is necessary.",
+        "**Self-Love Bootcamp:** You need to learn to enjoy your own company. Go to a movie alone. Eat dinner alone. Realize you will survive.",
+        "**Therapy is Mandatory:** This level of dependency is deeply rooted. You need professional guidance to rebuild your self-esteem."
+      ]
+    }
+  },
+  "aggression_analysis": {
+    "level_1": {
+      "title": "The Peacekeeper",
+      "diagnosis": "You are allergic to drama. Even when you are hurt, you swallow your feelings to keep the peace. You believe that if you ignore a problem, it might just go away.",
+      "symptoms": [
+        "You say 'I'm fine' when you are clearly not.",
+        "You apologize even when it wasn't your fault.",
+        "You change the subject quickly if an argument starts."
+      ],
+      "psychology": "This is **Conflict Avoidance**, often stemming from a **People-Pleasing** personality. You fear that conflict will lead to abandonment, so you suppress your true needs.",
+      "warning": "A relationship without conflict is often a relationship without honesty. Suppressed anger builds up and eventually explodes (or implodes). You are teaching them that your feelings don't matter.",
+      "advice": [
+        "**Practice Disagreeing:** Start with small things, like where to eat. Assert your choice.",
+        "**Use 'I' Statements:** Say 'I feel hurt when...' instead of attacking them.",
+        "**Anger is Okay:** It's a signal that a boundary was crossed. Listen to it."
+      ]
+    },
+    "level_2": {
+      "title": "The Hedgehog",
+      "diagnosis": "When you feel insecure, you don't attack—you get prickly. You might give the silent treatment, withdraw affection, or make small passive-aggressive comments to see if they notice.",
+      "symptoms": [
+        "You take a long time to reply to texts when you are mad.",
+        "You say 'Do whatever you want' in a tone that means 'Don't do it'.",
+        "You withdraw physically when feelings get hurt."
+      ],
+      "psychology": "This is a **Defensive Mechanism**. You are trying to protect your soft interior by putting up spikes. You want them to fight for you, but you are pushing them away instead.",
+      "warning": "Your partner isn't a mind reader. The 'Guess why I'm mad' game gets old very quickly. Eventually, they will stop trying to guess and just leave you alone.",
+      "advice": [
+        "**Drop the Shield:** It takes courage to say 'My feelings are hurt' instead of acting cold.",
+        "**No Silent Treatment:** Even if you need space, say 'I need an hour to cool off'.",
+        "**Assume Good Intent:** They probably didn't hurt you on purpose. Talk it out."
+      ]
+    },"level_3": {
+    "title": "The Siren",
+    "diagnosis": "You believe that 'Peace' means 'Boredom'. You subconsciously create drama to test your partner's love. You feel most loved when you are making up after a huge fight. You use emotional volatility as a tool to keep the relationship exciting.",
+    "symptoms": [
+      "You pick fights over small things just to get a reaction out of them.",
+      "You use emotional blackmail: 'If you really loved me, you wouldn't do that.'",
+      "You threaten to break up during arguments, hoping they will beg you to stay."
+    ],
+    "psychology": "This is **Anxious-Ambivalent Attachment**. You equate 'Pain' with 'Passion'. You are terrified of being ignored, so you become loud (emotionally) to ensure you are seen. You are testing their limits to see if they will abandon you.",
+    "warning": "This is the 'Boy Who Cried Wolf' scenario. Eventually, your partner will get tired of the constant emotional rollercoaster. When you finally have a real problem, they might be too exhausted to care.",
+    "advice": [
+      "**Stop the Tests:** Real love is boring and stable. Stop testing them to see if they break.",
+      "**No More Threats:** Never say 'I'm breaking up' unless you mean it. It destroys safety.",
+      "**Self-Soothing:** When you feel the urge to start a fight, go for a run or scream into a pillow instead."
+    ]
+  },
+  "level_4": {
+    "title": "The Berserker",
+    "diagnosis": "You have hit the true Yandere danger zone. When you feel insecure or threatened, you don't just get mad—you go 'Scorched Earth'. You are willing to hurt yourself, your partner, or the environment to regain control. Your logic is: 'If I can't have you, no one can.'",
+    "symptoms": [
+      "You have thrown things, slammed doors, or blocked them from leaving the room.",
+      "You threaten self-harm to make them stay or to make them feel guilty.",
+      "You view any threat to the relationship as a declaration of war."
+    ],
+    "psychology": "This is **Emotional Dysregulation** bordering on abusive behavior. Your 'Fight or Flight' response is permanently stuck on 'FIGHT'. This likely stems from deep trauma where you felt powerless, so now you use aggression to force a sense of power.",
+    "warning": "🚨 **CRITICAL WARNING:** This behavior is toxic and dangerous. You are not protecting the relationship; you are holding it hostage. This is the fast track to a restraining order, not a happy ending.",
+    "advice": [
+      "**Immediate De-escalation:** Walk away. Literally. If you feel the rage coming, leave the room immediately.",
+      "**Therapy is Mandatory:** You need professional help to learn Anger Management. This is bigger than a relationship issue.",
+      "**Stop the Self-Harm Talk:** Using your safety as a bargaining chip is the ultimate form of manipulation. Stop it now."
+    ]
+  }
+}
+  }
+  

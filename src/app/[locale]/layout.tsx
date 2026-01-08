@@ -51,7 +51,7 @@ const sansFont = DM_Sans({
 
 export async function generateMetadata() {
   const w = await getTranslations('love-possession-calculator');
-  const s=await getTranslations('domain');
+  const s=await getTranslations('website');
   return {
     title: w("meta_title"),
     description: w("meta_description"),
