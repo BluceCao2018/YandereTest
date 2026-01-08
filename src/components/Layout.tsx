@@ -5,6 +5,8 @@ import { Footer } from '@/components/Footer'
 import { getCategories } from '@/lib/data';
 import { getLocale } from 'next-intl/server';
 import { headers } from 'next/headers';
+import { NavigationV2 } from './NavigationV2';
+import { FooterV2 } from './FooterV2';
 
 export async function Layout({
   children,
@@ -36,9 +38,9 @@ export async function Layout({
   console.log('Rendering full layout');
   return (
     <div className="min-h-screen bg-background font-sans antialiased">
-      {/* <Navigation categories={categories}/> */}
+      <NavigationV2/>
       <main className="flex-1">{children}</main>
-      {/* <Footer /> */}
+      <FooterV2 />
     </div>
   )
 }

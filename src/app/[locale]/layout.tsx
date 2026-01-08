@@ -16,6 +16,7 @@ import { getMessages } from 'next-intl/server';
 import { headers } from 'next/headers';
 import { Toaster } from 'sonner'
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { getTranslations } from 'next-intl/server';
 
 const inter = Inter({ subsets: ['latin'] })
 const sansFont = DM_Sans({
@@ -23,28 +24,50 @@ const sansFont = DM_Sans({
   variable: "--font-sans",
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: '',
-    template: '%s | Fun Benchmark'
-  },
-  description: '',
-  authors: { name: '', url: '' },
-  keywords: '',
-  alternates: {
-    canonical: "", languages: {
-      "en-US": "",
-      "zh-CN": "",
-    }
-  },
-  icons: [
-    { rel: "icon", type: 'image/png', sizes: "16x16", url: "/favicon-16x16.png" },
-    { rel: "icon", type: 'image/png', sizes: "32x32", url: "/favicon-32x32.png" },
-    { rel: "icon", type: 'image/ico', url: "/favicon.ico" },
-    { rel: "apple-touch-icon", sizes: "180x180", url: "/favicon-180x180.png" },
-    { rel: "android-chrome", sizes: "512x512", url: "/favicon-512x512.png" },
+// export const metadata: Metadata = {
+//   title: {
+//     default: '',
+//     template: '%s | Fun Benchmark'
+//   },
+//   description: '',
+//   authors: { name: '', url: '' },
+//   keywords: '',
+//   alternates: {
+//     canonical: "", languages: {
+//       "en-US": "",
+//       "zh-CN": "",
+//     }
+//   },
+//   icons: [
+//     { rel: "icon", type: 'image/png', sizes: "16x16", url: "/favicon-16x16.png" },
+//     { rel: "icon", type: 'image/png', sizes: "32x32", url: "/favicon-32x32.png" },
+//     { rel: "icon", type: 'image/ico', url: "/favicon.ico" },
+//     { rel: "apple-touch-icon", sizes: "180x180", url: "/favicon-180x180.png" },
+//     { rel: "android-chrome", sizes: "512x512", url: "/favicon-512x512.png" },
 
-  ],
+//   ],
+// }
+
+
+export async function generateMetadata() {
+  const w = await getTranslations('love-possession-calculator');
+  return {
+    title: w("meta_title"),
+    description: w("meta_description"),
+    alternates: {
+      canonical: `${w("domain")}`
+    },
+    openGraph: {
+       title: w("meta_title"),
+    description: w("meta_description"),
+      type: 'website',
+      images: [{
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+      }],
+    }
+  };
 }
 
 export default async function RootLayout({

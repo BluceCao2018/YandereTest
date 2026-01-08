@@ -1,6 +1,6 @@
 {
   "website":{
-    "domain": "https://funbenchmark.com"
+    "domain": "https://yanderetest.com"
   },
   "embed": {
     "button": "Embed",
@@ -747,11 +747,11 @@
     }
   },
   "love-possession-calculator": {
-    "meta_title": "Love Possession Calculator - RPI Test",
-    "meta_description": "Professional romantic possessiveness index test with 37 scientific questions to assess your control desire, jealousy intensity, emotional dependency, and relationship insecurity.",
-    "h2": "Love Possession Calculator",
-    "description": "Assess your romantic possessiveness index through 37 carefully designed questions to understand your attitudes and behavior patterns in relationships.",
-    "startTest": "Start Test",
+    "meta_title": "The Ultimate Yandere Test: Am I Yandere? | Yandere Quiz",
+    "meta_description": "Are you just a little jealous, or completely obsessed? Answer these 37 questions to uncover your dark side and find out if you are a true Yandere. 🔪",
+    "h2": "The Ultimate Yandere Test: Am I Yandere? ",
+    "description": "Are you just a little jealous, or completely obsessed? Answer these 37 questions to uncover your dark side and find out if you are a true Yandere. 🔪",
+    "startTest": "Reveal My Score 🔪",
     "selectMode": "Please select test mode",
     "mode": {
       "self": {
@@ -767,81 +767,184 @@
     "partnerPrefix": "My partner",
     "questionNumber": "Question {current} of {total}",
     "options": {
-      "never": "Never",
-      "rarely": "Rarely",
-      "sometimes": "Sometimes",
-      "often": "Often",
-      "always": "Always"
+      "never": "❌ Never",
+      "rarely": "😒 Rarely",
+      "sometimes": "🤔 Sometimes",
+      "often": "👀 Often",
+      "always": "🔪 Always"
     },
     "questions": [
-      "want to know all of my partner's whereabouts",
-      "check my partner's phone or social media",
-      "require my partner to report their location at all times",
-      "hope my partner only interacts with friends of the same sex",
-      "restrict my partner's social activities",
-      "require my partner to do things my way",
-      "hope my partner's life revolves around me",
-      "make demands about my partner's clothing and appearance",
-      "hope my partner gives up their own hobbies and interests",
-      "feel my partner should prioritize my feelings",
-      "feel uneasy when my partner talks to someone of the opposite sex",
-      "am jealous of my partner's friends",
-      "feel jealous about my partner's past",
-      "suspect my partner's feelings for others",
-      "fear losing my partner",
-      "often wonder if my partner still loves me",
-      "get jealous over small things",
-      "compare my partner's relationships with other people of the opposite sex",
-      "want all of my partner's attention",
-      "get jealous when my partner compliments others",
-      "can't imagine life without my partner",
-      "want to be with my partner all the time",
-      "would give up my own goals for my partner",
-      "feel I can't be happy without my partner",
-      "need constant affirmation from my partner",
-      "panic when my partner becomes distant",
-      "put my partner above myself",
-      "overly depend on my partner for emotional support",
-      "fear my partner leaving me",
-      "change myself to please my partner",
-      "fear being abandoned by my partner",
-      "often worry that my partner will cheat",
-      "feel I'm not good enough for my partner",
-      "fear my partner meeting someone better",
-      "constantly seek reassurance from my partner",
-      "feel anxious when my partner is cold",
-      "fear being replaced in the relationship"
+      "I need to know exactly where they are 24/7",
+      "I have secretly checked their phone while they were sleeping",
+      "I force them to share their live location with me",
+      "I don't let them hang out with the opposite sex",
+      "I isolate them from friends I don't like",
+      "Things must be done my way, or no way",
+      "I want to be the only thing that matters in their life",
+      "I control what they wear so others won't look at them",
+      "They should spend time with me instead of their stupid hobbies",
+      "My feelings should always come first. Always.",
+      "I get furious when they talk to other girls/guys",
+      "I hate it when they choose their friends over me",
+      "I obsess over their exes and stalk them online",
+      "I constantly suspect they are cheating on me",
+      "The thought of them leaving makes me want to scream",
+      "I constantly test their love for me",
+      "I get triggered by the smallest interactions",
+      "I analyze how they look at other people",
+      "If they aren't paying attention to me, I act out",
+      "It kills me when they compliment anyone else",
+      "I would literally die without them",
+      "I want to lock us in a room forever",
+      "I would sacrifice anything just to keep them",
+      "They are my only source of happiness",
+      "I beg for reassurance 50 times a day",
+      "I have a mental breakdown if they reply late",
+      "I worship the ground they walk on",
+      "I can't function properly when they are gone",
+      "I have nightmares about them abandoning me",
+      "I will become whatever they want me to be",
+      "I've threatened to hurt myself if they left",
+      "I check their location every 10 minutes",
+      "I feel like trash compared to them",
+      "I'm terrified someone will steal them away",
+      "I accuse them of not loving me enough",
+      "I cry instantly when their tone changes",
+      "If I can't have them, no one can"
     ],
     "results": {
       "title": "Test Results",
-      "levels": {
-        "normal": "Healthy Level",
-        "mild": "Mild Possessiveness",
-        "moderate": "Moderate Possessiveness",
-        "severe": "Severe Possessiveness"
-      },
-      "descriptions": {
-        "normal": "Your romantic possessiveness is at a healthy level, maintaining good emotional balance without over-dependence or controlling behavior.",
-        "mild": "You have mild possessiveness tendencies, which is normal in relationships, but remember to maintain appropriate personal space.",
-        "moderate": "Your possessiveness is quite noticeable. It's recommended to adjust your mindset and give your partner more trust and freedom.",
-        "severe": "Your possessiveness is strong and may affect relationship health. It's recommended to reflect deeply and seek professional help."
-      }
+     "levels": {
+    "normal": "Deredere (Sweetheart) 🍬",
+    "mild": "Soft Yandere (Cute & Clingy) 🎀",
+    "moderate": "Hardcore Yandere (Obsessive) 🖤",
+    "severe": "Extreme Yandere (Psycho) 🔪"
+  },
+  "descriptions": {
+    "normal": "You are a **Deredere**! You are sweet, energetic, and completely healthy. You love openly and trust fully. Honestly? You are too sane for this website. Go touch some grass! 🌱",
+    "mild": "You are a **Soft Yandere**! You wouldn't hurt anyone, but you definitely want their attention 24/7. You are the type to spam 50 texts and then say 'oops'. It's kinda cute, actually. 🥺",
+    "moderate": "You are a **Hardcore Yandere**! You are entering the danger zone. You know their passwords, their schedule, and maybe their ex's home address. Your love is heavy, dark, and intense. 🔥",
+    "severe": "You are an **Extreme Yandere**! Okay, please put down the knife. 😨 Your philosophy is 'If I can't have you, no one can.' You don't need a partner, you need a lawyer (or a therapist). 🚑"
+  }
     },
     "restart": "Retake Test",
     "about": {
-      "title": "About the Test",
-      "content": "The Romantic Possession Index Calculator (RPI) is a professional psychological assessment tool that evaluates individuals' possessiveness levels in romantic relationships from four dimensions through scientifically designed questions. This test is based on psychological research to help you better understand your behavior patterns and emotional needs in relationships. All data is processed locally to protect your privacy."
+      "title": "About the Yandere Test",
+      "content": "This isn't your average love quiz. The Yandere Test is designed to measure the fine line between 'deeply in love' and 'dangerously obsessed.'Inspired by anime archetypes, this test analyzes your romantic possessiveness and behavioral patterns. Are you the sweet, devoted type, or do you have a dark side that comes out when someone touches what's yours?We dig deep into your hidden thoughts to calculate your true score. Don't worry, your secrets are safe—all results are processed locally in your browser."
     },
     "dimensions": {
       "title": "Four Assessment Dimensions",
-      "control": "Control Desire",
-      "controlDesc": "Assess your tendency to control your partner's behavior",
-      "jealousy": "Jealousy Intensity",
-      "jealousyDesc": "Assess the intensity of your jealousy reactions",
-      "dependency": "Emotional Dependency",
-      "dependencyDesc": "Assess your level of emotional dependence on your partner",
-      "insecurity": "Relationship Insecurity",
-      "insecurityDesc": "Assess your level of insecurity in the relationship"
+      "control": "Obsessive Control",
+      "controlDesc": "How tight is your grip? We measure your need to monitor and influence your partner's every move.",
+      "jealousy": "Extreme Jealousy",
+      "jealousyDesc": "The green-eyed monster. Do you get anxious or aggressive when others get too close to your loved one?",
+      "dependency": "Total Devotion",
+      "dependencyDesc": "Is your partner your whole world? Assessing if your happiness depends entirely on their attention.",
+      "insecurity": "Protective Aggression",
+      "insecurityDesc": "The willingness to eliminate 'threats.' How far would you go to keep your relationship safe?"
+    },
+    "resultsPage": {
+      "reportBadge": "Test Report",
+      "testTitle": "Yandere Diagnosis Report",
+      "testSubtitle": "Your romantic possessiveness assessment results",
+      "overallScore": "Your Yandere Rate",
+      "level": "Level",
+      "matchScore": "Yandere Rate",
+      "dimensionScores": {
+        "control": {
+          "title": "Obsessive Control",
+          "short": "C",
+          "description": "Tendency to control partner's behavior"
+        },
+        "jealousy": {
+          "title": "Extreme Jealousy",
+          "short": "J",
+          "description": "Reaction to competitive threats"
+        },
+        "dependency": {
+          "title": "Total Devotion",
+          "short": "D",
+          "description": "Emotional needs from partner"
+        },
+        "insecurity": {
+          "title": "Protective Aggression",
+          "short": "I",
+          "description": "Concern about relationship stability"
+        }
+      },
+  "detailedAnalysis": {
+    "title": "Diagnosis Report 📋",
+    "control": {
+      "title": "Obsessive Control ⛓️",
+      "levels": [
+        "The Cool Partner. 😎 You give them so much freedom they might forget they are dating you. You treat them like an adult, not a pet. Ideally healthy, but maybe show a *little* more interest?",
+        "Protective Plushie. 🧸 You like to know where they are because you care, not because you are crazy. You might check their location occasionally, but you respect their privacy. Perfectly balanced.",
+        "Detective Mode Activated. 🕵️‍♀️ You know their passcode, don't you? You analyze their followers list and track their 'Last Seen' status. It's borderline controlling... careful not to cross the line.",
+        "The Warden. 👮 Your love language is 'House Arrest'. You want to approve their friends, their clothes, and their breathing schedule. You don't want a partner; you want a prisoner."
+      ]
+    },
+    "jealousy": {
+      "title": "Extreme Jealousy 🔥",
+      "levels": [
+        "Zen Master. 🧘 You wouldn't blink if they hugged a supermodel. Either you are extremely confident, or you just don't give a damn. A rare breed in the dating world.",
+        "Cute Pout. 😽 You get a little jelly when someone flirts with them, but you handle it with grace (mostly). It shows you care without being toxic. Honestly? It's kinda cute.",
+        "FBI Agent. 🕶️ 'Who is she? Why did she use a heart emoji?' You analyze every interaction they have. You are watching... always watching. Your jealousy is starting to burn.",
+        "Yandere Mode: ON. 🔪 'If you look at them, I will end you.' Your jealousy isn't an emotion; it's a weapon. You scare people away, literally. Red flag alert! 🚩"
+      ]
+    },
+    "dependency": {
+      "title": "Total Devotion ❤️‍🔥",
+      "levels": [
+        "Independent Soul. 🦅 You have your own life, hobbies, and friends. If they break up with you, you'll be sad for 5 minutes and then go get pizza. You are complete on your own.",
+        "Velcro Sticker. 🐨 You love being together and feel best when holding hands. You miss them when they are gone, but you don't fall apart. Sweet and sticky.",
+        "Oxygen Mask. 😷 You literally feel like you can't breathe without them. You have dropped your hobbies to be with them 24/7. If they leave, you crumble. Not healthy, bestie.",
+        "Merged Entity. 🧬 Where do you end and they begin? You have lost your identity. You want to be surgically attached to them. You need to find yourself again... urgently."
+      ]
+    },
+    "insecurity": {
+      "title": "Protective Aggression 🛡️",
+      "levels": [
+        "Rock Solid. 💎 You know you are the best thing that ever happened to them. Insecurity? Never heard of her. Your confidence is intimidatingly high.",
+        "Human after all. 🤷 You overthink sometimes—'Did they reply slower than usual?'—but you snap out of it quickly. You need a reassuring hug, not a therapy session.",
+        "Panic Button. 🚨 You ask 'Do you love me?' 20 times a day. You are terrified of being replaced, so you hold on tighter, which usually pushes them away. It's a vicious cycle.",
+        "Doomsday Prepper. 💣 You are convinced they will leave, so you might just lock the door to keep them 'safe'. Your fear has turned into aggression. This is textbook Yandere behavior."
+      ]
+    }
+  },
+  "suggestions": {
+    "title": "Senpai's Survival Guide 💡",
+    "items": [
+      "Give them some air. 🌬️ If you hold sand too tight, it slips through your fingers. Don't be a suffocating blanket.",
+      "Stalking is NOT a hobby. 🚫 Get a life outside of your relationship. It makes you hotter and less scary.",
+      "Just ask, don't guess. 🗣️ Instead of hacking their cloud account, try looking them in the eye and asking. It's wild, I know.",
+      "Put down the knife. 🔪 Trust is hard, but living in constant fear is exhausting. Try believing them for once."
+    ]
+  },
+  "restartTest": "Share My Score"
+},
+    "nav": {
+      "title": "Yandere Test",
+      "home": "Home",
+      "aboutTest": "About Test",
+      "contactUs": "Contact Us",
+      "shareTest": "Share Test"
+    },
+    "footer": {
+      "title": "Yandere Test",
+      "description": "Professional romantic possessiveness index test tool based on psychological research to help you understand your behavior patterns and emotional characteristics in romantic relationships.",
+      "quickLinks": "Quick Links",
+      "startTest": "Start Test",
+      "testInstructions": "Test Instructions",
+      "dimensions": "Assessment Dimensions",
+      "otherTests": "Other Tests",
+      "contactUs": "Contact Us",
+      "email": "Email: contact@yanderetest.com",
+      "workHours": "Work Hours: Mon-Fri 9:00-18:00",
+      "feedback": "Feedback: feedback@yanderetest.com",
+      "copyright": "© 2026 Yandere Test. All rights reserved.",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "disclaimer": "Disclaimer"
     }
   }
 }
