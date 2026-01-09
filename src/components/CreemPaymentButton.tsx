@@ -8,17 +8,16 @@ interface CreemPaymentButtonProps {
   testResults: any;
   onPaymentSuccess?: () => void;
   className?: string;
+  isUnlocked?: boolean;
 }
 
-export function CreemPaymentButton({ testResults, onPaymentSuccess, className = '' }: CreemPaymentButtonProps) {
+export function CreemPaymentButton({ testResults, onPaymentSuccess, className = '', isUnlocked = false }: CreemPaymentButtonProps) {
   const t = useTranslations('love-possession-calculator');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Check if already unlocked
-  if (hasUnlockedReport()) {
-    return null;
-  }
+  // NOTE: The parent component controls visibility with {!isUnlocked && ...}
+  // So we don't need to check here - just render the button
 
   const handlePayment = async () => {
     setIsLoading(true);
@@ -74,7 +73,9 @@ export function CreemPaymentButton({ testResults, onPaymentSuccess, className = 
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
-            Unlock Full Report - $2.99
+            <span>Unlock Full Report - $2.99</span>
+            <span className="text-gray-100 line-through text-xl">$9.99</span>
+            <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">70% OFF</span>
           </span>
         )}
       </button>

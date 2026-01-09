@@ -177,8 +177,11 @@ export function getUnlockedDate(): Date | null {
   return dateStr ? new Date(dateStr) : null;
 }
 
+export type TestSubject = 'self' | 'partner';
+
 export interface TestResultData {
   testId: string; // Unique identifier for this test
+  testSubject: TestSubject; // 'self' or 'partner'
   answers: number[];
   controlDesire: number;
   jealousyIntensity: number;
@@ -271,4 +274,76 @@ export function setCurrentTestId(testId: string): void {
 export function clearCurrentTestId(): void {
   if (typeof window === 'undefined') return;
   localStorage.removeItem('yandere-current-test-id');
+}
+
+/**
+ * Get storage key suffix based on test subject
+ */
+function getStorageKeySuffix(testSubject: TestSubject): string {
+  return testSubject === 'partner' ? '-partner' : '-self';
+}
+
+/**
+ * Save test results for a specific subject (self or partner)
+ */
+export function saveTestResultsBySubject(data: TestResultData): void {
+  if (typeof window === 'undefined') return;
+  const suffix = getStorageKeySuffix(data.testSubject);
+  localStorage.setItem(`yandere-test-results${suffix}`, JSON.stringify({
+    ...data,
+    savedAt: new Date().toISOString(),
+  }));
+}
+
+/**
+ * Get saved test results for a specific subject
+ */
+export function getSavedTestResultsBySubject(testSubject: TestSubject): TestResultData | null {
+  if (typeof window === 'undefined') return null;
+  const suffix = getStorageKeySuffix(testSubject);
+  const resultsStr = localStorage.getItem(`yandere-test-results${suffix}`);
+  if (!resultsStr) return null;
+
+  try {
+    return JSON.parse(resultsStr);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Get current test ID for a specific subject
+ */
+export function getCurrentTestIdBySubject(testSubject: TestSubject): string | null {
+  if (typeof window === 'undefined') return null;
+  const suffix = getStorageKeySuffix(testSubject);
+  return localStorage.getItem(`yandere-current-test-id${suffix}`);
+}
+
+/**
+ * Set current test ID for a specific subject
+ */
+export function setCurrentTestIdBySubject(testId: string, testSubject: TestSubject): void {
+  if (typeof window === 'undefined') return;
+  const suffix = getStorageKeySuffix(testSubject);
+  localStorage.setItem(`yandere-current-test-id${suffix}`, testId);
+}
+
+/**
+ * Clear current test ID for a specific subject
+ */
+export function clearCurrentTestIdBySubject(testSubject: TestSubject): void {
+  if (typeof window === 'undefined') return;
+  const suffix = getStorageKeySuffix(testSubject);
+  localStorage.removeItem(`yandere-current-test-id${suffix}`);
+}
+
+/**
+ * Check if any test results exist
+ */
+export function hasAnyTestResults(): { self: boolean; partner: boolean } {
+  return {
+    self: getSavedTestResultsBySubject('self') !== null,
+    partner: getSavedTestResultsBySubject('partner') !== null,
+  };
 }

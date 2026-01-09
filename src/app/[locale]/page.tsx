@@ -9,6 +9,7 @@ import { Paywall, CreemPaymentButton } from '@/components/CreemPaymentButton'
 import { ShareCard } from '@/components/ShareCard'
 import { CharacterCards } from '@/components/CharacterCards'
 import { NewTestWarningDialog } from '@/components/NewTestWarningDialog'
+import { TestModeSelector } from '@/components/TestModeSelector'
 import { getRandomShareCopy, getShareCopyByIndex } from '@/lib/shareCopyPool'
 import {
   hasUnlockedReport,
@@ -17,20 +18,31 @@ import {
   getSavedTestResults,
   saveTestResultsWithSeeds,
   TestResultData,
+  TestSubject,
   generateTestId,
   getCurrentTestId,
   setCurrentTestId,
   clearCurrentTestId,
   hasTestUnlocked,
-  setTestUnlocked
+  setTestUnlocked,
+  getSavedTestResultsBySubject,
+  saveTestResultsBySubject,
+  getCurrentTestIdBySubject,
+  setCurrentTestIdBySubject,
+  clearCurrentTestIdBySubject,
+  hasAnyTestResults,
+  createCheckout
 } from '@/lib/creem'
 import { getRandomDimensionAnalysis, getDimensionAnalysisBySeed } from '@/lib/dimensionAnalysis'
 import { getFullDiagnosisReport } from '@/lib/diagnosisAnalysis'
 import { generateRandomSeeds, getRandomItemBySeed } from '@/lib/randomSeed'
+import { convertToPartnerReport } from '@/lib/pronounConverter'
 
 export default function LovePossessionCalculator() {
-  const [gameState, setGameState] = useState<'start' | 'playing' | 'result'>('start')
-  const [testMode, setTestMode] = useState<'self' | 'partner'>('self')
+  // Expanded game states to include mode selection
+  const [gameState, setGameState] = useState<'start' | 'selecting' | 'playing' | 'result'>('start')
+  const [testSubject, setTestSubject] = useState<TestSubject>('self')
+  const [currentReportView, setCurrentReportView] = useState<TestSubject>('self')
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)
   const [answers, setAnswers] = useState<number[]>([])
   const [showEmbedDialog, setShowEmbedDialog] = useState(false)
@@ -42,6 +54,7 @@ export default function LovePossessionCalculator() {
   const [previousTestData, setPreviousTestData] = useState<{ percentage: number; level: string; testId: string; isPaid: boolean } | null>(null)
   const [currentTestId, setCurrentTestIdState] = useState<string | null>(null)
   const [showWarningDialog, setShowWarningDialog] = useState(false)
+  const [existingTests, setExistingTests] = useState({ self: false, partner: false })
 
   const searchParams = useSearchParams()
   const isIframe = searchParams.get('embed') === 'true'
@@ -49,50 +62,13 @@ export default function LovePossessionCalculator() {
 
   const t = useTranslations('love-possession-calculator')
 
-  // 测试题目 - 基于心理学占有欲量表设计
-  const questions: string[] = [
-    // 控制欲望维度
-    t('questions.0'),
-    t('questions.1'),
-    t('questions.2'),
-    t('questions.3'),
-    t('questions.4'),
-    t('questions.5'),
-    t('questions.6'),
-    t('questions.7'),
-    t('questions.8'),
-    t('questions.9'),
-    // 嫉妒强度维度
-    t('questions.10'),
-    t('questions.11'),
-    t('questions.12'),
-    t('questions.13'),
-    t('questions.14'),
-    t('questions.15'),
-    t('questions.16'),
-    t('questions.17'),
-    t('questions.18'),
-    t('questions.19'),
-    // 情感依赖维度
-    t('questions.20'),
-    t('questions.21'),
-    t('questions.22'),
-    t('questions.23'),
-    t('questions.24'),
-    t('questions.25'),
-    t('questions.26'),
-    t('questions.27'),
-    t('questions.28'),
-    t('questions.29'),
-    // 关系不安全感维度
-    t('questions.30'),
-    t('questions.31'),
-    t('questions.32'),
-    t('questions.33'),
-    t('questions.34'),
-    t('questions.35'),
-    t('questions.36')
-  ]
+  // 测试题目 - 根据测试对象动态加载
+  const questions: string[] = []
+  const questionKeyPrefix = testSubject === 'partner' ? 'questions_partner' : 'questions'
+
+  for (let i = 0; i < 37; i++) {
+    questions.push(t(`${questionKeyPrefix}.${i}`))
+  }
 
   const questionOptions = [
     { value: 1, label: t('options.never') },
@@ -107,49 +83,65 @@ export default function LovePossessionCalculator() {
       setEmbedUrl(`${window.location.origin}${window.location.pathname}?embed=true`)
     }
 
-    // Get current test ID
-    const testId = getCurrentTestId()
-    if (testId) {
-      setCurrentTestIdState(testId)
-      // Check if THIS specific test is unlocked
-      const testUnlocked = hasTestUnlocked(testId)
-      setIsUnlocked(testUnlocked)
-    } else {
-      // Check legacy unlocked status
-      const unlocked = hasUnlockedReport()
-      setIsUnlocked(unlocked)
+    // Check which tests exist
+    const tests = hasAnyTestResults()
+    setExistingTests(tests)
+
+    // Load self test data
+    const selfResults = getSavedTestResultsBySubject('self')
+    if (selfResults && selfResults.answers) {
+      const selfTestId = selfResults.testId
+      const selfUnlocked = hasTestUnlocked(selfTestId)
+      // If viewing self report or no preference, set as current
+      if (currentReportView === 'self') {
+        setCurrentTestIdState(selfTestId)
+        setIsUnlocked(selfUnlocked)
+      }
     }
 
-    // Check for saved test results on mount
-    const savedResults = getSavedTestResults()
-    if (savedResults && savedResults.answers) {
+    // Load partner test data
+    const partnerResults = getSavedTestResultsBySubject('partner')
+    if (partnerResults && partnerResults.answers) {
+      const partnerTestId = partnerResults.testId
+      const partnerUnlocked = hasTestUnlocked(partnerTestId)
+      // If viewing partner report, set as current
+      if (currentReportView === 'partner') {
+        setCurrentTestIdState(partnerTestId)
+        setIsUnlocked(partnerUnlocked)
+      }
+    }
+
+    // Set hasPreviousTest based on any existing results
+    if (tests.self || tests.partner) {
       setHasPreviousTest(true)
-      // Determine the level based on percentage
-      let level = ''
-      if (savedResults.percentage <= 25) level = 'Deredere (Sweetheart) 🍬'
-      else if (savedResults.percentage <= 50) level = 'Soft Yandere (Cute & Clingy) 🎀'
-      else if (savedResults.percentage <= 75) level = 'Hardcore Yandere (Obsessive) 🖤'
-      else level = 'Extreme Yandere (Psycho) 🔪'
+      // Use self test data for welcome message if available
+      if (selfResults) {
+        let level = ''
+        if (selfResults.percentage <= 25) level = 'Deredere (Sweetheart) 🍬'
+        else if (selfResults.percentage <= 50) level = 'Soft Yandere (Cute & Clingy) 🎀'
+        else if (selfResults.percentage <= 75) level = 'Hardcore Yandere (Obsessive) 🖤'
+        else level = 'Extreme Yandere (Psycho) 🔪'
 
-      const savedTestId = savedResults.testId || 'unknown'
-      const isPaid = hasTestUnlocked(savedTestId) || hasUnlockedReport()
+        const savedTestId = selfResults.testId || 'unknown'
+        const isPaid = hasTestUnlocked(savedTestId)
 
-      setPreviousTestData({
-        percentage: savedResults.percentage,
-        level,
-        testId: savedTestId,
-        isPaid
-      })
+        setPreviousTestData({
+          percentage: selfResults.percentage,
+          level,
+          testId: savedTestId,
+          isPaid
+        })
 
-      if (savedResults.randomSeeds) {
-        setSavedRandomSeeds(savedResults.randomSeeds)
+        if (selfResults.randomSeeds) {
+          setSavedRandomSeeds(selfResults.randomSeeds)
+        }
       }
     }
 
     // Handle payment success callback
     if (paymentStatus === 'success') {
-      // Get the current test ID that was just paid for
-      const currentTestId = getCurrentTestId()
+      // Get the current test ID that was just paid for based on subject
+      const currentTestId = getCurrentTestIdBySubject(testSubject)
       if (currentTestId) {
         setTestUnlocked(currentTestId)
         setIsUnlocked(true)
@@ -159,7 +151,8 @@ export default function LovePossessionCalculator() {
         setIsUnlocked(true)
       }
 
-      // Restore saved test results if available
+      // Restore saved test results based on current subject
+      const savedResults = getSavedTestResultsBySubject(testSubject)
       if (savedResults && savedResults.answers) {
         setAnswers(savedResults.answers)
         if (savedResults.randomSeeds) {
@@ -171,16 +164,20 @@ export default function LovePossessionCalculator() {
       // Clear the payment status from URL
       window.history.replaceState({}, '', window.location.pathname)
     }
-  }, [paymentStatus])
+  }, [paymentStatus, testSubject, currentReportView])
 
-  const startTest = () => {
-    // Generate a new test ID
+  // New function to handle test mode selection
+  const handleSelectTestMode = (mode: TestSubject) => {
+    setTestSubject(mode)
+    setCurrentReportView(mode)
+
+    // Generate a new test ID for this subject
     const newTestId = generateTestId()
-    setCurrentTestId(newTestId)
+    setCurrentTestIdBySubject(newTestId, mode)
     setCurrentTestIdState(newTestId)
+
     // Reset unlock status for new test
     setIsUnlocked(false)
-    setTestMode('self')
     setGameState('playing')
     setCurrentQuestionIndex(0)
     setAnswers([])
@@ -188,14 +185,36 @@ export default function LovePossessionCalculator() {
   }
 
   const viewMyReport = () => {
-    const savedResults = getSavedTestResults()
+    const savedResults = getSavedTestResultsBySubject('self')
     if (savedResults && savedResults.answers) {
       // Restore the test ID
       const testId = savedResults.testId
       if (testId) {
-        setCurrentTestId(testId)
+        setCurrentTestIdBySubject(testId, 'self')
         setCurrentTestIdState(testId)
         // Check if this test is unlocked
+        const testUnlocked = hasTestUnlocked(testId)
+        setIsUnlocked(testUnlocked)
+      }
+      setAnswers(savedResults.answers)
+      setTestSubject('self')
+      setCurrentReportView('self')
+      if (savedResults.randomSeeds) {
+        setSavedRandomSeeds(savedResults.randomSeeds)
+      }
+      setGameState('result')
+    }
+  }
+
+  const switchReportView = (view: TestSubject) => {
+    setCurrentReportView(view)
+    setTestSubject(view)
+
+    const savedResults = getSavedTestResultsBySubject(view)
+    if (savedResults && savedResults.answers) {
+      const testId = savedResults.testId
+      if (testId) {
+        setCurrentTestIdState(testId)
         const testUnlocked = hasTestUnlocked(testId)
         setIsUnlocked(testUnlocked)
       }
@@ -203,7 +222,6 @@ export default function LovePossessionCalculator() {
       if (savedResults.randomSeeds) {
         setSavedRandomSeeds(savedResults.randomSeeds)
       }
-      setGameState('result')
     }
   }
 
@@ -213,22 +231,29 @@ export default function LovePossessionCalculator() {
   }
 
   const confirmStartNewTest = () => {
-    // Generate a new test ID
-    const newTestId = generateTestId()
-    setCurrentTestId(newTestId)
-    setCurrentTestIdState(newTestId)
-    // Reset unlock status for new test
-    setIsUnlocked(false)
-    // Clear previous test data
-    setAnswers([])
-    setSavedRandomSeeds(undefined)
-    setHasPreviousTest(false)
-    setPreviousTestData(null)
-    // Start fresh test
-    setTestMode('self')
-    setGameState('playing')
-    setCurrentQuestionIndex(0)
+    // Go to mode selection
+    setGameState('selecting')
     setShowWarningDialog(false)
+  }
+
+  // Helper function to apply pronoun conversion for partner reports
+  const getText = (text: string): string => {
+    if (currentReportView === 'partner') {
+      return convertToPartnerReport(text)
+    }
+    return text
+  }
+
+  // Helper function to get report title based on current view
+  const getReportTitle = (text: string): string => {
+    if (currentReportView === 'partner') {
+      return text
+        .replace(/Your Yandere Rate/gi, 'Their Yandere Rate')
+        .replace(/Your Complete Yandere Profile/gi, 'Their Complete Yandere Profile')
+        .replace(/your complete yandere profile/gi, 'their complete yandere profile')
+        .replace(/your yandere rate/gi, 'their yandere rate')
+    }
+    return text
   }
 
   const handleAnswer = (value: number) => {
@@ -258,17 +283,18 @@ export default function LovePossessionCalculator() {
     const randomSeeds = generateRandomSeeds()
     setSavedRandomSeeds(randomSeeds)
 
-    // Get or generate test ID
-    let testId = getCurrentTestId()
+    // Get or generate test ID for current subject
+    let testId = getCurrentTestIdBySubject(testSubject)
     if (!testId) {
       testId = generateTestId()
-      setCurrentTestId(testId)
+      setCurrentTestIdBySubject(testId, testSubject)
       setCurrentTestIdState(testId)
     }
 
-    // Save test results with random seeds and test ID for later payment unlock
-    saveTestResultsWithSeeds({
+    // Save test results with random seeds, test ID, and subject for later payment unlock
+    saveTestResultsBySubject({
       testId,
+      testSubject,
       answers,
       controlDesire,
       jealousyIntensity,
@@ -292,6 +318,7 @@ export default function LovePossessionCalculator() {
 
   // 获取维度进度条下面的随机说明文案（使用保存的种子）
   const getDimensionDescription = (dimension: string, score: number) => {
+    let description = ''
     if (savedRandomSeeds) {
       // Use saved seeds for reproducible content
       const seedKey = `${dimension}Title` as keyof typeof savedRandomSeeds
@@ -299,11 +326,15 @@ export default function LovePossessionCalculator() {
       const titleSeed = savedRandomSeeds[seedKey]
       const copySeed = savedRandomSeeds[copyKey]
       if (titleSeed !== undefined && copySeed !== undefined) {
-        return getDimensionAnalysisBySeed(dimension, score, titleSeed, copySeed)
+        description = getDimensionAnalysisBySeed(dimension, score, titleSeed, copySeed)
       }
     }
     // Fallback to random if no seeds available
-    return getRandomDimensionAnalysis(dimension, score)
+    if (!description) {
+      description = getRandomDimensionAnalysis(dimension, score)
+    }
+    // Apply pronoun conversion for partner reports
+    return getText(description)
   }
 
   // Compatibility Match (恋爱匹配度) - Dynamic based on yandere level
@@ -312,18 +343,25 @@ export default function LovePossessionCalculator() {
     const jealousyScore = Math.round((answers.slice(10, 20).reduce((a, b) => a + b, 0) / 50) * 100)
     const dependencyScore = Math.round((answers.slice(20, 30).reduce((a, b) => a + b, 0) / 50) * 100)
 
+    // For partner reports, the match descriptions should be about "them" not "you"
+    const isPartner = currentReportView === 'partner'
+
     // Determine best match based on profile
     if (percentage >= 75) {
       // Severe Yandere
       return {
         bestMatch: {
           name: "The Submissive",
-          description: "You need someone who enjoys being taken care of - someone who finds your intense devotion romantic rather than overwhelming. They'll appreciate your constant attention and protective nature.",
+          description: isPartner
+            ? "They need someone who enjoys being taken care of - someone who finds their intense devotion romantic rather than overwhelming. They'll appreciate constant attention and their protective nature."
+            : "You need someone who enjoys being taken care of - someone who finds your intense devotion romantic rather than overwhelming. They'll appreciate your constant attention and protective nature.",
           icon: "🥺"
         },
         worstMatch: {
           name: "The Free Spirit",
-          description: "Avoid people who need 'space' or 'alone time'. Independent partners will feel suffocated by your constant presence and need for connection. This pairing leads to frustration for both.",
+          description: isPartner
+            ? "They should avoid people who need 'space' or 'alone time'. Independent partners will feel suffocated by their constant presence and need for connection. This pairing leads to frustration for both."
+            : "Avoid people who need 'space' or 'alone time'. Independent partners will feel suffocated by your constant presence and need for connection. This pairing leads to frustration for both.",
           icon: "🦋"
         }
       }
@@ -332,12 +370,16 @@ export default function LovePossessionCalculator() {
       return {
         bestMatch: {
           name: "The Loyal Partner",
-          description: "You thrive with someone who values commitment and quality time. They'll understand your need for reassurance without feeling overwhelmed, creating a stable, loving relationship.",
+          description: isPartner
+            ? "They thrive with someone who values commitment and quality time. Their partner should understand their need for reassurance without feeling overwhelmed, creating a stable, loving relationship."
+            : "You thrive with someone who values commitment and quality time. They'll understand your need for reassurance without feeling overwhelmed, creating a stable, loving relationship.",
           icon: "💑"
         },
         worstMatch: {
           name: "The Casual Dater",
-          description: "People who prefer casual, non-committal relationships will trigger your insecurity. You need someone who's clear about their intentions and emotionally available.",
+          description: isPartner
+            ? "People who prefer casual, non-committal relationships will trigger their insecurity. They need someone who's clear about their intentions and emotionally available."
+            : "People who prefer casual, non-committal relationships will trigger your insecurity. You need someone who's clear about their intentions and emotionally available.",
           icon: "🎭"
         }
       }
@@ -346,12 +388,16 @@ export default function LovePossessionCalculator() {
       return {
         bestMatch: {
           name: "The Communicator",
-          description: "You need someone open about their feelings and activities. Good communication helps manage your occasional jealousy before it becomes problematic.",
+          description: isPartner
+            ? "They need someone open about their feelings and activities. Good communication helps manage their occasional jealousy before it becomes problematic."
+            : "You need someone open about their feelings and activities. Good communication helps manage your occasional jealousy before it becomes problematic.",
           icon: "💬"
         },
         worstMatch: {
           name: "The Mysterious Type",
-          description: "Partners who are secretive or private will fuel your anxiety. You need transparency and regular check-ins to feel secure in the relationship.",
+          description: isPartner
+            ? "Partners who are secretive or private will fuel their anxiety. They need transparency and regular check-ins to feel secure in the relationship."
+            : "Partners who are secretive or private will fuel your anxiety. You need transparency and regular check-ins to feel secure in the relationship.",
           icon: "🎭"
         }
       }
@@ -360,12 +406,16 @@ export default function LovePossessionCalculator() {
       return {
         bestMatch: {
           name: "The Secure Partner",
-          description: "You pair well with someone emotionally mature and secure. Together, you can build a healthy relationship based on mutual trust and independence.",
+          description: isPartner
+            ? "They pair well with someone emotionally mature and secure. Together, they can build a healthy relationship based on mutual trust and independence."
+            : "You pair well with someone emotionally mature and secure. Together, you can build a healthy relationship based on mutual trust and independence.",
           icon: "🌟"
         },
         worstMatch: {
           name: "The Avoidant Partner",
-          description: "Someone who avoids emotional intimacy might occasionally make you feel needy. Look for partners who are comfortable with vulnerability and closeness.",
+          description: isPartner
+            ? "Someone who avoids emotional intimacy might occasionally make them feel needy. They should look for partners who are comfortable with vulnerability and closeness."
+            : "Someone who avoids emotional intimacy might occasionally make you feel needy. Look for partners who are comfortable with vulnerability and closeness.",
           icon: "🚶"
         }
       }
@@ -391,7 +441,21 @@ export default function LovePossessionCalculator() {
 
   // The Hidden Red Flag data - Pain point messages
   const getRedFlagData = (score: number) => {
-    const level1Messages = [
+    // For partner reports, these messages describe the risk TO YOU from their behavior
+    const isPartner = currentReportView === 'partner'
+
+    const level1Messages = isPartner ? [
+      "Their 'independence' often feels like neglect to you. They aren't giving you space; they are creating a void you might fill with someone else.",
+      "They pride themselves on being 'low maintenance', but they are actually emotionally unavailable. You likely feel lonely even when they are in the same room.",
+      "Warning: Their lack of jealousy isn't confidence; it's detachment. They are subconsciously keeping one foot out the door to avoid getting hurt.",
+      "They are turning your romance into a roommate relationship. Without emotional friction or intensity, the spark is dying faster than you think.",
+      "They suppress their needs so much that they've become invisible in your relationship. They are 'safe', but they are also forgettable.",
+      "They avoid conflict to 'keep the peace', but this silence is building a wall of resentment. They are not solving problems; they are burying them.",
+      "You may feel unneeded. By never showing possessiveness, they inadvertently tell you: 'I would be totally fine without you.'",
+      "Risk of sudden breakup: Partners of their type often leave without warning because they simply 'don't care enough' to fight for the relationship.",
+      "They confuse 'Peace' with 'Numbness'. They are protecting themselves from pain, but they are also blocking out true joy and connection.",
+      "They are the 'Cool Partner' on the surface, but deep down, they are likely terrified of vulnerability. They refuse to let anyone see their messy side."
+    ] : [
       "Your 'independence' often feels like neglect to your partner. You aren't giving them space; you are creating a void they might fill with someone else.",
       "You pride yourself on being 'low maintenance', but you are actually emotionally unavailable. Your partner likely feels lonely even when you are in the same room.",
       "Warning: Your lack of jealousy isn't confidence; it's detachment. You are subconsciously keeping one foot out the door to avoid getting hurt.",
@@ -404,7 +468,18 @@ export default function LovePossessionCalculator() {
       "You are the 'Cool Partner' on the surface, but deep down, you are likely terrified of vulnerability. You refuse to let anyone see your messy side."
     ]
 
-    const level2Messages = [
+    const level2Messages = isPartner ? [
+      "They suffer from 'Nice Person Syndrome'. They over-give and secretly expect you to pay them back with love. When you don't, they build toxic resentment.",
+      "Their anxiety is silent but deadly. They analyze your texts for hours instead of asking simple questions. This internal stress is aging them.",
+      "They are losing their identity. They slowly change their hobbies and opinions to match yours. Soon, there will be no 'Them' left to love.",
+      "Passive-Aggression Alert: Instead of getting mad, they get sad/quiet. This forces you to play a guessing game that you are tired of playing.",
+      "They value the relationship more than their self-respect. They tolerate small disrespects because they are terrified of rocking the boat.",
+      "They think they are being 'understanding', but they are actually enabling bad behavior. They teach people how to treat them, and they are teaching them to do the bare minimum.",
+      "Dependency Risk: Their mood is entirely dictated by your attention. One slow reply ruins their whole day. That is not love; that is emotional hostage.",
+      "They are the 'Safety Net'. You know they will always be there, so you stopped trying to impress them. They have become an option, not a priority.",
+      "They are projecting a 'Perfect Partner' image that isn't real. They are afraid that if they show their ugly/angry side, you will leave.",
+      "Their love language is becoming suffocating in a subtle way. Their constant need for reassurance is slowly draining your emotional battery."
+    ] : [
       "You suffer from 'Nice Person Syndrome'. You over-give and secretly expect them to pay you back with love. When they don't, you build toxic resentment.",
       "Your anxiety is silent but deadly. You analyze their texts for hours instead of asking simple questions. This internal stress is aging you.",
       "You are losing your identity. You slowly change your hobbies and opinions to match theirs. Soon, there will be no 'You' left to love.",
@@ -417,7 +492,18 @@ export default function LovePossessionCalculator() {
       "Your love language is becoming suffocating in a subtle way. Your constant need for reassurance is slowly draining their emotional battery."
     ]
 
-    const level3Messages = [
+    const level3Messages = isPartner ? [
+      "They are creating a Self-Fulfilling Prophecy. Their constant fear of you cheating is actually pushing you away. They are creating the very outcome they fear.",
+      "Critical Error: They equate 'Knowing Everything' with 'Safety'. Tracking your location doesn't mean they love you; it just means they are a good spy.",
+      "They are exhausting to date. You feel like you are constantly on trial, having to prove your innocence every single day.",
+      "Their 'protection' feels like prison. They are slowly isolating you from the world, and eventually, you will rebel to breathe.",
+      "They use Guilt as a weapon. Phrases like 'If you loved me, you would...' are emotional manipulation, not affection.",
+      "Trust Issues: They are punishing you for the crimes of their ex. They are making you pay a debt you didn't owe.",
+      "They are addicted to the 'Highs and Lows'. They pick fights subconsciously because the makeup sex/reassurance feels like a drug. This is toxic stability.",
+      "You have started lying about small things—not because you are cheating, but because you are terrified of their reaction to the truth.",
+      "They are suffocating the relationship. Like holding sand: the tighter they squeeze, the faster you slip through their fingers.",
+      "They think they are the 'Devoted Protector', but to you, they are starting to look like the 'Controlling Warden'. The line is thinner than they think."
+    ] : [
       "You are creating a Self-Fulfilling Prophecy. Your constant fear of them cheating is actually pushing them away. You are creating the very outcome you fear.",
       "Critical Error: You equate 'Knowing Everything' with 'Safety'. Tracking their location doesn't mean they love you; it just means you are a good spy.",
       "You are exhausting to date. Your partner feels like they are constantly on trial, having to prove their innocence every single day.",
@@ -430,7 +516,18 @@ export default function LovePossessionCalculator() {
       "You think you are the 'Devoted Protector', but to them, you are starting to look like the 'Controlling Warden'. The line is thinner than you think."
     ]
 
-    const level4Messages = [
+    const level4Messages = isPartner ? [
+      "DANGER: They are not in a relationship; they are in a Hostage Situation. They view you as property, not a person. This ends in disaster.",
+      "Their behavior is ticking every box for Emotional Abuse. Isolation, threats, and volatility are not passion—they are grounds for a restraining order.",
+      "Reality Check: You stay with them out of Fear, not Love. They have terrified you into submission. Is that what they really want?",
+      "They are on a path to Self-Destruction. Their obsession is consuming their life, career, and sanity. They are burning down their own house to keep you warm.",
+      "The 'Scorched Earth' Policy: Their mindset of 'If I can't have you, no one can' is a one-way ticket to loneliness (or jail).",
+      "They have completely lost touch with reality. They invent scenarios in their head and punish you for things you haven't even done.",
+      "This dynamic is unsustainable. It will end with a massive explosion that leaves them broken and you traumatized. They need to stop NOW.",
+      "They use Self-Harm threats to control you. This is the ultimate form of manipulation. They are forcing you to be their caretaker, not their lover.",
+      "They have zero boundaries. They have merged so completely that they feel your actions are their actions. This is why your independence feels like a betrayal to them.",
+      "Urgent Warning: Their Dark Stats indicate a high potential for Violence (emotional or physical). You need to protect yourself immediately."
+    ] : [
       "DANGER: You are not in a relationship; you are in a Hostage Situation. You view your partner as property, not a person. This ends in disaster.",
       "Your behavior is ticking every box for Emotional Abuse. Isolation, threats, and volatility are not passion—they are grounds for a restraining order.",
       "Reality Check: They stay with you out of Fear, not Love. You have terrified them into submission. Is that what you really want?",
@@ -453,7 +550,13 @@ export default function LovePossessionCalculator() {
     if (score <= 25) {
       messages = level1Messages
       title = "⚠️ Level 1: The 'Chill' Mask (0-25%)"
-      unlockTexts = [
+      unlockTexts = isPartner ? [
+        "Unlock to learn how to help them show love before you feel neglected and leave.",
+        "See the 3 steps to building intimacy without letting them lose their freedom.",
+        "Stop being 'just roommates'. Unlock the guide to reigniting passion together.",
+        "Their independence is great, but it's pushing you away. Learn to balance it together.",
+        "Unlock to reveal what you are secretly wishing they would do."
+      ] : [
         "Unlock to learn how to show love before they feel neglected and leave.",
         "See the 3 steps to building intimacy without losing your freedom.",
         "Stop being 'just a roommate'. Unlock the guide to reigniting passion.",
@@ -466,7 +569,13 @@ export default function LovePossessionCalculator() {
     } else if (score <= 50) {
       messages = level2Messages
       title = "⚠️ Level 2: The 'Nice Person' Trap (26-50%)"
-      unlockTexts = [
+      unlockTexts = isPartner ? [
+        "Unlock to help them stop overthinking and start feeling secure in their skin.",
+        "Learn how to set boundaries without feeling guilty. Get the script for them.",
+        "Stop being their 'Safety Net'. Unlock the guide to help you become the 'Prize' again.",
+        "Their anxiety is lying to them. Unlock to see the reality of your relationship.",
+        "Help them recover their identity. See how to love them without losing yourself."
+      ] : [
         "Unlock to stop overthinking and start feeling secure in your skin.",
         "Learn how to set boundaries without feeling guilty. Get the script.",
         "Stop being the 'Safety Net'. Unlock to become the 'Prize' again.",
@@ -479,7 +588,13 @@ export default function LovePossessionCalculator() {
     } else if (score <= 75) {
       messages = level3Messages
       title = "🛑 Level 3: The 'Control' Paradox (51-75%)"
-      unlockTexts = [
+      unlockTexts = isPartner ? [
+        "Unlock the 'Trust Protocol' to help them stop checking your phone every hour.",
+        "Help silence the noise in their head. Learn how to build trust without verification.",
+        "Stop them pushing you away with suspicion. Unlock the guide to effortless security.",
+        "Their detective skills are ruining the romance. Learn to help them let go.",
+        "Break the cycle of their jealousy before it becomes a self-fulfilling prophecy."
+      ] : [
         "Unlock the 'Trust Protocol' to stop checking their phone every hour.",
         "Silence the noise in your head. Learn how to trust without verifying.",
         "Stop pushing them away with suspicion. Unlock the guide to effortless security.",
@@ -492,7 +607,13 @@ export default function LovePossessionCalculator() {
     } else {
       messages = level4Messages
       title = "🚨 Level 4: The 'Toxic' Spiral (76-100%)"
-      unlockTexts = [
+      unlockTexts = isPartner ? [
+        "⚠️ Urgent: Unlock the protection guide to save yourself NOW.",
+        "They are on a path to destruction. Unlock to find the emergency brake for your safety.",
+        "Stop the madness. Learn to protect yourself before you lose control forever.",
+        "This isn't passion; it's danger. Unlock the guide to surviving attachment trauma.",
+        "Don't let their 'Dark Stats' win. Unlock the survival guide for dealing with High-Risk partners."
+      ] : [
         "⚠️ Urgent: Unlock the de-escalation guide to save your relationship NOW.",
         "You are on a path to destruction. Unlock to find the emergency brake.",
         "Stop the madness. Learn to control your emotions before you lose them forever.",
@@ -589,7 +710,8 @@ export default function LovePossessionCalculator() {
     setGameState('start')
     setCurrentQuestionIndex(0)
     setAnswers([])
-    setTestMode('self')
+    setTestSubject('self')
+    setCurrentReportView('self')
   }
 
   useEffect(() => {
@@ -756,12 +878,12 @@ export default function LovePossessionCalculator() {
                   </div>
                 </>
               ) : (
-                // 首次访问界面
+                // 首次访问界面 - 点击开始后进入模式选择
                 <>
                   <h1 className="text-4xl font-bold text-center mb-4 text-white relative z-30">{t("h2")}</h1>
                   <p className="text-lg text-center mb-8 text-white max-w-2xl relative z-30">{t("description")}</p>
                   <button
-                    onClick={startTest}
+                    onClick={() => setGameState('selecting')}
                     className="bg-white text-purple-600 px-8 py-3 rounded-full shadow-lg hover:bg-gray-100 transition-colors font-semibold text-lg relative z-30"
                   >
                     {t("startTest")}
@@ -769,6 +891,11 @@ export default function LovePossessionCalculator() {
                 </>
               )}
             </div>
+          )}
+
+          {/* 测试模式选择页面 */}
+          {gameState === 'selecting' && (
+            <TestModeSelector onSelect={handleSelectTestMode} />
           )}
 
           {/* 答题页面 */}
@@ -822,6 +949,35 @@ export default function LovePossessionCalculator() {
           {/* 结果页面 */}
           {gameState === 'result' && (
             <div className="w-full">
+              {/* 报告切换 Tabs - 只有两个报告都存在时显示 */}
+              {existingTests.self && existingTests.partner && (
+                <div className="bg-gray-100 border-b">
+                  <div className="max-w-4xl mx-auto px-4">
+                    <div className="flex gap-4">
+                      <button
+                        onClick={() => switchReportView('self')}
+                        className={`px-6 py-3 font-medium transition-colors ${
+                          currentReportView === 'self'
+                            ? 'bg-white text-purple-600 border-b-2 border-purple-600'
+                            : 'text-gray-600 hover:text-gray-900'
+                        }`}
+                      >
+                        My Report
+                      </button>
+                      <button
+                        onClick={() => switchReportView('partner')}
+                        className={`px-6 py-3 font-medium transition-colors ${
+                          currentReportView === 'partner'
+                            ? 'bg-white text-purple-600 border-b-2 border-purple-600'
+                            : 'text-gray-600 hover:text-gray-900'
+                        }`}
+                      >
+                        Partner's Report
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
               <div className="bg-white">
                 <div className="max-w-4xl mx-auto px-4 py-8">
                   {/* 计算并缓存所有维度分数和称号 */}
@@ -870,15 +1026,15 @@ export default function LovePossessionCalculator() {
                       <span className="w-2 h-2 bg-purple-600 rounded-full"></span>
                       {t("resultsPage.reportBadge")}
                     </div>
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">{t("resultsPage.testTitle")}</h1>
-                    <p className="text-gray-600">{t("resultsPage.testSubtitle")}</p>
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2">{getReportTitle(t("resultsPage.testTitle"))}</h1>
+                    <p className="text-gray-600">{getText(t("resultsPage.testSubtitle"))}</p>
                   </div>
 
                   {/* 总分和等级 */}
                   <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-3xl p-8 mb-8 text-white">
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
-                        <h2 className="text-xl font-medium mb-2">{t("resultsPage.overallScore")}</h2>
+                        <h2 className="text-xl font-medium mb-2">{getReportTitle(t("resultsPage.overallScore"))}</h2>
                         <div className="flex items-baseline gap-2 mb-4">
                           <span className="text-6xl font-bold">{Math.round((answers.reduce((a, b) => a + b, 0) / 185) * 100)}</span>
                           <span className="text-2xl">%</span>
@@ -1401,7 +1557,9 @@ export default function LovePossessionCalculator() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                           </svg>
                         </div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-1">Unlock Your Complete Yandere Profile</h3>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-1">
+                          {currentReportView === 'partner' ? "Unlock Their Complete Yandere Profile" : "Unlock Your Complete Yandere Profile"}
+                        </h3>
                         <p className="text-gray-600 text-sm">Deep psychological analysis of all 4 dimensions</p>
                       </div>
 
@@ -1418,9 +1576,14 @@ export default function LovePossessionCalculator() {
                             🧬 Hidden Behavioral Patterns
                           </h5>
                           <p className="text-gray-400 text-xs leading-relaxed blur-sm select-none">
-                            You have a tendency to track their location when feeling anxious. This specific pattern shows that you are trying to regain control by monitoring their digital footprint...
+                            {currentReportView === 'partner'
+                              ? "They have a tendency to track your location when feeling anxious. This specific pattern shows that they are trying to regain control by monitoring your digital footprint..."
+                              : "You have a tendency to track their location when feeling anxious. This specific pattern shows that you are trying to regain control by monitoring their digital footprint..."
+                            }
                           </p>
-                          <p className="text-purple-600 text-xs mt-1 font-medium">💡 Why do you check their location at 3 AM?</p>
+                          <p className="text-purple-600 text-xs mt-1 font-medium">
+                            {currentReportView === 'partner' ? "💡 Why do they check your location at 3 AM?" : "💡 Why do you check their location at 3 AM?"}
+                          </p>
                         </div>
 
                         {/* Section B: Psychological Triggers */}
@@ -1570,9 +1733,9 @@ export default function LovePossessionCalculator() {
                               <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                               </svg>
-                              Your Story
+                              {currentReportView === 'partner' ? 'Their Story' : 'Your Story'}
                             </h4>
-                            <p className="text-gray-700 leading-relaxed text-sm italic">{persona.story}</p>
+                            <p className="text-gray-700 leading-relaxed text-sm italic">{getText(persona.story)}</p>
                           </div>
 
                           {/* Quote */}
@@ -1605,12 +1768,7 @@ export default function LovePossessionCalculator() {
 
                   {/* 1. Compatibility Match - LOCKED STATE */}
                   {!isUnlocked && (
-                    <div
-                      onClick={() => {
-                        document.querySelector('.sticky.bottom-0.bg-gradient-to-r')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-                      }}
-                      className="bg-gradient-to-br from-pink-50 to-red-50 rounded-2xl p-8 mb-8 border-2 border-pink-200 cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden group"
-                    >
+                    <div className="bg-gradient-to-br from-pink-50 to-red-50 rounded-2xl p-8 mb-8 border-2 border-pink-200 relative overflow-hidden">
                       {/* Lock overlay */}
                       <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors"></div>
 
@@ -1619,7 +1777,12 @@ export default function LovePossessionCalculator() {
                           <span className="text-3xl">💕</span>
                           <span>Compatibility Match</span>
                         </h3>
-                        <p className="text-gray-600 mb-6 text-sm">Who's your true love? And who will destroy you?</p>
+                        <p className="text-gray-600 mb-6 text-sm">
+                          {currentReportView === 'partner'
+                            ? "Who's their true love? And who will destroy them?"
+                            : "Who's your true love? And who will destroy you?"
+                          }
+                        </p>
 
                         <div className="grid md:grid-cols-2 gap-6">
                           {/* Best Match - Silhouette */}
@@ -1687,14 +1850,9 @@ export default function LovePossessionCalculator() {
                           </div>
                         </div>
 
-                        {/* Center CTA */}
+                        {/* Center CTA - Payment Button */}
                         <div className="mt-6 text-center">
-                          <div className="inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full shadow-md border-2 border-pink-300">
-                            <svg className="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                            </svg>
-                            <span className="font-bold text-pink-700">Unlock to see who you should date</span>
-                          </div>
+                          <CreemPaymentButton testResults={{ answers }} />
                         </div>
                       </div>
                     </div>
@@ -1702,12 +1860,7 @@ export default function LovePossessionCalculator() {
 
                   {/* 2. Dark Stats - LOCKED STATE */}
                   {!isUnlocked && (
-                    <div
-                      onClick={() => {
-                        document.querySelector('.sticky.bottom-0.bg-gradient-to-r')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-                      }}
-                      className="bg-gradient-to-br from-gray-900 to-purple-950 rounded-2xl p-8 mb-8 text-white cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden group"
-                    >
+                    <div className="bg-gradient-to-br from-gray-900 to-purple-950 rounded-2xl p-8 mb-8 text-white relative overflow-hidden">
                       {/* Animated scan lines */}
                       <div className="absolute inset-0 opacity-10">
                         <div className="absolute inset-0" style={{
@@ -1722,7 +1875,9 @@ export default function LovePossessionCalculator() {
                           <span>Dark Stats</span>
                           <span className="ml-2 px-3 py-1 bg-red-600/80 text-xs font-bold rounded border border-red-500">CLASSIFIED</span>
                         </h3>
-                        <p className="text-purple-300 mb-6 text-sm">Your true danger level has been redacted</p>
+                        <p className="text-purple-300 mb-6 text-sm">
+                          {currentReportView === 'partner' ? "Their true danger level has been redacted" : "Your true danger level has been redacted"}
+                        </p>
 
                         <div className="grid md:grid-cols-2 gap-8">
                           {/* Radar Chart - Empty/Scanning */}
@@ -1797,14 +1952,9 @@ export default function LovePossessionCalculator() {
                           </div>
                         </div>
 
-                        {/* Bottom warning */}
+                        {/* Bottom warning - Payment Button */}
                         <div className="mt-6 text-center">
-                          <div className="inline-flex items-center gap-2 bg-red-900/30 px-6 py-3 rounded-full border border-red-800">
-                            <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                            </svg>
-                            <span className="font-bold text-red-400">Unlock to view your complete psychological profile</span>
-                          </div>
+                          <CreemPaymentButton testResults={{ answers }} />
                         </div>
                       </div>
                     </div>
@@ -1878,7 +2028,12 @@ export default function LovePossessionCalculator() {
                             <span className="text-3xl">🎭</span>
                             <span>Dark Stats</span>
                           </h3>
-                          <p className="text-purple-200 mb-6 text-sm">The hidden attributes that define your Yandere nature...</p>
+                          <p className="text-purple-200 mb-6 text-sm">
+                            {currentReportView === 'partner'
+                              ? "The hidden attributes that define their Yandere nature..."
+                              : "The hidden attributes that define your Yandere nature..."
+                            }
+                          </p>
 
                           <div className="grid md:grid-cols-2 gap-8">
                             {/* Radar Chart */}
@@ -2027,7 +2182,7 @@ export default function LovePossessionCalculator() {
       </div>
 
       {/* 角色卡片展示 - 只在开始页面显示 */}
-      {gameState === 'start' && <CharacterCards onStartTest={startTest} />}
+      {gameState === 'start' && <CharacterCards onStartTest={() => setGameState('selecting')} />}
 
       <div className="container mx-auto py-0 space-y-16">
         {/* 四个维度 - 仪表盘样式横向排列 - 只在开始页面显示 */}
@@ -2176,7 +2331,7 @@ export default function LovePossessionCalculator() {
                 </ul>
 
                 <button
-                  onClick={startTest}
+                  onClick={() => setGameState('selecting')}
                   className="w-full mt-6 bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
                 >
                   Start Free Test
@@ -2229,7 +2384,7 @@ export default function LovePossessionCalculator() {
                 </ul>
 
                 <button
-                  onClick={startTest}
+                  onClick={() => setGameState('selecting')}
                   className="w-full mt-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all shadow-md relative"
                 >
                   <span className="relative z-10">Unlock Full Report</span>
