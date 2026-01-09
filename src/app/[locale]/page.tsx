@@ -7,6 +7,7 @@ import { useSearchParams } from 'next/navigation'
 import { EmbedDialog } from '@/components/EmbedDialog'
 import { Paywall, CreemPaymentButton } from '@/components/CreemPaymentButton'
 import { ShareCard } from '@/components/ShareCard'
+import { CharacterCards } from '@/components/CharacterCards'
 import { getRandomShareCopy } from '@/lib/shareCopyPool'
 import { hasUnlockedReport, setReportUnlocked, saveTestResults, getSavedTestResults } from '@/lib/creem'
 import { getRandomDimensionAnalysis } from '@/lib/dimensionAnalysis'
@@ -1627,6 +1628,9 @@ export default function LovePossessionCalculator() {
           )}
         </div>
       </div>
+
+      {/* 角色卡片展示 - 只在开始页面显示 */}
+      {gameState === 'start' && <CharacterCards onStartTest={startTest} />}
 
       <div className="container mx-auto py-0 space-y-16">
         {/* 四个维度 - 仪表盘样式横向排列 - 只在开始页面显示 */}
