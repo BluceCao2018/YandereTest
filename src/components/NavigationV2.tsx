@@ -3,6 +3,7 @@ import {useTranslations} from 'next-intl';
 import Link from 'next/link';
 import { FaHeart, FaChartLine, FaShieldAlt, FaUsers, FaHome, FaInfoCircle, FaEnvelope, FaShareAlt } from 'react-icons/fa';
 import { useState } from 'react';
+import { getRandomShareCopy } from '@/lib/shareCopyPool'
 
 export const NavigationV2 = ( ) => {
   const t = useTranslations('love-possession-calculator.nav');
@@ -10,6 +11,7 @@ export const NavigationV2 = ( ) => {
 
   const handleShare = async () => {
     const url = window.location.href;
+    const shareCopy = getRandomShareCopy();
 
     // 检测是否为移动设备
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -17,6 +19,7 @@ export const NavigationV2 = ( ) => {
     if (isMobile && navigator.share && navigator.canShare && navigator.canShare({ url })) {
       // 移动端：唤起原生分享菜单
       try {
+        
         await navigator.share({
           title: document.title,
           url: url,
@@ -28,7 +31,8 @@ export const NavigationV2 = ( ) => {
     } else {
       // 桌面端：复制到剪贴板
       try {
-        await navigator.clipboard.writeText(url);
+        var text=shareCopy.title+"-"+shareCopy.text+" "+url
+        await navigator.clipboard.writeText(text);
         setShowToast(true);
         setTimeout(() => {
           setShowToast(false);
