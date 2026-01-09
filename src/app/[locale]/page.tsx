@@ -7,6 +7,7 @@ import { useSearchParams } from 'next/navigation'
 import { EmbedDialog } from '@/components/EmbedDialog'
 import { Paywall, CreemPaymentButton } from '@/components/CreemPaymentButton'
 import { ShareCard } from '@/components/ShareCard'
+import { getRandomShareCopy } from '@/lib/shareCopyPool'
 import { hasUnlockedReport, setReportUnlocked, saveTestResults, getSavedTestResults } from '@/lib/creem'
 import { getRandomDimensionAnalysis } from '@/lib/dimensionAnalysis'
 import { getFullDiagnosisReport } from '@/lib/diagnosisAnalysis'
@@ -346,11 +347,15 @@ export default function LovePossessionCalculator() {
               const url = window.location.href;
               const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
+              // 获取随机分享文案
+              const shareCopy = getRandomShareCopy();
+
               console.log('=== Share Debug Info ===');
               console.log('isMobile:', isMobile);
               console.log('navigator.share:', navigator.share);
               console.log('navigator.canShare:', navigator.canShare);
               console.log('url:', url);
+              console.log('shareCopy:', shareCopy);
               //alert('isMobile:'+isMobile+",navigator.share:"+navigator.share+",navigator.canShare:"+navigator.canShare);
 
               // 检查是否支持原生分享
@@ -361,8 +366,8 @@ export default function LovePossessionCalculator() {
               if (supportsShare) {
                 try {
                   await navigator.share({
-                    title: document.title,
-                    text: 'Check out this Yandere test!',
+                    title: shareCopy.title,
+                    text: shareCopy.text,
                     url: url,
                   });
                   console.log('Share successful!');
