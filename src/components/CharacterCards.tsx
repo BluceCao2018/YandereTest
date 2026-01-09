@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, TouchEvent } from 'react'
 import Image from 'next/image'
 import { cardCopyPool, getRandomCardCopy } from '@/lib/cardCopyPool'
 
@@ -18,6 +18,8 @@ interface CharacterCardsProps {
 export function CharacterCards({ onStartTest }: CharacterCardsProps) {
   const [cards, setCards] = useState<CardDisplayData[]>([])
   const [mobileIndex, setMobileIndex] = useState(0)
+  const [touchStart, setTouchStart] = useState<number>(0)
+  const [touchEnd, setTouchEnd] = useState<number>(0)
 
   // Initialize cards with random copies
   useEffect(() => {
@@ -54,6 +56,32 @@ export function CharacterCards({ onStartTest }: CharacterCardsProps) {
     return () => clearInterval(mobileInterval)
   }, [])
 
+  // Handle touch start
+  const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  // Handle touch move
+  const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  // Handle touch end - detect swipe direction
+  const handleTouchEnd = () => {
+    const swipeThreshold = 50 // Minimum swipe distance
+    const diff = touchStart - touchEnd
+
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        // Swiped left - next card
+        setMobileIndex(prev => (prev + 1) % 4)
+      } else {
+        // Swiped right - previous card
+        setMobileIndex(prev => (prev - 1 + 4) % 4)
+      }
+    }
+  }
+
   return (
     <section className="w-full bg-gradient-to-b from-pink-50 to-purple-50 py-12 md:py-16">
       <div className="max-w-6xl mx-auto px-4">
@@ -84,25 +112,23 @@ export function CharacterCards({ onStartTest }: CharacterCardsProps) {
                   priority={card.level <= 2}
                 />
 
-                {/* Gradient Overlay for Text */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                {/* Gradient Overlay - Enhanced for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-                {/* Copy Text Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xl">{card.emoji}</span>
-                      <span className="text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                        Level {card.level}
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-900 font-medium leading-relaxed line-clamp-3">
-                      "{card.currentCopy}"
-                    </p>
-                    <p className="text-xs text-gray-500 mt-2 italic">
-                      {card.title}
-                    </p>
+                {/* Copy Text Overlay - Cinematic Style */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 pb-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xl drop-shadow-lg">{card.emoji}</span>
+                    <span className="text-xs font-bold text-white/90 uppercase tracking-widest drop-shadow-lg">
+                      Level {card.level}
+                    </span>
                   </div>
+                  <p className="text-sm text-white font-medium leading-relaxed drop-shadow-lg line-clamp-3">
+                    "{card.currentCopy}"
+                  </p>
+                  <p className="text-xs text-white/70 mt-2 italic drop-shadow-md">
+                    {card.title}
+                  </p>
                 </div>
               </div>
             </div>
@@ -118,7 +144,12 @@ export function CharacterCards({ onStartTest }: CharacterCardsProps) {
                 idx === mobileIndex ? 'opacity-100' : 'hidden'
               }`}
             >
-              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg mx-auto max-w-sm">
+              <div
+                className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg mx-auto max-w-sm"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
                 {/* Card Image */}
                 <Image
                   src={`/cards/${card.level}.png`}
@@ -128,25 +159,23 @@ export function CharacterCards({ onStartTest }: CharacterCardsProps) {
                   priority
                 />
 
-                {/* Gradient Overlay for Text */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                {/* Gradient Overlay - Enhanced for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-                {/* Copy Text Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xl">{card.emoji}</span>
-                      <span className="text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                        Level {card.level}
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-900 font-medium leading-relaxed">
-                      "{card.currentCopy}"
-                    </p>
-                    <p className="text-xs text-gray-500 mt-2 italic">
-                      {card.title}
-                    </p>
+                {/* Copy Text Overlay - Cinematic Style */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 pb-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xl drop-shadow-lg">{card.emoji}</span>
+                    <span className="text-xs font-bold text-white/90 uppercase tracking-widest drop-shadow-lg">
+                      Level {card.level}
+                    </span>
                   </div>
+                  <p className="text-sm text-white font-medium leading-relaxed drop-shadow-lg">
+                    "{card.currentCopy}"
+                  </p>
+                  <p className="text-xs text-white/70 mt-2 italic drop-shadow-md">
+                    {card.title}
+                  </p>
                 </div>
               </div>
 
