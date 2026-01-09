@@ -26,6 +26,13 @@ export interface CreemPaymentResult {
 }
 
 /**
+ * Generate a unique test ID
+ */
+export function generateTestId(): string {
+  return `test_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+}
+
+/**
  * Create a checkout session and redirect to Creem payment page
  */
 export async function createCheckout(options: CreemCheckoutOptions): Promise<CreemPaymentResult> {
@@ -82,17 +89,77 @@ export async function verifyPayment(paymentId: string): Promise<boolean> {
 }
 
 /**
- * Check if user has unlocked the full report
+ * Check if a specific test ID has been unlocked
+ */
+export function hasTestUnlocked(testId: string): boolean {
+  if (typeof window === 'undefined') return false;
+
+  const unlockedTests = localStorage.getItem('yandere-unlocked-tests');
+  if (!unlockedTests) return false;
+
+  try {
+    const unlockedTestsList = JSON.parse(unlockedTests);
+    return Array.isArray(unlockedTestsList) && unlockedTestsList.includes(testId);
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Mark a specific test as unlocked
+ */
+export function setTestUnlocked(testId: string): void {
+  if (typeof window === 'undefined') return;
+
+  let unlockedTests: string[] = [];
+
+  const existing = localStorage.getItem('yandere-unlocked-tests');
+  if (existing) {
+    try {
+      unlockedTests = JSON.parse(existing);
+      if (!Array.isArray(unlockedTests)) {
+        unlockedTests = [];
+      }
+    } catch {
+      unlockedTests = [];
+    }
+  }
+
+  if (!unlockedTests.includes(testId)) {
+    unlockedTests.push(testId);
+    localStorage.setItem('yandere-unlocked-tests', JSON.stringify(unlockedTests));
+  }
+
+  // Store the unlock date for this test
+  const unlockDates = JSON.parse(localStorage.getItem('yandere-test-unlock-dates') || '{}');
+  unlockDates[testId] = new Date().toISOString();
+  localStorage.setItem('yandere-test-unlock-dates', JSON.stringify(unlockDates));
+}
+
+/**
+ * Get the unlock date for a specific test
+ */
+export function getTestUnlockDate(testId: string): Date | null {
+  if (typeof window === 'undefined') return null;
+
+  const unlockDates = JSON.parse(localStorage.getItem('yandere-test-unlock-dates') || '{}');
+  const dateStr = unlockDates[testId];
+  return dateStr ? new Date(dateStr) : null;
+}
+
+/**
+ * Legacy function - Check if user has unlocked the full report
+ * @deprecated Use hasTestUnlocked(testId) instead
  */
 export function hasUnlockedReport(): boolean {
   if (typeof window === 'undefined') return false;
-
   const unlocked = localStorage.getItem('yandere-test-unlocked');
   return unlocked === 'true';
 }
 
 /**
- * Mark the report as unlocked after successful payment
+ * Legacy function - Mark the report as unlocked after successful payment
+ * @deprecated Use setTestUnlocked(testId) instead
  */
 export function setReportUnlocked(): void {
   if (typeof window === 'undefined') return;
@@ -101,13 +168,39 @@ export function setReportUnlocked(): void {
 }
 
 /**
- * Get the date when the report was unlocked
+ * Legacy function - Get the date when the report was unlocked
+ * @deprecated Use getTestUnlockDate(testId) instead
  */
 export function getUnlockedDate(): Date | null {
   if (typeof window === 'undefined') return null;
-
   const dateStr = localStorage.getItem('yandere-test-unlocked-date');
   return dateStr ? new Date(dateStr) : null;
+}
+
+export interface TestResultData {
+  testId: string; // Unique identifier for this test
+  answers: number[];
+  controlDesire: number;
+  jealousyIntensity: number;
+  emotionalDependency: number;
+  relationshipInsecurity: number;
+  totalScore: number;
+  percentage: number;
+  // Random seeds for reproducible content
+  randomSeeds?: {
+    controlTitle?: number;
+    controlCopy?: number;
+    jealousyTitle?: number;
+    jealousyCopy?: number;
+    dependencyTitle?: number;
+    dependencyCopy?: number;
+    insecurityTitle?: number;
+    insecurityCopy?: number;
+    redFlagMessage?: number;
+    redFlagUnlockText?: number;
+    shareCopy?: number;
+  };
+  savedAt: string;
 }
 
 /**
@@ -117,6 +210,17 @@ export function saveTestResults(results: any): void {
   if (typeof window === 'undefined') return;
   localStorage.setItem('yandere-test-results', JSON.stringify({
     ...results,
+    savedAt: new Date().toISOString(),
+  }));
+}
+
+/**
+ * Store test results with random seeds for reproducible content
+ */
+export function saveTestResultsWithSeeds(data: TestResultData): void {
+  if (typeof window === 'undefined') return;
+  localStorage.setItem('yandere-test-results', JSON.stringify({
+    ...data,
     savedAt: new Date().toISOString(),
   }));
 }
@@ -143,4 +247,28 @@ export function getSavedTestResults(): any | null {
 export function clearTestResults(): void {
   if (typeof window === 'undefined') return;
   localStorage.removeItem('yandere-test-results');
+}
+
+/**
+ * Get the current test ID from localStorage
+ */
+export function getCurrentTestId(): string | null {
+  if (typeof window === 'undefined') return null;
+  return localStorage.getItem('yandere-current-test-id');
+}
+
+/**
+ * Set the current test ID
+ */
+export function setCurrentTestId(testId: string): void {
+  if (typeof window === 'undefined') return;
+  localStorage.setItem('yandere-current-test-id', testId);
+}
+
+/**
+ * Clear the current test ID
+ */
+export function clearCurrentTestId(): void {
+  if (typeof window === 'undefined') return;
+  localStorage.removeItem('yandere-current-test-id');
 }

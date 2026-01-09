@@ -343,3 +343,34 @@ export function getRandomDimensionAnalysis(dimension: string, score: number): st
 
   return `${randomTitle.emoji} ${randomTitle.name} - ${randomCopy}`;
 }
+
+/**
+ * 基于种子索引获取确定的分析文案
+ * @param dimension 维度名称
+ * @param score 分数 (0-100)
+ * @param titleIndex 称号索引
+ * @param copyIndex 文案索引
+ * @returns 格式化的文案：emoji + 称号 - 文案
+ */
+export function getDimensionAnalysisBySeed(dimension: string, score: number, titleIndex: number, copyIndex: number): string {
+  const analysis = dimensionAnalyses[dimension];
+  if (!analysis) return 'Analysis not available';
+
+  let level: DimensionLevel;
+
+  if (score <= 25) {
+    level = analysis.levels.level1;
+  } else if (score <= 50) {
+    level = analysis.levels.level2;
+  } else if (score <= 75) {
+    level = analysis.levels.level3;
+  } else {
+    level = analysis.levels.level4;
+  }
+
+  // 使用索引选择称号和文案（确保不越界）
+  const title = level.titles[titleIndex % level.titles.length];
+  const copy = level.copies[copyIndex % level.copies.length];
+
+  return `${title.emoji} ${title.name} - ${copy}`;
+}

@@ -8,10 +8,25 @@ import { EmbedDialog } from '@/components/EmbedDialog'
 import { Paywall, CreemPaymentButton } from '@/components/CreemPaymentButton'
 import { ShareCard } from '@/components/ShareCard'
 import { CharacterCards } from '@/components/CharacterCards'
-import { getRandomShareCopy } from '@/lib/shareCopyPool'
-import { hasUnlockedReport, setReportUnlocked, saveTestResults, getSavedTestResults } from '@/lib/creem'
-import { getRandomDimensionAnalysis } from '@/lib/dimensionAnalysis'
+import { NewTestWarningDialog } from '@/components/NewTestWarningDialog'
+import { getRandomShareCopy, getShareCopyByIndex } from '@/lib/shareCopyPool'
+import {
+  hasUnlockedReport,
+  setReportUnlocked,
+  saveTestResults,
+  getSavedTestResults,
+  saveTestResultsWithSeeds,
+  TestResultData,
+  generateTestId,
+  getCurrentTestId,
+  setCurrentTestId,
+  clearCurrentTestId,
+  hasTestUnlocked,
+  setTestUnlocked
+} from '@/lib/creem'
+import { getRandomDimensionAnalysis, getDimensionAnalysisBySeed } from '@/lib/dimensionAnalysis'
 import { getFullDiagnosisReport } from '@/lib/diagnosisAnalysis'
+import { generateRandomSeeds, getRandomItemBySeed } from '@/lib/randomSeed'
 
 export default function LovePossessionCalculator() {
   const [gameState, setGameState] = useState<'start' | 'playing' | 'result'>('start')
@@ -22,6 +37,11 @@ export default function LovePossessionCalculator() {
   const [embedUrl, setEmbedUrl] = useState('')
   const [isUnlocked, setIsUnlocked] = useState(false)
   const [showShareCard, setShowShareCard] = useState(false)
+  const [savedRandomSeeds, setSavedRandomSeeds] = useState<TestResultData['randomSeeds'] | undefined>(undefined)
+  const [hasPreviousTest, setHasPreviousTest] = useState(false)
+  const [previousTestData, setPreviousTestData] = useState<{ percentage: number; level: string; testId: string; isPaid: boolean } | null>(null)
+  const [currentTestId, setCurrentTestIdState] = useState<string | null>(null)
+  const [showWarningDialog, setShowWarningDialog] = useState(false)
 
   const searchParams = useSearchParams()
   const isIframe = searchParams.get('embed') === 'true'
@@ -87,20 +107,64 @@ export default function LovePossessionCalculator() {
       setEmbedUrl(`${window.location.origin}${window.location.pathname}?embed=true`)
     }
 
-    // Check if report is unlocked
-    const unlocked = hasUnlockedReport()
-    setIsUnlocked(unlocked)
+    // Get current test ID
+    const testId = getCurrentTestId()
+    if (testId) {
+      setCurrentTestIdState(testId)
+      // Check if THIS specific test is unlocked
+      const testUnlocked = hasTestUnlocked(testId)
+      setIsUnlocked(testUnlocked)
+    } else {
+      // Check legacy unlocked status
+      const unlocked = hasUnlockedReport()
+      setIsUnlocked(unlocked)
+    }
+
+    // Check for saved test results on mount
+    const savedResults = getSavedTestResults()
+    if (savedResults && savedResults.answers) {
+      setHasPreviousTest(true)
+      // Determine the level based on percentage
+      let level = ''
+      if (savedResults.percentage <= 25) level = 'Deredere (Sweetheart) 🍬'
+      else if (savedResults.percentage <= 50) level = 'Soft Yandere (Cute & Clingy) 🎀'
+      else if (savedResults.percentage <= 75) level = 'Hardcore Yandere (Obsessive) 🖤'
+      else level = 'Extreme Yandere (Psycho) 🔪'
+
+      const savedTestId = savedResults.testId || 'unknown'
+      const isPaid = hasTestUnlocked(savedTestId) || hasUnlockedReport()
+
+      setPreviousTestData({
+        percentage: savedResults.percentage,
+        level,
+        testId: savedTestId,
+        isPaid
+      })
+
+      if (savedResults.randomSeeds) {
+        setSavedRandomSeeds(savedResults.randomSeeds)
+      }
+    }
 
     // Handle payment success callback
     if (paymentStatus === 'success') {
-      // Mark as unlocked
-      setReportUnlocked()
-      setIsUnlocked(true)
+      // Get the current test ID that was just paid for
+      const currentTestId = getCurrentTestId()
+      if (currentTestId) {
+        setTestUnlocked(currentTestId)
+        setIsUnlocked(true)
+      } else {
+        // Legacy: mark as unlocked
+        setReportUnlocked()
+        setIsUnlocked(true)
+      }
 
       // Restore saved test results if available
-      const savedResults = getSavedTestResults()
       if (savedResults && savedResults.answers) {
         setAnswers(savedResults.answers)
+        if (savedResults.randomSeeds) {
+          setSavedRandomSeeds(savedResults.randomSeeds)
+        }
         setGameState('result')
       }
 
@@ -110,10 +174,61 @@ export default function LovePossessionCalculator() {
   }, [paymentStatus])
 
   const startTest = () => {
+    // Generate a new test ID
+    const newTestId = generateTestId()
+    setCurrentTestId(newTestId)
+    setCurrentTestIdState(newTestId)
+    // Reset unlock status for new test
+    setIsUnlocked(false)
     setTestMode('self')
     setGameState('playing')
     setCurrentQuestionIndex(0)
     setAnswers([])
+    setSavedRandomSeeds(undefined)
+  }
+
+  const viewMyReport = () => {
+    const savedResults = getSavedTestResults()
+    if (savedResults && savedResults.answers) {
+      // Restore the test ID
+      const testId = savedResults.testId
+      if (testId) {
+        setCurrentTestId(testId)
+        setCurrentTestIdState(testId)
+        // Check if this test is unlocked
+        const testUnlocked = hasTestUnlocked(testId)
+        setIsUnlocked(testUnlocked)
+      }
+      setAnswers(savedResults.answers)
+      if (savedResults.randomSeeds) {
+        setSavedRandomSeeds(savedResults.randomSeeds)
+      }
+      setGameState('result')
+    }
+  }
+
+  const handleStartNewTest = () => {
+    // Show warning dialog
+    setShowWarningDialog(true)
+  }
+
+  const confirmStartNewTest = () => {
+    // Generate a new test ID
+    const newTestId = generateTestId()
+    setCurrentTestId(newTestId)
+    setCurrentTestIdState(newTestId)
+    // Reset unlock status for new test
+    setIsUnlocked(false)
+    // Clear previous test data
+    setAnswers([])
+    setSavedRandomSeeds(undefined)
+    setHasPreviousTest(false)
+    setPreviousTestData(null)
+    // Start fresh test
+    setTestMode('self')
+    setGameState('playing')
+    setCurrentQuestionIndex(0)
+    setShowWarningDialog(false)
   }
 
   const handleAnswer = (value: number) => {
@@ -139,8 +254,21 @@ export default function LovePossessionCalculator() {
     const maxScore = 37 * 5
     const percentage = Math.round((totalScore / maxScore) * 100)
 
-    // Save test results for later payment unlock
-    saveTestResults({
+    // Generate random seeds for reproducible content
+    const randomSeeds = generateRandomSeeds()
+    setSavedRandomSeeds(randomSeeds)
+
+    // Get or generate test ID
+    let testId = getCurrentTestId()
+    if (!testId) {
+      testId = generateTestId()
+      setCurrentTestId(testId)
+      setCurrentTestIdState(testId)
+    }
+
+    // Save test results with random seeds and test ID for later payment unlock
+    saveTestResultsWithSeeds({
+      testId,
       answers,
       controlDesire,
       jealousyIntensity,
@@ -148,6 +276,8 @@ export default function LovePossessionCalculator() {
       relationshipInsecurity,
       totalScore,
       percentage,
+      randomSeeds,
+      savedAt: new Date().toISOString(),
     })
 
     setGameState('result')
@@ -160,8 +290,19 @@ export default function LovePossessionCalculator() {
     return { level: t('results.levels.severe'), color: 'text-red-600', description: t('results.descriptions.severe') }
   }
 
-  // 获取维度进度条下面的随机说明文案
+  // 获取维度进度条下面的随机说明文案（使用保存的种子）
   const getDimensionDescription = (dimension: string, score: number) => {
+    if (savedRandomSeeds) {
+      // Use saved seeds for reproducible content
+      const seedKey = `${dimension}Title` as keyof typeof savedRandomSeeds
+      const copyKey = `${dimension}Copy` as keyof typeof savedRandomSeeds
+      const titleSeed = savedRandomSeeds[seedKey]
+      const copySeed = savedRandomSeeds[copyKey]
+      if (titleSeed !== undefined && copySeed !== undefined) {
+        return getDimensionAnalysisBySeed(dimension, score, titleSeed, copySeed)
+      }
+    }
+    // Fallback to random if no seeds available
     return getRandomDimensionAnalysis(dimension, score)
   }
 
@@ -363,9 +504,17 @@ export default function LovePossessionCalculator() {
       iconColor = "text-red-700"
     }
 
-    // Get random message and unlock text
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)]
-    const randomUnlockText = unlockTexts[Math.floor(Math.random() * unlockTexts.length)]
+    // Get random message and unlock text (use saved seeds if available)
+    let randomMessage: string
+    let randomUnlockText: string
+
+    if (savedRandomSeeds?.redFlagMessage !== undefined && savedRandomSeeds?.redFlagUnlockText !== undefined) {
+      randomMessage = getRandomItemBySeed(messages, savedRandomSeeds.redFlagMessage)
+      randomUnlockText = getRandomItemBySeed(unlockTexts, savedRandomSeeds.redFlagUnlockText)
+    } else {
+      randomMessage = messages[Math.floor(Math.random() * messages.length)]
+      randomUnlockText = unlockTexts[Math.floor(Math.random() * unlockTexts.length)]
+    }
 
     return {
       title,
@@ -477,8 +626,10 @@ export default function LovePossessionCalculator() {
               const url = window.location.href;
               const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-              // 获取随机分享文案
-              const shareCopy = getRandomShareCopy();
+              // 获取随机分享文案（使用保存的种子）
+              const shareCopy = savedRandomSeeds?.shareCopy !== undefined
+                ? getShareCopyByIndex(savedRandomSeeds.shareCopy)
+                : getRandomShareCopy();
 
               console.log('=== Share Debug Info ===');
               console.log('isMobile:', isMobile);
@@ -579,14 +730,44 @@ export default function LovePossessionCalculator() {
             <div className='flex flex-col justify-center items-center px-4 py-16 h-[550px] relative z-10'>
               {/* 桌面端：显示爱心 */}
               <i className="hidden md:block fas fa-heart text-9xl text-white mb-8 animate-pulse"></i>
-              <h1 className="text-4xl font-bold text-center mb-4 text-white relative z-30">{t("h2")}</h1>
-              <p className="text-lg text-center mb-8 text-white max-w-2xl relative z-30">{t("description")}</p>
-              <button
-                onClick={startTest}
-                className="bg-white text-purple-600 px-8 py-3 rounded-full shadow-lg hover:bg-gray-100 transition-colors font-semibold text-lg relative z-30"
-              >
-                {t("startTest")}
-              </button>
+
+              {hasPreviousTest && previousTestData ? (
+                // Welcome Back 界面
+                <>
+                  <h1 className="text-4xl font-bold text-center mb-2 text-white relative z-30">
+                    Welcome back, {previousTestData.level}
+                  </h1>
+                  <p className="text-lg text-center mb-8 text-white max-w-2xl relative z-30">
+                    Your previous score: {previousTestData.percentage}%
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 relative z-30">
+                    <button
+                      onClick={viewMyReport}
+                      className="bg-white text-purple-600 px-8 py-3 rounded-full shadow-lg hover:bg-gray-100 transition-colors font-semibold text-lg"
+                    >
+                      View My Report ({previousTestData.percentage}%)
+                    </button>
+                    <button
+                      onClick={handleStartNewTest}
+                      className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full shadow-lg hover:bg-white/10 transition-colors font-semibold text-lg"
+                    >
+                      Start a New Test
+                    </button>
+                  </div>
+                </>
+              ) : (
+                // 首次访问界面
+                <>
+                  <h1 className="text-4xl font-bold text-center mb-4 text-white relative z-30">{t("h2")}</h1>
+                  <p className="text-lg text-center mb-8 text-white max-w-2xl relative z-30">{t("description")}</p>
+                  <button
+                    onClick={startTest}
+                    className="bg-white text-purple-600 px-8 py-3 rounded-full shadow-lg hover:bg-gray-100 transition-colors font-semibold text-lg relative z-30"
+                  >
+                    {t("startTest")}
+                  </button>
+                </>
+              )}
             </div>
           )}
 
@@ -2216,6 +2397,15 @@ export default function LovePossessionCalculator() {
           />
         )
       })()}
+
+      {/* New Test Warning Dialog */}
+      <NewTestWarningDialog
+        isOpen={showWarningDialog}
+        onClose={() => setShowWarningDialog(false)}
+        onConfirm={confirmStartNewTest}
+        isPaidUser={previousTestData?.isPaid || false}
+        currentScore={previousTestData?.percentage || 0}
+      />
     </div>
   )
 }
