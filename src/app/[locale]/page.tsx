@@ -1709,6 +1709,131 @@ export default function LovePossessionCalculator() {
         </div>
         )}
 
+        {/* Pricing / What You Get - 只在开始页面显示 */}
+        {gameState === 'start' && (
+          <div className="container mx-auto px-4 py-16 max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                What You'll Get
+              </h2>
+              <p className="text-gray-600">Choose your level of self-discovery</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* 左边：免费版 */}
+              <div className="bg-gray-50 rounded-3xl p-8 border-2 border-gray-200 relative">
+                <div className="text-center mb-6">
+                  <div className="inline-block px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-bold mb-3">
+                    FREE
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Basic Result</h3>
+                  <p className="text-gray-500 text-sm">Get a quick overview of your Yandere level</p>
+                </div>
+
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-700 text-sm"><strong>Yandere Score:</strong> See your overall percentage</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-700 text-sm"><strong>Your Archetype:</strong> Get your title (e.g., "Soft Yandere")</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-700 text-sm"><strong>4 Dimension Scores:</strong> See your levels in Control, Jealousy, etc.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-700 text-sm"><strong>Shareable Character Card:</strong> Get the viral image for social media</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-400 text-sm">No Deep Analysis</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-400 text-sm">No Hidden Stats</span>
+                  </li>
+                </ul>
+
+                <button
+                  onClick={startTest}
+                  className="w-full mt-6 bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
+                >
+                  Start Free Test
+                </button>
+              </div>
+
+              {/* 右边：付费版 */}
+              <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-3xl p-8 border-2 border-pink-300 relative overflow-hidden">
+                {/* 发光效果 */}
+                <div className="absolute -top-20 -right-20 w-40 h-40 bg-pink-400/20 rounded-full blur-3xl"></div>
+                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-400/20 rounded-full blur-3xl"></div>
+
+                {/* 热门标签 */}
+                <div className="absolute top-4 right-4">
+                  <div className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                    <span className="animate-pulse">🔥</span>
+                    MOST POPULAR
+                  </div>
+                </div>
+
+                <div className="text-center mb-6 relative">
+                  <div className="inline-block px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full text-sm font-bold mb-3 shadow-lg">
+                    $2.99
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Premium Full Report</h3>
+                  <p className="text-gray-600 text-sm">Unlock your complete psychological profile</p>
+                </div>
+
+                <ul className="space-y-3 relative">
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl">🌟</span>
+                    <span className="text-gray-700 text-sm"><strong>Everything in Free</strong></span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl">🔓</span>
+                    <span className="text-gray-700 text-sm"><strong>1,500+ Word Deep Analysis:</strong> Detailed psychology & behavioral breakdown for ALL 4 dimensions</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl">🔓</span>
+                    <span className="text-gray-700 text-sm"><strong>Dark Stats Dashboard:</strong> Reveal your hidden "Danger", "Loyalty", & "Sanity" levels</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl">🔓</span>
+                    <span className="text-gray-700 text-sm"><strong>Compatibility Match:</strong> Find out your Best & Worst romantic partners</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-xl">🔓</span>
+                    <span className="text-gray-700 text-sm"><strong>Senpai's Survival Guide:</strong> Actionable advice to save your relationship</span>
+                  </li>
+                </ul>
+
+                <button
+                  onClick={startTest}
+                  className="w-full mt-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all shadow-md relative"
+                >
+                  <span className="relative z-10">Unlock Full Report</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-700 rounded-xl opacity-0 hover:opacity-100 transition-opacity"></div>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* About 部分 - 左右分栏布局 - 只在开始页面显示 */}
         {gameState === 'start' && (
         <div className="container mx-auto px-4 py-8 max-w-6xl">

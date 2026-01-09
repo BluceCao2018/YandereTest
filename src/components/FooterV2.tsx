@@ -87,9 +87,9 @@ export function FooterV2() {
               <a href="/article/service" className="text-gray-500 hover:text-pink-500 text-sm transition-colors">
                 {t("termsOfService")}
               </a>
-              {/* <a href="#" className="text-gray-500 hover:text-pink-500 text-sm transition-colors">
-                {t("disclaimer")}
-              </a> */}
+              <a href="/article/refund" className="text-gray-500 hover:text-pink-500 text-sm transition-colors">
+                Refund Policy
+              </a>
             </div>
           </div>
         </div>
