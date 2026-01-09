@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import { QRCodeSVG } from 'qrcode.react';
 import Image from 'next/image';
+import { getRandomShareCopy } from '@/lib/shareCopyPool';
 
 interface ShareCardProps {
   score: number;
@@ -31,6 +32,17 @@ export function ShareCard({ score, level, persona, darkStats, onClose }: ShareCa
   const [isGenerating, setIsGenerating] = useState(false);
   const [showShareButtons, setShowShareButtons] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // 检测是否为移动端
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Auto-generate image when component mounts
   useEffect(() => {
@@ -91,6 +103,39 @@ export function ShareCard({ score, level, persona, darkStats, onClose }: ShareCa
   const shareToWhatsApp = () => {
     const text = `I scored ${score}% on the Yandere Test! 🖤\n"${persona.quote.replace(/"/g, '')}"\n\nTake the test: ${window.location.href}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
+  // 移动端原生分享
+  const handleMobileShare = async () => {
+    if (!generatedImage) return;
+
+    try {
+      // 将 base64 图片转换为 Blob
+      const response = await fetch(generatedImage);
+      const blob = await response.blob();
+      const file = new File([blob], 'yandere-test.png', { type: 'image/png' });
+
+      // 获取随机分享文案
+      const shareCopy = getRandomShareCopy();
+
+      // 检查是否支持原生分享
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          title: shareCopy.title,
+          text: shareCopy.text,
+          files: [file],
+        });
+      } else if (navigator.share) {
+        // 如果不支持分享文件，则只分享链接
+        await navigator.share({
+          title: shareCopy.title,
+          text: shareCopy.text,
+          url: window.location.href,
+        });
+      }
+    } catch (error) {
+      console.log('Share cancelled or failed:', error);
+    }
   };
 
   const getScoreColor = () => {
@@ -349,9 +394,18 @@ export function ShareCard({ score, level, persona, darkStats, onClose }: ShareCa
           {/* Scrollable Content */}
           <div className="flex-1 overflow-y-auto px-6">
             {/* Preview image */}
-            <div className="rounded-xl overflow-hidden shadow-2xl">
+            <div className="rounded-xl overflow-hidden shadow-2xl relative">
               {generatedImage ? (
-                <img src={generatedImage} alt="Share preview" className="w-full" />
+                <>
+                  <img src={generatedImage} alt="Share preview" className="w-full" />
+                  {/* 移动端长按提示 */}
+                  {isMobile && (
+                    <div className="absolute top-3 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 backdrop-blur-sm">
+                      <span>Long press image to save</span>
+                      <span>👆</span>
+                    </div>
+                  )}
+                </>
               ) : (
                 <div className="aspect-[9/16] bg-gradient-to-br from-purple-900 to-pink-900 flex items-center justify-center">
                   <div className="text-center text-white p-8 pt-4">
@@ -391,15 +445,29 @@ export function ShareCard({ score, level, persona, darkStats, onClose }: ShareCa
               </button>
             ) : (
               <div className="space-y-3">
-                <button
-                  onClick={downloadImage}
-                  className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  Save to Gallery
-                </button>
+                {isMobile ? (
+                  // 移动端：显示分享按钮
+                  <button
+                    onClick={handleMobileShare}
+                    className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                    </svg>
+                    Share Image
+                  </button>
+                ) : (
+                  // 桌面端：显示保存按钮
+                  <button
+                    onClick={downloadImage}
+                    className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Save to Gallery
+                  </button>
+                )}
 
                 {/* <div className="grid grid-cols-2 gap-3">
                   <button
