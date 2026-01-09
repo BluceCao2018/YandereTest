@@ -248,6 +248,135 @@ export default function LovePossessionCalculator() {
     }
   }
 
+  // The Hidden Red Flag data - Pain point messages
+  const getRedFlagData = (score: number) => {
+    const level1Messages = [
+      "Your 'independence' often feels like neglect to your partner. You aren't giving them space; you are creating a void they might fill with someone else.",
+      "You pride yourself on being 'low maintenance', but you are actually emotionally unavailable. Your partner likely feels lonely even when you are in the same room.",
+      "Warning: Your lack of jealousy isn't confidence; it's detachment. You are subconsciously keeping one foot out the door to avoid getting hurt.",
+      "You are turning your romance into a roommate relationship. Without emotional friction or intensity, the spark is dying faster than you think.",
+      "You suppress your needs so much that you've become invisible in your own relationship. You are 'safe', but you are also forgettable.",
+      "You avoid conflict to 'keep the peace', but this silence is building a wall of resentment. You are not solving problems; you are burying them.",
+      "Your partner may feel unneeded. By never showing possessiveness, you inadvertently tell them: 'I would be totally fine without you.'",
+      "Risk of sudden breakup: Partners of your type often leave without warning because they feel you simply 'don't care enough' to fight for them.",
+      "You confuse 'Peace' with 'Numbness'. You are protecting yourself from pain, but you are also blocking out true joy and connection.",
+      "You are the 'Cool Partner' on the surface, but deep down, you are likely terrified of vulnerability. You refuse to let anyone see your messy side."
+    ]
+
+    const level2Messages = [
+      "You suffer from 'Nice Person Syndrome'. You over-give and secretly expect them to pay you back with love. When they don't, you build toxic resentment.",
+      "Your anxiety is silent but deadly. You analyze their texts for hours instead of asking simple questions. This internal stress is aging you.",
+      "You are losing your identity. You slowly change your hobbies and opinions to match theirs. Soon, there will be no 'You' left to love.",
+      "Passive-Aggression Alert: Instead of getting mad, you get sad/quiet. This forces your partner to play a guessing game that they are tired of playing.",
+      "You value the relationship more than your self-respect. You tolerate small disrespects because you are terrified of rocking the boat.",
+      "You think you are being 'understanding', but you are actually enabling bad behavior. You teach people how to treat you, and you are teaching them to do the bare minimum.",
+      "Dependency Risk: Your mood is entirely dictated by their attention. One slow reply ruins your whole day. That is not love; that is emotional hostage.",
+      "You are the 'Safety Net'. Your partner knows you will always be there, so they stopped trying to impress you. You have become an option, not a priority.",
+      "You are projecting a 'Perfect Partner' image that isn't real. You are afraid that if you show your ugly/angry side, they will leave.",
+      "Your love language is becoming suffocating in a subtle way. Your constant need for reassurance is slowly draining their emotional battery."
+    ]
+
+    const level3Messages = [
+      "You are creating a Self-Fulfilling Prophecy. Your constant fear of them cheating is actually pushing them away. You are creating the very outcome you fear.",
+      "Critical Error: You equate 'Knowing Everything' with 'Safety'. Tracking their location doesn't mean they love you; it just means you are a good spy.",
+      "You are exhausting to date. Your partner feels like they are constantly on trial, having to prove their innocence every single day.",
+      "Your 'protection' feels like prison. You are slowly isolating them from the world, and eventually, they will rebel to breathe.",
+      "You use Guilt as a weapon. Phrases like 'If you loved me, you would...' are emotional manipulation, not affection.",
+      "Trust Issues: You are punishing your current partner for the crimes of your ex. You are making them pay a debt they didn't owe.",
+      "You are addicted to the 'Highs and Lows'. You pick fights subconsciously because the makeup sex/reassurance feels like a drug. This is toxic stability.",
+      "Your partner has started lying about small things—not because they are cheating, but because they are terrified of your reaction to the truth.",
+      "You are suffocating the relationship. Like holding sand: the tighter you squeeze, the faster they slip through your fingers.",
+      "You think you are the 'Devoted Protector', but to them, you are starting to look like the 'Controlling Warden'. The line is thinner than you think."
+    ]
+
+    const level4Messages = [
+      "DANGER: You are not in a relationship; you are in a Hostage Situation. You view your partner as property, not a person. This ends in disaster.",
+      "Your behavior is ticking every box for Emotional Abuse. Isolation, threats, and volatility are not passion—they are grounds for a restraining order.",
+      "Reality Check: They stay with you out of Fear, not Love. You have terrified them into submission. Is that what you really want?",
+      "You are on a path to Self-Destruction. Your obsession is consuming your life, career, and sanity. You are burning down your own house to keep them warm.",
+      "The 'Scorched Earth' Policy: Your mindset of 'If I can't have you, no one can' is a one-way ticket to loneliness (or jail).",
+      "You have completely lost touch with reality. You invent scenarios in your head and punish your partner for things they haven't even done.",
+      "This dynamic is unsustainable. It will end with a massive explosion that leaves you broken and them traumatized. You need to stop NOW.",
+      "You use Self-Harm threats to control them. This is the ultimate form of manipulation. You are forcing them to be your caretaker, not your lover.",
+      "You have zero boundaries. You have merged so completely that you feel their actions are your actions. This is why their independence feels like a betrayal.",
+      "Urgent Warning: Your Dark Stats indicate a high potential for Violence (emotional or physical). You need to unlock the guide to de-escalate your own brain immediately."
+    ]
+
+    let messages: string[]
+    let title: string
+    let unlockTexts: string[]
+    let bgColor: string
+    let borderColor: string
+    let iconColor: string
+
+    if (score <= 25) {
+      messages = level1Messages
+      title = "⚠️ Level 1: The 'Chill' Mask (0-25%)"
+      unlockTexts = [
+        "Unlock to learn how to show love before they feel neglected and leave.",
+        "See the 3 steps to building intimacy without losing your freedom.",
+        "Stop being 'just a roommate'. Unlock the guide to reigniting passion.",
+        "Your independence is great, but it's pushing them away. Learn to balance it.",
+        "Unlock to reveal what your partner is secretly wishing you would do."
+      ]
+      bgColor = "bg-yellow-50"
+      borderColor = "border-yellow-300"
+      iconColor = "text-yellow-600"
+    } else if (score <= 50) {
+      messages = level2Messages
+      title = "⚠️ Level 2: The 'Nice Person' Trap (26-50%)"
+      unlockTexts = [
+        "Unlock to stop overthinking and start feeling secure in your skin.",
+        "Learn how to set boundaries without feeling guilty. Get the script.",
+        "Stop being the 'Safety Net'. Unlock to become the 'Prize' again.",
+        "Your anxiety is lying to you. Unlock to see the reality of your relationship.",
+        "Recover your identity. See how to love them without losing yourself."
+      ]
+      bgColor = "bg-orange-50"
+      borderColor = "border-orange-300"
+      iconColor = "text-orange-600"
+    } else if (score <= 75) {
+      messages = level3Messages
+      title = "🛑 Level 3: The 'Control' Paradox (51-75%)"
+      unlockTexts = [
+        "Unlock the 'Trust Protocol' to stop checking their phone every hour.",
+        "Silence the noise in your head. Learn how to trust without verifying.",
+        "Stop pushing them away with suspicion. Unlock the guide to effortless security.",
+        "Your detective skills are ruining the romance. Learn to let go.",
+        "Break the cycle of jealousy before it becomes a self-fulfilling prophecy."
+      ]
+      bgColor = "bg-red-50"
+      borderColor = "border-red-300"
+      iconColor = "text-red-600"
+    } else {
+      messages = level4Messages
+      title = "🚨 Level 4: The 'Toxic' Spiral (76-100%)"
+      unlockTexts = [
+        "⚠️ Urgent: Unlock the de-escalation guide to save your relationship NOW.",
+        "You are on a path to destruction. Unlock to find the emergency brake.",
+        "Stop the madness. Learn to control your emotions before you lose them forever.",
+        "This isn't passion; it's danger. Unlock to heal your attachment trauma.",
+        "Don't let your 'Dark Stats' win. Unlock the survival guide for High-Risk lovers."
+      ]
+      bgColor = "bg-red-100"
+      borderColor = "border-red-500"
+      iconColor = "text-red-700"
+    }
+
+    // Get random message and unlock text
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)]
+    const randomUnlockText = unlockTexts[Math.floor(Math.random() * unlockTexts.length)]
+
+    return {
+      title,
+      message: randomMessage,
+      unlockText: randomUnlockText,
+      bgColor,
+      borderColor,
+      iconColor
+    }
+  }
+
   // Yandere Persona (专属角色卡/人设) - RPG-style archetype
   const getYanderePersona = (percentage: number) => {
     const controlScore = Math.round((answers.slice(0, 10).reduce((a, b) => a + b, 0) / 50) * 100)
@@ -667,6 +796,93 @@ export default function LovePossessionCalculator() {
                     </div>
                   </div>
 
+                  {/* The Hidden Red Flag */}
+                  {(() => {
+                    const overallScore = Math.round((answers.reduce((a, b) => a + b, 0) / 185) * 100)
+                    const redFlagData = getRedFlagData(overallScore)
+
+                    // 根据等级确定按钮颜色
+                    const getButtonStyles = () => {
+                      if (overallScore <= 25) {
+                        return {
+                          border: 'border-yellow-500',
+                          text: 'text-yellow-700',
+                          hoverBg: 'hover:bg-yellow-100',
+                          iconColor: 'text-yellow-600'
+                        }
+                      } else if (overallScore <= 50) {
+                        return {
+                          border: 'border-orange-500',
+                          text: 'text-orange-700',
+                          hoverBg: 'hover:bg-orange-100',
+                          iconColor: 'text-orange-600'
+                        }
+                      } else if (overallScore <= 75) {
+                        return {
+                          border: 'border-red-500',
+                          text: 'text-red-700',
+                          hoverBg: 'hover:bg-red-100',
+                          iconColor: 'text-red-600'
+                        }
+                      } else {
+                        return {
+                          border: 'border-red-600',
+                          text: 'text-red-800',
+                          hoverBg: 'hover:bg-red-200',
+                          iconColor: 'text-red-700'
+                        }
+                      }
+                    }
+
+                    const buttonStyles = getButtonStyles()
+
+                    return (
+                      <div className={`${redFlagData.bgColor} border-2 ${redFlagData.borderColor} rounded-2xl p-6 mb-10`}>
+                        {/* 上部分：警告图标 + 标题 + 痛点文案 */}
+                        <div className="flex items-start gap-4 mb-4">
+                          <div className={`${redFlagData.iconColor} text-4xl flex-shrink-0 animate-pulse`}>
+                            <span className="text-4xl">⚠️</span>
+                          </div>
+                          <div className="flex-1">
+                            <h3 className={`text-xl font-bold ${redFlagData.iconColor} mb-3`}>
+                             Hidden Risk Detected
+                            </h3>
+                            <p className="text-gray-800 text-sm leading-relaxed">
+                              {redFlagData.message}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* 分割线 */}
+                        {!isUnlocked && <div className="border-t border-gray-300 my-4"></div>}
+
+                        {/* 下部分：引导语 + 警示色幽灵按钮 */}
+                        {!isUnlocked && (
+                          <div className="space-y-4">
+                            <p className={`text-sm font-semibold ${redFlagData.iconColor} flex items-center gap-2`}>
+                              <span className="text-lg">🔓</span>
+                              {redFlagData.unlockText}
+                            </p>
+                            <button
+                              onClick={() => {
+                                const element = document.getElementById('detailed-analysis')
+                                if (element) {
+                                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                                }
+                              }}
+                              className={`w-full text-center py-4 px-6 rounded-xl border-2 ${buttonStyles.border} ${buttonStyles.text} font-bold ${buttonStyles.hoverBg} transition-all flex items-center justify-center gap-2 group shadow-sm hover:shadow-md`}
+                            >
+                              <span>Unlock the Solution</span>
+                              <svg className={`w-5 h-5 ${buttonStyles.iconColor} group-hover:translate-y-1 transition-transform`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                              </svg>
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })()}
+
                   {/* 详细分析 - 支付墙 */}
                   {isUnlocked ? (() => {
                     const controlScore = Math.round((answers.slice(0, 10).reduce((a, b) => a + b, 0) / 50) * 100);
@@ -996,7 +1212,7 @@ export default function LovePossessionCalculator() {
                       </div>
                     );
                   })() : (
-                    <div className="bg-gradient-to-br from-gray-50 to-purple-50 rounded-2xl p-6 mb-8 relative overflow-hidden">
+                    <div id="detailed-analysis" className="bg-gradient-to-br from-gray-50 to-purple-50 rounded-2xl p-6 mb-8 relative overflow-hidden -mt-16 pt-20">
                       {/* Header */}
                       <div className="text-center mb-6">
                         <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full mb-3">
