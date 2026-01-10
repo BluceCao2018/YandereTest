@@ -3,6 +3,25 @@
  * Documentation: https://docs.creem.io/features/checkout/checkout-api
  */
 
+/**
+ * Global configuration for free unlock promotion
+ * Set ENABLE_FREE_UNLOCK to true to enable limited-time free access
+ */
+export const FREE_UNLOCK_CONFIG = {
+  ENABLE_FREE_UNLOCK: true, // Set to false to disable free unlock and require payment
+  PROMOTION_END_DATE: new Date('2026-01-15T23:59:59Z'), // End date for promotion
+} as const;
+
+/**
+ * Check if free unlock is currently available
+ */
+export function isFreeUnlockAvailable(): boolean {
+  if (!FREE_UNLOCK_CONFIG.ENABLE_FREE_UNLOCK) {
+    return false;
+  }
+  return new Date() < FREE_UNLOCK_CONFIG.PROMOTION_END_DATE;
+}
+
 export interface CreemConfig {
   apiKey: string;
   mode: 'sandbox' | 'production';

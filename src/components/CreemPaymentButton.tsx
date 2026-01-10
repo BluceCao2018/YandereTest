@@ -2,27 +2,56 @@
 
 import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { createCheckout, setReportUnlocked, hasUnlockedReport } from '@/lib/creem';
+import { createCheckout, setReportUnlocked, hasUnlockedReport, isFreeUnlockAvailable, setTestUnlocked } from '@/lib/creem';
 
 interface CreemPaymentButtonProps {
   testResults: any;
   onPaymentSuccess?: () => void;
   className?: string;
   isUnlocked?: boolean;
+  testId?: string;
+  onFreeUnlock?: () => void;
 }
 
-export function CreemPaymentButton({ testResults, onPaymentSuccess, className = '', isUnlocked = false }: CreemPaymentButtonProps) {
+export function CreemPaymentButton({
+  testResults,
+  onPaymentSuccess,
+  className = '',
+  isUnlocked = false,
+  testId,
+  onFreeUnlock
+}: CreemPaymentButtonProps) {
   const t = useTranslations('love-possession-calculator');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // NOTE: The parent component controls visibility with {!isUnlocked && ...}
-  // So we don't need to check here - just render the button
+  // Check if free unlock is available
+  const freeUnlockAvailable = isFreeUnlockAvailable();
 
-  const handlePayment = async () => {
+  const handleUnlock = async () => {
     setIsLoading(true);
     setError(null);
 
+    // If free unlock is available, unlock without payment
+    if (freeUnlockAvailable && testId) {
+      try {
+        // Mark the test as unlocked
+        setTestUnlocked(testId);
+        // Call the free unlock callback
+        if (onFreeUnlock) {
+          onFreeUnlock();
+        }
+        setIsLoading(false);
+        return;
+      } catch (err) {
+        setError('Failed to unlock. Please try again.');
+        console.error('Free unlock error:', err);
+        setIsLoading(false);
+        return;
+      }
+    }
+
+    // Otherwise, proceed with payment
     try {
       const result = await createCheckout({
         amount: 299, // $2.99 in cents
@@ -56,7 +85,7 @@ export function CreemPaymentButton({ testResults, onPaymentSuccess, className = 
   return (
     <div className={`creem-payment-button ${className}`}>
       <button
-        onClick={handlePayment}
+        onClick={handleUnlock}
         disabled={isLoading}
         className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed text-lg"
       >
@@ -73,9 +102,19 @@ export function CreemPaymentButton({ testResults, onPaymentSuccess, className = 
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
-            <span>Unlock Full Report - $2.99</span>
-            <span className="text-gray-100 line-through text-xl">$9.99</span>
-            <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">70% OFF</span>
+            {freeUnlockAvailable ? (
+              <>
+                <span>Unlock FREE - Limited Time</span>
+                <span className="text-gray-100 line-through text-xl">$9.99</span>
+                <span className="bg-yellow-400 text-gray-900 text-xs px-2 py-1 rounded-full font-bold">today</span>
+              </>
+            ) : (
+              <>
+                <span>Unlock Full Report - $2.99</span>
+                <span className="text-gray-100 line-through text-xl">$9.99</span>
+                <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">70% OFF</span>
+              </>
+            )}
           </span>
         )}
       </button>
@@ -87,7 +126,11 @@ export function CreemPaymentButton({ testResults, onPaymentSuccess, className = 
       )}
 
       <p className="mt-3 text-xs text-center text-gray-500">
-        🔒 Secure payment powered by Creem.io
+        {freeUnlockAvailable ? (
+          <span className="text-green-600 font-semibold">🎉 Special promotion: FREE access today only!</span>
+        ) : (
+          <span>🔒 Secure payment powered by Creem.io</span>
+        )}
       </p>
     </div>
   );
@@ -96,10 +139,13 @@ export function CreemPaymentButton({ testResults, onPaymentSuccess, className = 
 interface PaywallProps {
   testResults: any;
   onPaymentSuccess?: () => void;
+  testId?: string;
+  onFreeUnlock?: () => void;
 }
 
-export function Paywall({ testResults, onPaymentSuccess }: PaywallProps) {
+export function Paywall({ testResults, onPaymentSuccess, testId, onFreeUnlock }: PaywallProps) {
   const t = useTranslations('love-possession-calculator');
+  const freeUnlockAvailable = isFreeUnlockAvailable();
 
   return (
     <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 md:p-12 border border-purple-200">
@@ -175,15 +221,28 @@ export function Paywall({ testResults, onPaymentSuccess }: PaywallProps) {
         {/* Price Guarantee */}
         <div className="bg-white rounded-xl p-4 mb-6 border-2 border-purple-300">
           <div className="flex items-center justify-center gap-2 mb-2">
-            <span className="text-4xl font-bold text-purple-600">$2.99</span>
+            <span className="text-4xl font-bold text-purple-600">
+              {freeUnlockAvailable ? 'FREE' : '$2.99'}
+            </span>
             <span className="text-gray-500 line-through text-xl">$9.99</span>
-            <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">70% OFF</span>
+            <span className={freeUnlockAvailable ? "bg-yellow-400 text-gray-900 text-xs px-2 py-1 rounded-full font-bold" : "bg-red-500 text-white text-xs px-2 py-1 rounded-full"}>
+              {freeUnlockAvailable ? '仅限今日' : '70% OFF'}
+            </span>
           </div>
-          <p className="text-sm text-gray-600">Limited time offer - Unlock your complete Yandere analysis</p>
+          <p className="text-sm text-gray-600">
+            {freeUnlockAvailable
+              ? '🎉 Special promotion: FREE access today only!'
+              : 'Limited time offer - Unlock your complete Yandere analysis'}
+          </p>
         </div>
 
         {/* Payment Button */}
-        <CreemPaymentButton testResults={testResults} onPaymentSuccess={onPaymentSuccess} />
+        <CreemPaymentButton
+          testResults={testResults}
+          onPaymentSuccess={onPaymentSuccess}
+          testId={testId}
+          onFreeUnlock={onFreeUnlock}
+        />
 
         {/* Trust Badges */}
         <div className="flex items-center justify-center gap-6 mt-6 text-sm text-gray-500">

@@ -225,6 +225,13 @@ export default function LovePossessionCalculator() {
     }
   }
 
+  const handleFreeUnlock = () => {
+    // Handle free unlock - mark as unlocked and refresh UI
+    if (currentTestId) {
+      setIsUnlocked(true)
+    }
+  }
+
   const handleStartNewTest = () => {
     // Show warning dialog
     setShowWarningDialog(true)
@@ -1664,7 +1671,11 @@ export default function LovePossessionCalculator() {
                             <p className="text-white font-bold text-base mb-1">Unlock Complete Yandere Profile</p>
                             <p className="text-pink-100 text-xs">All 4 dimensions deep analysis + personalized survival guide</p>
                           </div>
-                          <CreemPaymentButton testResults={{ answers }} />
+                          <CreemPaymentButton
+                            testResults={{ answers }}
+                            testId={currentTestId || undefined}
+                            onFreeUnlock={handleFreeUnlock}
+                          />
                         </div>
                       </div>
                     </div>
@@ -1852,7 +1863,11 @@ export default function LovePossessionCalculator() {
 
                         {/* Center CTA - Payment Button */}
                         <div className="mt-6 text-center">
-                          <CreemPaymentButton testResults={{ answers }} />
+                          <CreemPaymentButton
+                            testResults={{ answers }}
+                            testId={currentTestId || undefined}
+                            onFreeUnlock={handleFreeUnlock}
+                          />
                         </div>
                       </div>
                     </div>
@@ -1954,7 +1969,11 @@ export default function LovePossessionCalculator() {
 
                         {/* Bottom warning - Payment Button */}
                         <div className="mt-6 text-center">
-                          <CreemPaymentButton testResults={{ answers }} />
+                          <CreemPaymentButton
+                            testResults={{ answers }}
+                            testId={currentTestId || undefined}
+                            onFreeUnlock={handleFreeUnlock}
+                          />
                         </div>
                       </div>
                     </div>
